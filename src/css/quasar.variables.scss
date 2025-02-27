@@ -12,7 +12,7 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #1976D2;
+$primary   : #315720; // дублирует $green
 $secondary : #26A69A;
 $accent    : #9C27B0;
 
@@ -23,3 +23,11 @@ $positive  : #21BA45;
 $negative  : #C10015;
 $info      : #31CCEC;
 $warning   : #F2C037;
+
+$dark_green: #1F3613;
+$green: #315720;
+$light_yellow:#FBFBF1;
+$light_green: #829F4F;
+$fon:#EFDFBB;
+$button_fon: #F8CB96;
+$button_text: #A27D54;
