@@ -26,7 +26,7 @@
       <div style="max-width: 350px;">
         <div class="q-mb-lg">
           <p style="margin: 0 0 4px;" class="text-primary">Политика конфиденциальности</p>
-          <p class="text-primary">Согласие на обработку персональных данных</p>
+          <p class="text-primary">Согласие на обработку персональных данных</p>
         </div>
         <div class="row">
           <div class="col-3 flex items-center">
