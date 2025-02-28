@@ -1,18 +1,14 @@
 <template>
   <q-page>
     <div class="section_banner">
-      <div style="height: 114vh;" class="flex column items-center" :style="{
+      <div style="height: 118vh;" class="flex items-between justify-center" :style="{
         backgroundImage: `url(${img_sectionBanner}), linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0))`,
-        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundBlendMode: 'normal',
         backgroundOrigin: 'padding-box',
-        backgroundClip: 'border-box',
-        backgroundPositionX: 'center',
-        backgroundPositionY: 'top',
       }">
-        <div class="fake_header_wrapper flex justify-center q-pt-md">
-          <div class="fake_header row flex items-center justify-between" style="max-width: 1440px">
+        <div class="fake_header_wrapper flex justify-center q-py-md" style="width: 100%; max-height: 10vh;">
+          <div class="fake_header row flex items-center justify-around" style="width: 100%;">
             <div style="min-width: 150px;max-width: 150px;">
               <q-img src="src/assets/logo.svg" style="height: 100%; width: 100%;" />
             </div>
@@ -27,7 +23,7 @@
             </div>
           </div>
         </div>
-        <div class="flex flex-center" style="max-width: 450px">
+        <div class="self-center" style="max-width: 660px; position: relative; bottom: 400px;">
           <div>
             <div class="h1 font_Sunday text-primary text-center">У-дачный контент</div>
             <div class="text-primary h5 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
@@ -49,7 +45,12 @@
       backgroundBlendMode: 'normal',
       backgroundOrigin: 'padding-box',
     }">
-
+      <div style="width: 500px;" class="irregular_rectangle">
+        <div class="font_Sunday h2">Антон Кутимский</div>
+        <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся вместе
+          с нами!» Наша
+          команда разработала и создала особый контент для особенных детей.</div>
+      </div>
     </div>
     <div class="footer row flex items-center justify-around">
       <div style="max-width: 150px;">
@@ -108,6 +109,42 @@ import img_sectionPartners from 'src/assets/landing/section_partners.png'
 </script>
 
 <style lang="scss">
+.irregular_rectangle {
+  padding: 40px 45px;
+  color: $green;
+  border: none;
+  background: none;
+  outline: none;
+  position: relative;
+  z-index: 0;
+  margin: 15px;
+  // filter: drop-shadow(0px 30px 25px rgba(236, 0, 244, 0.45));
+}
+
+.irregular_rectangle:before,
+.irregular_rectangle:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  clip-path: polygon(0 11%, 100% 0, 90% 88%, 3% 96%);
+  transition: 1s all;
+  background: $verylightbrown;
+}
+
+.irregular_rectangle:before {
+  background: $green;
+  transform: scale(1.05, 1.12);
+}
+
+// .irregular_rectangle:hover:before,
+// .irregular_rectangle:hover:after {
+//   clip-path: polygon(5% 2%, 100% 5%, 100% 100%, 0% 94%);
+// }
+
 // .gradient-bg {
 //   background: linear-gradient(160deg, #83a4d4 0%, #b6fbff 100%);
 // }
