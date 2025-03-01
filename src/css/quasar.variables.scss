@@ -11,6 +11,7 @@
 // It's highly recommended to change the default colors
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
+$typography-font-family: "Involve", "Roboto", "-apple-system", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 $primary   : #315720; // дублирует $green
 $secondary : #26A69A;
@@ -31,3 +32,7 @@ $light_green: #829F4F;
 $fon:#EFDFBB;
 $button_fon: #F8CB96;
 $button_text: #A27D54;
+
+//?? 
+$skyblue: #D0E7F1;
+$verylightbrown: #FBFBF1;
