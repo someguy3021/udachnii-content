@@ -52,8 +52,7 @@
         </div>
         <q-item class="q-pa-md" style="max-width: 350px">
           <q-list bordered class="rounded-borders background_lightgreen text-white q-pa-md">
-            <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" caption="John Doe"
-              header-class="font_Sunday">
+            <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday">
               <q-card class="background_fon text-black">
                 <q-card-section>
                   При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
