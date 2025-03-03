@@ -50,6 +50,40 @@
             с нами!» Наша
             команда разработала и создала особый контент для особенных детей.</div>
         </div>
+        <q-item class="q-pa-md" style="max-width: 350px">
+          <q-list bordered class="rounded-borders background_lightgreen text-white q-pa-md">
+            <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" caption="John Doe"
+              header-class="font_Sunday">
+              <q-card class="background_fon text-black">
+                <q-card-section>
+                  При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
+                  и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
+                  и социальное взаимодействие.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+            <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
+              <q-card class="background_fon text-black">
+                <q-card-section>
+                  12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
+                  занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
+                  с предметами и другие активности для развития ребёнка.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+            <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
+              <q-card class="background_fon text-black">
+                <q-card-section>
+                  Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
+                  направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки и
+                  помогут с развитием критического твор­ческого мышления.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+        </q-item>
       </div>
     </div>
     <div class="section_speaker">
@@ -76,7 +110,7 @@
     </div>
     <div class="section_partners">
       <div class="section_partners_background">
-        <div style="height: 254px; width: 100%; margin-top: -100px;"
+        <div style="height: 254px; width: 100%; margin-top: -36px;"
           :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
           <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" swipeable animated
             control-color="white" padding arrows infinite style="height: 100%; background-color: transparent;">
