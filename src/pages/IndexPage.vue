@@ -77,16 +77,43 @@
     <div class="section_partners">
       <div class="section_partners_background">
         <div style="height: 254px; width: 100%; margin-top: -100px;"
-          :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }"
-          class="flex items-center justify-center h5 q-pa-md">
-          <div class="background_fon q-px-xl q-py-lg row" style="border-radius: 54px; min-width: 50%;">
-            <div class="col flex flex-center q-pr-lg">
-              Давайте вместе сделаем лето незабываемым и полезным для наших детей!
-            </div>
-            <div class="col flex flex-center" style="max-width: 54px;">
-              <q-img src="src/assets/landing/openmoji_scroll.svg" style="height: 54px; width: 54px;"></q-img>
-            </div>
-          </div>
+          :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
+          <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" swipeable animated
+            control-color="white" padding arrows infinite style="height: 100%; background-color: transparent;">
+            <q-carousel-slide :name="1" class="column no-wrap">
+              <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+              </div>
+            </q-carousel-slide>
+            <q-carousel-slide :name="2" class="column no-wrap">
+              <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+              </div>
+            </q-carousel-slide>
+            <q-carousel-slide :name="3" class="column no-wrap">
+              <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+              </div>
+            </q-carousel-slide>
+            <q-carousel-slide :name="4" class="column no-wrap">
+              <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-btn no-caps color="green" icon="mail" label="info@example" />
+              </div>
+            </q-carousel-slide>
+          </q-carousel>
         </div>
       </div>
     </div>
@@ -125,6 +152,7 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
 import { ref } from 'vue'
 
 const slide = ref(1)
+const slide2 = ref(1)
 </script>
 
 <style lang="scss">
