@@ -1,0 +1,91 @@
+@mixin desktop-h4() {
+    font-family: Sunday;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 31.2px;
+}
+
+@mixin desktop-text_bold_20() {
+    font-family: Involve;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+@mixin desktop-text_regular_24() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 26.4px;
+}
+
+@mixin desktop-text_regular_20() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+@mixin desktop-text_regular_14() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18.62px;
+}
+
+@mixin tablet-text_regular_18() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19.8px;
+}
+
+@mixin tablet-text_bold_18() {
+    font-family: Involve;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 19.8px;
+}
+
+@mixin tablet-text_regular_16() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17.6px;
+}
+
+@mixin tablet-h4() {
+    font-family: Sunday;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+@mixin phone-bold_16() {
+    font-family: Involve;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 17.6px; 
+}
+
+@mixin phone-regular_14() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15.4px;
+}
+
+@mixin phone-regular_12() {
+    font-family: Involve;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15.96px;
+}
+
+@mixin phone-h4() {
+    font-family: Sunday;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+

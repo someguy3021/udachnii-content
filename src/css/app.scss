@@ -90,8 +90,29 @@ body {
   font-display: swap;
 }
 
+
+
 .font_Sunday {
   font-family: Sunday;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 60px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 20px;
+  }
+}
+
+img {
+  max-width: 100%;
 }
 
 //----------- Bootstrap texts
@@ -197,4 +218,15 @@ h6,
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+.fake_header__container {
+  width: 100%;
+}
+
+.btn {
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
