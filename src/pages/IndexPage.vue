@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <div class="self-center" style="max-width: 660px; position: relative; bottom: 20vh;">
+        <div class="self-center" style="max-width: 660px; position: relative; bottom: calc(20vh + 10vw);">
           <div>
             <div class="h1 font_Sunday text-primary text-center">У-дачный контент</div>
             <div class="text-primary h5 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
@@ -52,7 +52,45 @@
         </div>
       </div>
     </div>
-    <div class="footer row flex items-center justify-around">
+    <div class="section_speaker">
+      <div class="section_speaker_background" v-if="$q.screen.width >= 390">
+      </div>
+      <div v-if="$q.screen.width <= 390">
+        <q-carousel style="height: 737px;" animated v-model="slide" arrows navigation infinite class="background_fon">
+          <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp" />
+          <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp" />
+          <q-carousel-slide :name="3" img-src="src/assets/landing/mobile/section_speaker_3.webp" />
+          <q-carousel-slide :name="4" img-src="src/assets/landing/mobile/section_speaker_4.webp" />
+        </q-carousel>
+      </div>
+    </div>
+    <div class="section_events">
+      <div class="section_events_background">
+
+      </div>
+    </div>
+    <div class="section_registrations">
+      <div class="section_registrations_background">
+
+      </div>
+    </div>
+    <div class="section_partners">
+      <div class="section_partners_background">
+        <div style="height: 254px; width: 100%; margin-top: -100px;"
+          :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }"
+          class="flex items-center justify-center h5 q-pa-md">
+          <div class="background_fon q-px-xl q-py-lg row" style="border-radius: 54px; min-width: 50%;">
+            <div class="col flex flex-center q-pr-lg">
+              Давайте вместе сделаем лето незабываемым и полезным для наших детей!
+            </div>
+            <div class="col flex flex-center" style="max-width: 54px;">
+              <q-img src="src/assets/landing/openmoji_scroll.svg" style="height: 54px; width: 54px;"></q-img>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer row flex items-center justify-around q-my-lg q-py-md">
       <div style="max-width: 150px;">
         <div class="q-mb-lg"><q-img src="src/assets/logo.svg" /></div>
         <div style="opacity: 0.6;" class="text-primary">© 2025 Text text text</div>
@@ -79,27 +117,14 @@
         </div>
       </div>
     </div>
-    <!-- <div class="section_advantages">
-      <q-img src="src/assets/landing/section_advantages.png" class="" style="width: 100vw;" />
-    </div>
-    <div class="section_speaker">
-      <q-img src="src/assets/landing/section_speaker.png" class="" style="width: 100vw;" />
-    </div>
-    <div class="section_events">
-      <q-img src="src/assets/landing/section_events.png" class="" style="width: 100vw;" />
-    </div>
-    <div class="section_registrations">
-      <q-img src="src/assets/landing/section_registrations.png" class="" style="width: 100vw;" />
-    </div>
-    <div class="section_partners">
-      <q-img src="src/assets/landing/section_partners.png" class="" style="width: 100vw;" />
-    </div> -->
   </q-page>
 </template>
 
 <script setup>
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
+import { ref } from 'vue'
 
+const slide = ref(1)
 </script>
 
 <style lang="scss">
@@ -140,6 +165,10 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
   transform: scale(1.05, 1.12);
 }
 
+// Blocks with complex vector img background, very sensitive to resizing
+// Blocks with complex vector img background, very sensitive to resizing
+// Blocks with complex vector img background, very sensitive to resizing
+
 .section_banner_background {
   background: url(../assets/landing/section_banner.webp) no-repeat,
     linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
@@ -153,6 +182,27 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 1152px;
+}
+
+.section_speaker_background {
+  background: url(../assets/landing/section_speaker.webp) no-repeat;
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  height: 3343px;
+}
+
+.section_events_background {
+  background: url(../assets/landing/section_events.webp) no-repeat;
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  height: 1095px;
+}
+
+.section_registrations_background {
+  background: url(../assets/landing/section_registrations.webp) no-repeat;
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  height: 697px;
 }
 
 @media (max-width: 1440px) {
@@ -169,6 +219,27 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 857px;
+  }
+
+  .section_speaker_background {
+    background: url(../assets/landing/1440/section_speaker.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 2508px;
+  }
+
+  .section_events_background {
+    background: url(../assets/landing/1440/section_events.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 821px;
+  }
+
+  .section_registrations_background {
+    background: url(../assets/landing/1440/section_registrations.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 523px;
   }
 }
 
@@ -187,6 +258,27 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
     background-origin: padding-box;
     height: 651px;
   }
+
+  .section_speaker_background {
+    background: url(../assets/landing/tablet/section_speaker.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 1534px;
+  }
+
+  .section_events_background {
+    background: url(../assets/landing/tablet/section_events.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 762px;
+  }
+
+  .section_registrations_background {
+    background: url(../assets/landing/tablet/section_registrations.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 322px;
+  }
 }
 
 @media (max-width: 390px) {
@@ -203,6 +295,27 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 596px;
+  }
+
+  .section_speaker_background {
+    background: url(../assets/landing/mobile/section_speaker.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 737px;
+  }
+
+  .section_events_background {
+    background: url(../assets/landing/mobile/section_events.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 760px;
+  }
+
+  .section_registrations_background {
+    background: url(../assets/landing/mobile/section_registrations.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 420px;
   }
 }
 
