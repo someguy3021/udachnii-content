@@ -1,12 +1,7 @@
 <template>
   <q-page>
     <div class="section_banner">
-      <div style="height: 118vh;" class="flex items-between justify-center" :style="{
-        backgroundImage: `url(${img_sectionBanner}), linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0))`,
-        backgroundRepeat: 'no-repeat',
-        backgroundBlendMode: 'normal',
-        backgroundOrigin: 'padding-box',
-      }">
+      <div class="flex items-between justify-center section_banner_background">
         <div class="fake_header_wrapper flex justify-center q-py-md" style="width: 100%; max-height: 10vh;">
           <div class="fake_header row flex items-center justify-around" style="width: 100%;">
             <div style="min-width: 150px;max-width: 150px;">
@@ -23,7 +18,7 @@
             </div>
           </div>
         </div>
-        <div class="self-center" style="max-width: 660px; position: relative; bottom: 400px;">
+        <div class="self-center" style="max-width: 660px; position: relative; bottom: 20vh;">
           <div>
             <div class="h1 font_Sunday text-primary text-center">У-дачный контент</div>
             <div class="text-primary h5 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
@@ -47,17 +42,14 @@
         </div>
       </div>
     </div>
-    <div class="section_advantages" style="height: 1148px;" :style="{
-      backgroundImage: `url(${img_sectionAdvantages})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundBlendMode: 'normal',
-      backgroundOrigin: 'padding-box',
-    }">
-      <div style="width: 500px;" class="irregular_rectangle">
-        <div class="font_Sunday h2">Антон Кутимский</div>
-        <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся вместе
-          с нами!» Наша
-          команда разработала и создала особый контент для особенных детей.</div>
+    <div class="section_advantages">
+      <div class="section_advantages_background">
+        <div style="width: 500px;" class="irregular_rectangle">
+          <div class="font_Sunday h2">Антон Кутимский</div>
+          <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся вместе
+            с нами!» Наша
+            команда разработала и создала особый контент для особенных детей.</div>
+        </div>
       </div>
     </div>
     <div class="footer row flex items-center justify-around">
@@ -106,17 +98,17 @@
 </template>
 
 <script setup>
-import img_sectionBanner from 'src/assets/landing/section_banner.webp'
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
-import img_sectionAdvantages from 'src/assets/landing/section_advantages.png'
-// import img_sectionSpeaker from 'src/assets/landing/section_speaker.png'
-// import img_sectionEvents from 'src/assets/landing/section_events.png'
-// import img_sectionRegistrations from 'src/assets/landing/section_registrations.png'
-// import img_sectionPartners from 'src/assets/landing/section_partners.png'
 
 </script>
 
 <style lang="scss">
+// :style="{
+//         backgroundImage: `url(${img_sectionBanner}), linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0))`,
+//         backgroundRepeat: 'no-repeat',
+//         backgroundBlendMode: 'normal',
+//         backgroundOrigin: 'padding-box',
+//       }"
 .irregular_rectangle {
   padding: 40px 45px;
   color: $green;
@@ -146,6 +138,72 @@ import img_sectionAdvantages from 'src/assets/landing/section_advantages.png'
 .irregular_rectangle:before {
   background: $green;
   transform: scale(1.05, 1.12);
+}
+
+.section_banner_background {
+  background: url(../assets/landing/section_banner.webp) no-repeat,
+    linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  height: 1135px;
+}
+
+.section_advantages_background {
+  background: url(../assets/landing/section_advantages.webp) no-repeat;
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  height: 1152px;
+}
+
+@media (max-width: 1440px) {
+  .section_banner_background {
+    background: url(../assets/landing/1440/section_banner.webp) no-repeat,
+      linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 915px;
+  }
+
+  .section_advantages_background {
+    background: url(../assets/landing/1440/section_advantages.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 857px;
+  }
+}
+
+@media (max-width: 744px) {
+  .section_banner_background {
+    background: url(../assets/landing/tablet/section_banner.webp) no-repeat,
+      linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 480px;
+  }
+
+  .section_advantages_background {
+    background: url(../assets/landing/tablet/section_advantages.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 651px;
+  }
+}
+
+@media (max-width: 390px) {
+  .section_banner_background {
+    background: url(../assets/landing/mobile/section_banner.webp) no-repeat,
+      linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 660px;
+  }
+
+  .section_advantages_background {
+    background: url(../assets/landing/mobile/section_advantages.webp) no-repeat;
+    background-blend-mode: normal;
+    background-origin: padding-box;
+    height: 596px;
+  }
 }
 
 // .irregular_rectangle:hover:before,
