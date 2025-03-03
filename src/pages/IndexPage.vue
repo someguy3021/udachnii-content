@@ -35,8 +35,16 @@
         </div>
       </div>
       <div style="height: 254px; width: 100%; margin-top: -100px;"
-        :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="flex items-center justify-center">
-        <q-btn no-caps color="green" icon="mail" label="Войти" />
+        :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }"
+        class="flex items-center justify-center h5 q-pa-md">
+        <div class="background_fon q-px-xl q-py-lg row" style="border-radius: 54px; min-width: 50%;">
+          <div class="col flex flex-center q-pr-lg">
+            Давайте вместе сделаем лето незабываемым и полезным для наших детей!
+          </div>
+          <div class="col flex flex-center" style="max-width: 54px;">
+            <q-img src="src/assets/landing/openmoji_scroll.svg" style="height: 54px; width: 54px;"></q-img>
+          </div>
+        </div>
       </div>
     </div>
     <div class="section_advantages" style="height: 1148px;" :style="{
@@ -47,9 +55,9 @@
     }">
       <div style="width: 500px;" class="irregular_rectangle">
         <div class="font_Sunday h2">Антон Кутимский</div>
-        <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся вместе
-          с нами!» Наша
-          команда разработала и создала особый контент для особенных детей.</div>
+        <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся вместе
+          с нами!» Наша
+          команда разработала и создала особый контент для особенных детей.</div>
       </div>
     </div>
     <div class="footer row flex items-center justify-around">
@@ -101,10 +109,10 @@
 import img_sectionBanner from 'src/assets/landing/section_banner.webp'
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
 import img_sectionAdvantages from 'src/assets/landing/section_advantages.png'
-import img_sectionSpeaker from 'src/assets/landing/section_speaker.png'
-import img_sectionEvents from 'src/assets/landing/section_events.png'
-import img_sectionRegistrations from 'src/assets/landing/section_registrations.png'
-import img_sectionPartners from 'src/assets/landing/section_partners.png'
+// import img_sectionSpeaker from 'src/assets/landing/section_speaker.png'
+// import img_sectionEvents from 'src/assets/landing/section_events.png'
+// import img_sectionRegistrations from 'src/assets/landing/section_registrations.png'
+// import img_sectionPartners from 'src/assets/landing/section_partners.png'
 
 </script>
 
