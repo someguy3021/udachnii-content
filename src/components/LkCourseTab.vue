@@ -1,13 +1,13 @@
 <template>
   <section class="lk-course">
     <div class="lk-course__left">
-      <div class="lk-course__dropdown dropdown">
+      <div ref="dropdown" class="lk-course__dropdown dropdown">
         <button @click="toggleDropdown" class="dropdown__btn btn">Правила</button>
         <div class="dropdown__content" :class="{open: open}">
-          Лишь стремящиеся вытеснить традиционное производство, нанотехнологии преданы социально-демократической анафеме. Лишь стремящиеся вытеснить традиционное производство, нанотехнологии преданы социально-демократической анафеме.
+          Изучив весь материал курса, вы получите билет на фестиваль «У-Дачник». Все модули открываются постепенно — в каждом месяце по 4 видеоурока с текстовыми методическими материалами. Если у вас возникнут вопросы или вы захотите поделиться успехами, используйте кнопку «Обратная связь».
         </div>
       </div>
-        <img class="lk-course__img" src="/src/assets/images/lk/course-pic.webp" alt="">
+        <img :style="{top: `${dropdownHeight}px`}" ref="img" class="lk-course__img" src="/src/assets/images/lk/course-pic.webp" alt="">
     </div>
     <div class="lk-course__right">
       <div class="lk-course__items">
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 import LkCourseSpoiler from './LkCourseSpoiler.vue';
 export default {
   components: {
@@ -33,22 +34,22 @@ export default {
           children: [
             {
               id: 0,
-              video_link: '',
+              video_link: 'https://rutube.ru/play/embed/c71a722e6f74234eba54043ca507572b/',
               poster: '/src/assets/images/lk/poster.webp'
             },
             {
               id: 1,
-              video_link: '',
+              video_link: 'https://rutube.ru/play/embed/c71a722e6f74234eba54043ca507572b/',
               poster: '/src/assets/images/lk/poster.webp'
             },
             {
               id: 2,
-              video_link: '',
+              video_link: 'https://rutube.ru/play/embed/c71a722e6f74234eba54043ca507572b/',
               poster: '/src/assets/images/lk/poster.webp'
             },
             {
               id: 3,
-              video_link: '',
+              video_link: 'https://rutube.ru/play/embed/c71a722e6f74234eba54043ca507572b/',
               poster: '/src/assets/images/lk/poster.webp'
             },
           ]
@@ -107,13 +108,25 @@ export default {
         },
       ],
       open: false,
-
+      dropdownHeight: 0,
     }
   },
   methods: {
     toggleDropdown() {
       this.open = !this.open;
+    },
+
+    dropdownHeightHundle() {
+      if (this.$refs.img && this.$refs.dropdown) {
+      this.dropdownHeight = this.$refs.dropdown.clientHeight + 56;
     }
+    }
+  },
+
+  mounted() {
+    this.dropdownHeightHundle();
+
+    window.addEventListener('resize', this.dropdownHeightHundle);
   }
 }
 </script>

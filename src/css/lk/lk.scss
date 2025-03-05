@@ -7,6 +7,10 @@
         padding-bottom: 60px;
     }
 
+    &-layout {
+        background: linear-gradient(180deg, #D0E7F1 0%, #EFDFBB 22.71%);
+    }
+
     .tabs {
         &__container {
             display: flex;
@@ -34,7 +38,7 @@
         cursor: pointer;
         white-space: nowrap;
 
-        @media (max-width: 768px) {
+        @media (max-width: $media-m) {
             padding: 14px 22px;
             @include tablet-text_bold_18;
             border-radius: 18px;
