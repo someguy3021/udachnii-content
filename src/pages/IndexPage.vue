@@ -43,50 +43,58 @@
       </div>
     </div>
     <div class="section_advantages">
-      <div class="section_advantages_background">
-        <div style="width: 500px;" class="irregular_rectangle">
-          <div class="font_Sunday h2">Антон Кутимский</div>
-          <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся вместе
-            с нами!» Наша
-            команда разработала и создала особый контент для особенных детей.</div>
+      <div class="section_advantages_background flex flex-center">
+        <div class="flex justify-around full-width">
+          <div class="irregularShape">
+            <div class="irregularShape_text text-primary">
+              <div class="font_Sunday h3">Антон Кутимский</div>
+              <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
+                вместе
+                с нами!» Наша
+                команда разработала и создала особый контент для особенных детей.</div>
+            </div>
+          </div>
+          <q-item class="q-pa-md" style="max-width: 350px">
+            <q-list bordered class="rounded-borders background_lightgreen text-white q-pa-md no-border">
+              <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday">
+                <q-card class="background_fon text-black">
+                  <q-card-section>
+                    При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
+                    и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
+                    и социальное взаимодействие.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+
+              <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
+                <q-card class="background_fon text-black">
+                  <q-card-section>
+                    12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
+                    занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
+                    с предметами и другие активности для развития ребёнка.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+
+              <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
+                <q-card class="background_fon text-black">
+                  <q-card-section>
+                    Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
+                    направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки
+                    и
+                    помогут с развитием критического твор­ческого мышления.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+            </q-list>
+          </q-item>
         </div>
-        <q-item class="q-pa-md" style="max-width: 350px">
-          <q-list bordered class="rounded-borders background_lightgreen text-white q-pa-md">
-            <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday">
-              <q-card class="background_fon text-black">
-                <q-card-section>
-                  При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
-                  и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
-                  и социальное взаимодействие.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
 
-            <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
-              <q-card class="background_fon text-black">
-                <q-card-section>
-                  12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
-                  занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
-                  с предметами и другие активности для развития ребёнка.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-
-            <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
-              <q-card class="background_fon text-black">
-                <q-card-section>
-                  Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
-                  направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки и
-                  помогут с развитием критического твор­ческого мышления.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-        </q-item>
       </div>
     </div>
     <div class="section_speaker">
       <div class="section_speaker_background" v-if="$q.screen.width >= 390">
+
       </div>
       <div v-if="$q.screen.width <= 390">
         <q-carousel style="height: 737px;" animated v-model="slide" arrows navigation infinite class="background_fon">
@@ -195,35 +203,21 @@ const slide2 = ref(1)
 //         backgroundBlendMode: 'normal',
 //         backgroundOrigin: 'padding-box',
 //       }"
-.irregular_rectangle {
-  padding: 40px 45px;
-  color: $green;
-  border: none;
-  background: none;
-  outline: none;
-  position: relative;
-  z-index: 0;
-  margin: 15px;
-  // filter: drop-shadow(0px 30px 25px rgba(236, 0, 244, 0.45));
+.irregularShape {
+  padding-left: 20px;
+  padding-right: 12px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  width: 550px;
+  height: 226px;
+  transform: skew(-6deg, 5deg);
+  background: $light_yellow;
+  border: solid 2px $green;
+  border-radius: 20px;
 }
 
-.irregular_rectangle:before,
-.irregular_rectangle:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  clip-path: polygon(0 11%, 100% 0, 90% 88%, 3% 96%);
-  transition: 1s all;
-  background: $verylightbrown;
-}
-
-.irregular_rectangle:before {
-  background: $green;
-  transform: scale(1.05, 1.12);
+.irregularShape_text {
+  transform: skew(6deg, -5deg);
 }
 
 // Blocks with complex vector img background, very sensitive to resizing
