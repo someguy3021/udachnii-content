@@ -89,10 +89,10 @@
           <q-item class="q-pa-md" style="max-width: 850px" id="accordeon1" v-if="$q.screen.width > 440">
             <q-list bordered class="background_lightgreen text-white q-pa-md no-border"
               style="border-radius: 20px; width: 580px;">
-              <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday"
+              <q-expansion-item expand-separator icon="exposure_plus_1" label="Психомоторика" header-class="font_Sunday"
                 class="q-pt-md">
-                <q-card class="background_fon text-black">
-                  <q-card-section>
+                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
+                  <q-card-section class="">
                     При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
                     и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
                     и социальное взаимодействие.
@@ -100,8 +100,8 @@
                 </q-card>
               </q-expansion-item>
 
-              <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
-                <q-card class="background_fon text-black">
+              <q-expansion-item expand-separator icon="exposure_plus_2" label="Формат" header-class="font_Sunday">
+                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
                   <q-card-section>
                     12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
                     занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
@@ -110,8 +110,8 @@
                 </q-card>
               </q-expansion-item>
 
-              <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
-                <q-card class="background_fon text-black">
+              <q-expansion-item expand-separator icon="looks_3" label="Медиакомпетентность" header-class="font_Sunday">
+                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
                   <q-card-section>
                     Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
                     направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки
