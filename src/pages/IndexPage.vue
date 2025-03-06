@@ -1,10 +1,11 @@
 <template>
   <q-page>
     <div class="section_banner">
-      <div class="flex items-between justify-center section_banner_background">
+      <div class="section_banner_background">
+
         <div class="fake_header_wrapper flex justify-center q-py-md" style="width: 100%; max-height: 10vh;">
-          <div class="fake_header row flex items-center" style="width: 100%;"
-            :class="$q.screen.gt.sm ? 'justify-around q-px-xl' : 'justify-between q-px-md'">
+          <div class="fake_header row flex items-center" style="width: 100%; height: 80px;"
+            :class="$q.screen.gt.sm ? 'justify-between q-px-xl' : 'justify-between q-px-md'">
             <div style="min-width: 150px;max-width: 150px;">
               <q-img src="src/assets/logo.svg" style="height: 100%; width: 100%;" />
             </div>
@@ -20,20 +21,25 @@
             </div>
           </div>
         </div>
-        <div class="text_hero self-center">
-          <div>
-            <div class="h1_bigger3 font_Sunday text-primary text-center">У-дачный контент</div>
-            <div class="text-primary h4 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
+
+        <div class="text_hero_wrapper self-center">
+          <div class="text_hero q-px-md">
+            <div class="h1_bigger3 font_Sunday text-primary text-center"
+              :style="$q.screen.lt.sm ? { fontSize: '48px' } : {}">У-дачный контент</div>
+            <div class="text-primary text-center" :class="$q.screen.gt.sm ? 'h4' : 'h6'">Особенный развивающий
+              контент для особенных детей. Получи билеты на
               «у-Дачный
               фестиваль -2025 года»,
               выполнив все задания.
             </div>
           </div>
         </div>
+
         <div class="sign_button_wrapper">
-          <div class="sign_button_pillar">
+          <div class="sign_button sign_button_pillar">
             <div>
-              <q-btn flat no-caps color="white" label="" size="xl" class="q-pa-none" style="margin-bottom: -38%;">
+              <q-btn flat no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                class="q-pa-none" style="margin-bottom: -38%;border-radius: 40px">
                 <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
                   <div style="border: solid 2px #A27D54; border-radius: 40px;">
                     <div style="border: solid 4px #806241; border-style: dashed; border-radius: 40px;"
@@ -46,10 +52,13 @@
             </div>
           </div>
         </div>
+
       </div>
-      <div style="height: 254px; width: 100%; margin-top: -100px;"
-        :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }"
-        class="flex items-center justify-center h5 q-pa-md">
+      <div style="height: 254px; width: 100%; margin-top: -100px; z-index: 100; position: relative;" :style="[
+        $q.screen.gt.sm ?
+          { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grass})` }
+          : { marginTop: '-200px', backgroundImage: `url(${img_sectionBanner_grass})` }
+      ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
         <div class="background_fon q-px-xl q-py-lg row" style="border-radius: 54px; min-width: 50%;">
           <div class="col flex flex-center q-pr-lg">
             Давайте вместе сделаем лето незабываемым и полезным для наших детей!
@@ -72,7 +81,7 @@
                 команда разработала и создала особый контент для особенных детей.</div>
             </div>
           </div>
-          <q-item class="q-pa-md" style="max-width: 350px">
+          <q-item class="q-pa-md" style="max-width: 350px" id="accordeon1">
             <q-list bordered class="rounded-borders background_lightgreen text-white q-pa-md no-border">
               <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday">
                 <q-card class="background_fon text-black">
@@ -254,6 +263,24 @@ const slide2 = ref(1)
   transform: skew(6deg, -5deg);
 }
 
+#accordeon1::before {
+  content: '';
+  background-image: url(../assets/landing/blocks/Vector_cloud.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 250px;
+  /* Adjust image width */
+  height: 113px;
+  /* Adjust image height */
+  position: absolute;
+  top: -80px;
+  /* Half of image height to center on edge */
+  left: 50%;
+  transform: translateX(-20%);
+  display: block;
+  z-index: 1;
+}
+
 // Blocks with complex vector img background, very sensitive to resizing
 // Blocks with complex vector img background, very sensitive to resizing
 // Blocks with complex vector img background, very sensitive to resizing
@@ -294,8 +321,30 @@ const slide2 = ref(1)
   height: 697px;
 }
 
+.text_hero_wrapper {
+  position: relative;
+  top: 150px;
+}
+
+.text_hero {
+  margin: 0 auto;
+  width: 850px;
+  max-width: 100%;
+}
+
+.sign_button_wrapper {
+  position: relative;
+  top: 400px;
+}
+
+.sign_button {
+  margin-left: 700px;
+  width: 850px;
+  max-width: 100%;
+}
+
 .sign_button_pillar {
-  background: url(../assets/landing/blocks/Pillar_for_button.webp) no-repeat;
+  background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
   width: 281px;
   height: 340px;
 }
@@ -336,6 +385,19 @@ const slide2 = ref(1)
     background-origin: padding-box;
     height: 523px;
   }
+
+  .text_hero_wrapper {
+    top: 100px;
+  }
+
+  .sign_button_wrapper {
+    top: 290px;
+  }
+
+  .sign_button {
+    margin: 0 auto;
+  }
+
 }
 
 @media (max-width: 744px) {
@@ -344,7 +406,7 @@ const slide2 = ref(1)
       linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
     background-blend-mode: normal;
     background-origin: padding-box;
-    height: 480px;
+    height: 664px;
   }
 
   .section_advantages_background {
@@ -374,15 +436,33 @@ const slide2 = ref(1)
     background-origin: padding-box;
     height: 322px;
   }
+
+  .text_hero_wrapper {
+    top: 0;
+  }
+
+  .text_hero {
+    width: 450px;
+  }
+
+  .sign_button_wrapper {
+    top: 50px;
+  }
+
+  .sign_button_pillar {
+    background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
+    width: 201px;
+    height: 240px;
+  }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 440px) {
   .section_banner_background {
     background: url(../assets/landing/mobile/section_banner.webp) no-repeat,
       linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
     background-blend-mode: normal;
     background-origin: padding-box;
-    height: 660px;
+    height: 860px;
   }
 
   .section_advantages_background {
@@ -411,6 +491,23 @@ const slide2 = ref(1)
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 420px;
+  }
+
+  .sign_button_wrapper {
+    top: 100px;
+  }
+
+  .sign_button {
+    margin-top: -20px;
+    margin-left: 50px;
+    width: 850px;
+    max-width: 100%;
+  }
+
+  .sign_button_pillar {
+    background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
+    width: 281px;
+    height: 340px;
   }
 }
 
