@@ -59,8 +59,9 @@
           { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grass})` }
           : { marginTop: '-200px', backgroundImage: `url(${img_sectionBanner_grass})` }
       ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
-        <div class="background_fon q-px-xl q-py-lg row" style="border-radius: 54px; min-width: 50%;">
-          <div class="col flex flex-center q-pr-lg">
+        <div class="background_fon row" style="border-radius: 54px; min-width: 50%;"
+          :class="$q.screen.gt.sm ? 'q-px-xl q-py-lg' : 'q-px-lg q-py-md'">
+          <div class="col flex flex-center q-pr-md">
             Давайте вместе сделаем лето незабываемым и полезным для наших детей!
           </div>
           <div class="col flex flex-center" style="max-width: 54px;">
@@ -85,7 +86,7 @@
             </AppearBlock>
           </div>
 
-          <q-item class="q-pa-md" style="max-width: 850px" id="accordeon1">
+          <q-item class="q-pa-md" style="max-width: 850px" id="accordeon1" v-if="$q.screen.width > 440">
             <q-list bordered class="background_lightgreen text-white q-pa-md no-border"
               style="border-radius: 20px; width: 580px;">
               <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday"
@@ -125,9 +126,45 @@
         </div>
 
       </div>
+      <q-item class="q-pa-md" style="max-width: 850px" id="accordeon1" v-if="$q.screen.width <= 440">
+        <q-list bordered class="background_lightgreen text-white q-pa-md no-border"
+          style="border-radius: 20px; width: 580px; max-width: 100%;">
+          <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday"
+            class="q-pt-md">
+            <q-card class="background_fon text-black">
+              <q-card-section>
+                При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
+                и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
+                и социальное взаимодействие.
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+
+          <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
+            <q-card class="background_fon text-black">
+              <q-card-section>
+                12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
+                занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
+                с предметами и другие активности для развития ребёнка.
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+
+          <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
+            <q-card class="background_fon text-black">
+              <q-card-section>
+                Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
+                направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки
+                и
+                помогут с развитием критического твор­ческого мышления.
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+        </q-list>
+      </q-item>
     </div>
     <div class="section_speaker">
-      <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width >= 390">
+      <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width > 440">
         <div>
 
           <div class="textblockany_wrapper" id="textblock1_wrapper">
@@ -172,13 +209,20 @@
 
         </div>
       </div>
-      <div class="section_speaker_mobile" v-if="$q.screen.width <= 390">
+      <div class="section_speaker_mobile" v-if="$q.screen.width <= 440">
         <q-carousel style="height: 737px;" animated v-model="slide" arrows navigation infinite class="background_fon">
           <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp" />
           <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp" />
           <q-carousel-slide :name="3" img-src="src/assets/landing/mobile/section_speaker_3.webp" />
           <q-carousel-slide :name="4" img-src="src/assets/landing/mobile/section_speaker_4.webp" />
         </q-carousel>
+      </div>
+      <div v-if="$q.screen.width <= 440"
+        style="height: 254px; width: 100%; margin-top: -100px; z-index: 100; position: relative;" :style="[
+          $q.screen.gt.sm ?
+            { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
+            : { marginTop: '-220px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
+        ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
       </div>
     </div>
     <div class="section_events">
@@ -267,6 +311,8 @@
 
 <script setup>
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
+// import img_sectionBanner_grass2 from 'src/assets/landing/blocks/Vector_grass2.svg'
+import img_sectionBanner_grassWithSunflowers from 'src/assets/landing/blocks/Vector_grassWithSunflowers.svg'
 import { ref } from 'vue'
 import AppearBlock from 'src/components/landing/AppearBlock.vue'
 import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
@@ -366,9 +412,7 @@ const slide2 = ref(1)
   background-size: contain;
   background-repeat: no-repeat;
   width: 250px;
-  /* Adjust image width */
   height: 113px;
-  /* Adjust image height */
   position: absolute;
   top: -50px;
   /* Half of image height to center on edge */
@@ -385,9 +429,7 @@ const slide2 = ref(1)
   background-size: contain;
   background-repeat: no-repeat;
   width: 150px;
-  /* Adjust image width */
   height: 113px;
-  /* Adjust image height */
   position: absolute;
   top: -20px;
   /* Half of image height to center on edge */
@@ -699,15 +741,29 @@ const slide2 = ref(1)
 
   .sign_button {
     margin-top: -20px;
-    margin-left: 50px;
+    margin-left: 30px;
     width: 850px;
     max-width: 100%;
   }
 
   .sign_button_pillar {
     background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
-    width: 281px;
+    width: 241px;
     height: 340px;
+  }
+
+  #accordeon1::before {
+    width: 165px;
+    height: 75px;
+    top: -30px;
+    left: 58%;
+  }
+
+  #accordeon1::after {
+    width: 100px;
+    height: 50px;
+    top: -10px;
+    left: 20%;
   }
 }
 
