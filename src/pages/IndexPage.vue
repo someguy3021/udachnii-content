@@ -110,7 +110,7 @@
                 </q-card>
               </q-expansion-item>
 
-              <q-expansion-item expand-separator icon="looks_3" label="Медиакомпетентность" header-class="font_Sunday">
+              <q-expansion-item expand-separator label="Медиакомпетентность" header-class="font_Sunday">
                 <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
                   <q-card-section>
                     Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
