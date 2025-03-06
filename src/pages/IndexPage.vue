@@ -3,28 +3,46 @@
     <div class="section_banner">
       <div class="flex items-between justify-center section_banner_background">
         <div class="fake_header_wrapper flex justify-center q-py-md" style="width: 100%; max-height: 10vh;">
-          <div class="fake_header row flex items-center justify-around" style="width: 100%;">
+          <div class="fake_header row flex items-center" style="width: 100%;"
+            :class="$q.screen.gt.sm ? 'justify-around q-px-xl' : 'justify-between q-px-md'">
             <div style="min-width: 150px;max-width: 150px;">
               <q-img src="src/assets/logo.svg" style="height: 100%; width: 100%;" />
             </div>
-            <div class="row" style="min-width: 150px;max-width: 550px;">
+            <div class="row" style="min-width: 150px;max-width: 550px;" v-if="$q.screen.gt.md">
               <div class="text-primary text-center q-mx-md">Преимущества</div>
               <div class="text-primary text-center q-mx-md">Мероприятие</div>
               <div class="text-primary text-center q-mx-md">Спикеры</div>
               <div class="text-primary text-center q-mx-md">Партнеры</div>
             </div>
-            <div>
-              <q-btn flat no-caps color="green" icon="mail" label="Войти" />
+            <div class="q-gutter-md">
+              <q-btn v-if="$q.screen.gt.sm" no-caps color="green" label="Войти" />
+              <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true" />
             </div>
           </div>
         </div>
-        <div class="self-center" style="max-width: 660px; position: relative; bottom: calc(20vh + 10vw);">
+        <div class="text_hero self-center">
           <div>
-            <div class="h1 font_Sunday text-primary text-center">У-дачный контент</div>
-            <div class="text-primary h5 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
+            <div class="h1_bigger3 font_Sunday text-primary text-center">У-дачный контент</div>
+            <div class="text-primary h4 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
               «у-Дачный
               фестиваль -2025 года»,
               выполнив все задания.
+            </div>
+          </div>
+        </div>
+        <div class="sign_button_wrapper">
+          <div class="sign_button_pillar">
+            <div>
+              <q-btn flat no-caps color="white" label="" size="xl" class="q-pa-none" style="margin-bottom: -38%;">
+                <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
+                  <div style="border: solid 2px #A27D54; border-radius: 40px;">
+                    <div style="border: solid 4px #806241; border-style: dashed; border-radius: 40px;"
+                      class="text-white q-px-xl q-py-sm">
+                      Присоединиться
+                    </div>
+                  </div>
+                </div>
+              </q-btn>
             </div>
           </div>
         </div>
@@ -43,8 +61,8 @@
       </div>
     </div>
     <div class="section_advantages">
-      <div class="section_advantages_background flex flex-center">
-        <div class="flex justify-around full-width">
+      <div class="section_advantages_background">
+        <div class="flex justify-around ">
           <div class="irregularShape">
             <div class="irregularShape_text text-primary">
               <div class="font_Sunday h3">Антон Кутимский</div>
@@ -93,10 +111,21 @@
       </div>
     </div>
     <div class="section_speaker">
-      <div class="section_speaker_background" v-if="$q.screen.width >= 390">
+      <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width >= 390">
+        <div class="relative-position">
+          <AppearBlock class="irregularShape">
+            <div class="irregularShape_text text-primary">
+              <div class="font_Sunday h3">Антон Кутимский</div>
+              <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
+                вместе
+                с нами!» Наша
+                команда разработала и создала особый контент для особенных детей.</div>
+            </div>
 
+          </AppearBlock>
+        </div>
       </div>
-      <div v-if="$q.screen.width <= 390">
+      <div class="section_speaker_mobile" v-if="$q.screen.width <= 390">
         <q-carousel style="height: 737px;" animated v-model="slide" arrows navigation infinite class="background_fon">
           <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp" />
           <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp" />
@@ -185,15 +214,20 @@
         </div>
       </div>
     </div>
+    <DialogMenuMobile v-model="showMobileDialog"></DialogMenuMobile>
   </q-page>
 </template>
 
 <script setup>
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import AppearBlock from 'src/components/landing/AppearBlock.vue'
+import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
 
+const showMobileDialog = ref(false);
 const slide = ref(1)
 const slide2 = ref(1)
+
 </script>
 
 <style lang="scss">
@@ -258,6 +292,12 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 697px;
+}
+
+.sign_button_pillar {
+  background: url(../assets/landing/blocks/Pillar_for_button.webp) no-repeat;
+  width: 281px;
+  height: 340px;
 }
 
 @media (max-width: 1440px) {
