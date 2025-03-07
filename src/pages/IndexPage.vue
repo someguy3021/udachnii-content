@@ -3,7 +3,7 @@
     <div class="section_banner">
       <div class="section_banner_background">
 
-        <div class="fake_header_wrapper flex justify-center q-py-md" style="width: 100%; max-height: 10vh;">
+        <div class="fake_header_wrapper flex justify-center q-py-md q-mb-md" style="width: 100%; max-height: 10vh;">
           <div class="fake_header row flex items-center" style="width: 100%; height: 80px;"
             :class="$q.screen.gt.sm ? 'justify-between q-px-xl' : 'justify-between q-px-md'">
             <div style="min-width: 150px;max-width: 150px;">
