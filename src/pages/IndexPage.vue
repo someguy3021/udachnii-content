@@ -18,7 +18,8 @@
             <div class="q-gutter-md">
               <q-btn v-if="$q.screen.gt.sm" no-caps flat color="green" size="lg" text-color="primary"
                 style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
-              <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true" />
+              <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true"
+                size="lg" />
             </div>
           </div>
         </div>
