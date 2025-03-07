@@ -14,23 +14,34 @@ defineEmits([
 
 <template>
     <q-dialog persistent :maximized=true transition-show="slide-up" transition-hide="slide-down">
-        <q-card class="bg-primary text-white">
-            <q-bar>
+        <q-card class="text-white" style="background-color: #829F4F;">
+            <q-bar style="height: 60px;">
+                <div style="height: 32px; width: 88px;">
+                    <q-img src="src/assets/logo_white.svg" style="height: 100%; width: 100%;" fit="contain" />
+                </div>
+                <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
+                    <q-icon :name="fabYoutube" color="red" size="28px" />
+                    <q-toolbar-title shrink class="text-weight-bold">
+                        YouTube
+                    </q-toolbar-title>
+                </q-btn>
                 <q-space />
                 <q-btn dense flat icon="close" v-close-popup>
                     <q-tooltip class="bg-white text-primary">Close</q-tooltip>
                 </q-btn>
             </q-bar>
+            <div class="flex flex-center justify-center" style="height: 90%;">
+                <div class="q-gutter-lg">
+                    <div class="h1 text-center q-pa-md">Преимущества</div>
+                    <div class="h1 text-center q-pa-md">Мероприятие</div>
+                    <div class="h1 text-center q-pa-md">Спикеры</div>
+                    <div class="h1 text-center q-pa-md">Партнеры</div>
+                    <div class="flex flex-center justify-center">
+                        <q-btn no-caps color="green" label="Войти" size="lg" />
+                    </div>
+                </div>
 
-            <q-card-section>
-                <div class="text-h6">Alert</div>
-            </q-card-section>
-
-            <q-card-section class="q-pt-none">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas
-                eveniet porro. Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus
-                minima, porro labore.
-            </q-card-section>
+            </div>
         </q-card>
     </q-dialog>
 </template>
