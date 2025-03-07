@@ -240,8 +240,24 @@
       </div>
     </div>
     <div class="section_registrations">
-      <div class="section_registrations_background">
-
+      <div class="section_registrations_background row">
+        <div class="registr_text_and_button col-12 col-md-8 q-pa-md flex flex-center" style="margin-top: -100px;">
+          <div class="">
+            <div class="text-primary h1 font_Sunday q-pb-xl">Сделай лето у-дачным!</div>
+            <div>
+              <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                class="q-pa-none" style="border-radius: 40px">
+                <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
+                  <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+                    class="q-px-xl q-py-sm">
+                    Присоединиться
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4"></div>
       </div>
     </div>
     <div class="section_partners">
