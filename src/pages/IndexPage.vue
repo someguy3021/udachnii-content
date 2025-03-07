@@ -16,7 +16,8 @@
               <div class="text-primary text-center q-mx-md">Партнеры</div>
             </div>
             <div class="q-gutter-md">
-              <q-btn v-if="$q.screen.gt.sm" no-caps color="green" label="Войти" size="lg" />
+              <q-btn v-if="$q.screen.gt.sm" no-caps flat color="green" size="lg" text-color="primary"
+                style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
               <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true" />
             </div>
           </div>
@@ -38,7 +39,7 @@
         <div class="sign_button_wrapper">
           <div class="sign_button sign_button_pillar">
             <div>
-              <q-btn flat no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+              <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
                 class="q-pa-none" style="margin-bottom: -38%;border-radius: 40px">
                 <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
                   <div style="border: solid 2px #A27D54; border-radius: 40px;">

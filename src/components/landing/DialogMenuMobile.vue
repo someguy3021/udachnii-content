@@ -31,7 +31,8 @@ defineEmits([
                     <div class="h1 text-center q-pa-md">Спикеры</div>
                     <div class="h1 text-center q-pa-md">Партнеры</div>
                     <div class="flex flex-center justify-center">
-                        <q-btn no-caps color="green" label="Войти" size="lg" />
+                        <q-btn no-caps flat color="green" size="lg" text-color="primary"
+                            style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
                     </div>
                 </div>
 
