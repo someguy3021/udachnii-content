@@ -141,20 +141,58 @@
         </div>
       </div>
       <div class="section_speaker_mobile" v-if="$q.screen.width <= 440">
-        <q-carousel style="height: 737px;" animated v-model="slide" arrows navigation infinite class="background_fon">
-          <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp" />
-          <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp" />
-          <q-carousel-slide :name="3" img-src="src/assets/landing/mobile/section_speaker_3.webp" />
-          <q-carousel-slide :name="4" img-src="src/assets/landing/mobile/section_speaker_4.webp" />
+        <q-carousel style="height: 737px;" animated v-model="slide" arrows control-type="unelevated" infinite
+          class="background_fon" control-color="white" control-text-color="primary" transition-prev="slide-right"
+          transition-next="slide-left" swipeable>
+          <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                <div class="font_Sunday h3">Алена Грядкина</div>
+                <div class="h6">Вместе, мы не только посадим урожай на грядках, но и усовершенствуем навыки счета и
+                  память. Научимся вязать узлы и ухаживать за растениями</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
+          <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_mirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-md q-pt-md">
+                <div class="font_Sunday h3">Егор Тепличный</div>
+                <div class="h6">Теплица на нашей даче — это не только идеальное место для выращивания урожая, но и
+                  летний театр по развитию речи</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
+          <q-carousel-slide :name="3" img-src="src/assets/landing/mobile/section_speaker_3.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                <div class="font_Sunday h3">Павел Пчелкин</div>
+                <div class="h6">Все лето как пчелы, мы будет не только производить мед, но и научимся координации,
+                  ловкости и умению владеть своим телом</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
+          <q-carousel-slide :name="4" img-src="src/assets/landing/mobile/section_speaker_4.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_mirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-md q-pt-md">
+                <div class="font_Sunday h3">Маша Садовая</div>
+                <div class="h6">Лето — это время творчества и отдыха. Я научу вас делать стильные штучки из подручных
+                  дачных предметов</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
         </q-carousel>
       </div>
-      <div v-if="$q.screen.width <= 440"
+      <!-- <div v-if="$q.screen.width <= 440"
         style="height: 254px; width: 100%; margin-top: -100px; z-index: 100; position: relative;" :style="[
           $q.screen.gt.sm ?
             { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
             : { marginTop: '-220px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
         ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
-      </div>
+      </div> -->
     </div>
     <div class="section_events">
       <div class="section_events_background">
@@ -272,6 +310,7 @@ const slide2 = ref(1)
 .textblock_general {
   width: 440px;
   height: 235px;
+  max-width: 100%;
 }
 
 // .textblock_regular,
