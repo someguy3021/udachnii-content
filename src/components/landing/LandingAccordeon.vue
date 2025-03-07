@@ -1,10 +1,14 @@
+<script>
+/* eslint-disable vue/no-unused-vars */
+</script>
+
 <template>
     <q-item class="q-pa-md" style="max-width: 850px; width: 100%;">
         <q-list bordered class="landing_accordeon background_lightgreen text-white q-pa-md no-border"
             style="border-radius: 20px; width: 100%;" dense>
             <q-expansion-item expand-separator label="Психомоторика" header-class="font_Sunday" class="q-pt-md"
                 expand-icon-class="text-white">
-                <template v-slot:header="{ expanded }">
+                <template v-slot:header="{ expanded: _ }">
                     <q-item-section avatar>
                         <q-avatar size="30px">
                             <img src="src/assets/landing/blocks/circleNumber_1.svg">
@@ -25,7 +29,7 @@
             </q-expansion-item>
 
             <q-expansion-item expand-separator label="Формат" header-class="font_Sunday" expand-icon-class="text-white">
-                <template v-slot:header="{ expanded }">
+                <template v-slot:header="{ expanded: _ }">
                     <q-item-section avatar>
                         <q-avatar size="30px">
                             <img src="src/assets/landing/blocks/circleNumber_2.svg">
@@ -48,7 +52,7 @@
 
             <q-expansion-item expand-separator label="Медиакомпетентность" header-class="font_Sunday"
                 expand-icon-class="text-white">
-                <template v-slot:header="{ expanded }">
+                <template v-slot:header="{ expanded: _ }">
                     <q-item-section avatar>
                         <q-avatar size="30px">
                             <img src="src/assets/landing/blocks/circleNumber_3.svg">
