@@ -19,12 +19,6 @@ defineEmits([
                 <div style="height: 32px; width: 88px;">
                     <q-img src="src/assets/logo_white.svg" style="height: 100%; width: 100%;" fit="contain" />
                 </div>
-                <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
-                    <q-icon :name="fabYoutube" color="red" size="28px" />
-                    <q-toolbar-title shrink class="text-weight-bold">
-                        YouTube
-                    </q-toolbar-title>
-                </q-btn>
                 <q-space />
                 <q-btn dense flat icon="close" v-close-popup>
                     <q-tooltip class="bg-white text-primary">Close</q-tooltip>
