@@ -74,8 +74,8 @@
       <div class="section_advantages_background">
 
         <div class="row" style="height: 100%;">
-          <div class="col-12 col-sm-6">
-            <div class="q-px-md" style="margin-top: 10%;">
+          <div class="col-12 col-sm-7 flex flex-center">
+            <div class="q-px-md" style="margin-bottom: 80%;">
               <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
                 style="min-width: 370px;">
                 <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
@@ -88,7 +88,7 @@
               </AppearBlock>
             </div>
           </div>
-          <div class="col-12 col-sm-6">
+          <div class="col-12 col-sm-5">
             <LandingAccordeon v-if="$q.screen.width > 440" style="margin-top: 23%; max-width: 550px;" />
           </div>
         </div>
@@ -642,6 +642,20 @@ const slide2 = ref(1)
     top: 300px;
     left: 480px;
     transform: rotate(-11deg);
+  }
+
+  .landing_accordeon::before {
+    width: 165px;
+    height: 75px;
+    top: -30px;
+    left: 58%;
+  }
+
+  .landing_accordeon::after {
+    width: 100px;
+    height: 50px;
+    top: -10px;
+    left: 20%;
   }
 }
 
