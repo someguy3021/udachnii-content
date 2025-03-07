@@ -208,8 +208,8 @@
           <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
           <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md" style="border-radius: 20px;"
             :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
-            <div class="flex flex-center"> <q-img src="src/assets/landing/blocks/solar_cup.svg" spinner-color="white"
-                style="height: 70px; width: 70px" /></div>
+            <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
+                spinner-color="white" style="height: 70px; width: 70px" /></div>
             <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
               проведем время! В программе:
               мастер-классы, интенсивы и
@@ -326,7 +326,8 @@
           <div class="col-3 flex items-center">
             <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
           </div>
-          <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" /></div>
+          <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
+          </div>
         </div>
       </div>
       <div>
