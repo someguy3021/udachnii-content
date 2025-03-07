@@ -20,7 +20,7 @@ defineEmits([
                     <q-img src="src/assets/logo_white.svg" style="height: 100%; width: 100%;" fit="contain" />
                 </div>
                 <q-space />
-                <q-btn dense flat icon="close" v-close-popup>
+                <q-btn dense flat icon="close" v-close-popup size="lg">
                     <q-tooltip class="bg-white text-primary">Close</q-tooltip>
                 </q-btn>
             </q-bar>
