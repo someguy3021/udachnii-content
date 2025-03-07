@@ -105,7 +105,7 @@
 
           <div class="textblockany_wrapper flex justify-end" id="textblock1_wrapper">
             <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
-              style="margin-right: 25%;">
+              style="margin-right: 10%;">
               <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
                 <div class="font_Sunday h3">Алена Грядкина</div>
                 <div class="h6">Вместе, мы не только посадим урожай на грядках, но и усовершенствуем навыки счета и
