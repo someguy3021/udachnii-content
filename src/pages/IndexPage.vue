@@ -141,8 +141,8 @@
         </div>
       </div>
       <div class="section_speaker_mobile" v-if="$q.screen.width <= 440">
-        <q-carousel style="height: 737px;" animated v-model="slide" arrows control-type="unelevated" infinite
-          class="background_fon" control-color="white" control-text-color="primary" transition-prev="slide-right"
+        <q-carousel style="height: 737px;" v-model="slide" animated arrows infinite class="background_fon"
+          control-type="unelevated" control-color="white" control-text-color="primary" transition-prev="slide-right"
           transition-next="slide-left" swipeable>
           <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp"
             style="background-size: contain; background-repeat: no-repeat;">
@@ -196,7 +196,26 @@
     </div>
     <div class="section_events">
       <div class="section_events_background">
-
+        <div class="eventsTicket_wrapper" style="width: 540px; height: 390px">
+          <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
+          <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-pa-md" style="border-radius: 20px;">
+            <div class="flex flex-center"> <q-img src="src/assets/landing/blocks/solar_cup.svg" spinner-color="white"
+                style="height: 70px; width: 70px" /></div>
+            <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
+              проведем время! В программе:
+              мастер-классы, интенсивы и
+              многое другое.</div>
+          </div>
+          <div class="eventsTicket_bottomTexts">
+            <div class="eventsTicket_bottomTexts_withGrid">
+              <div></div>
+              <div></div>
+            </div>
+            <div class="eventsTicket_bottomTexts_lastText text-center">
+              Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="section_registrations">
@@ -209,7 +228,8 @@
         <div style="height: 254px; width: 100%; margin-top: -36px;"
           :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
           <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-            control-color="white" padding arrows infinite style="height: 100%; background-color: transparent;">
+            control-type="unelevated" control-color="white" control-text-color="primary" padding arrows infinite
+            style="height: 100%; background-color: transparent;">
             <q-carousel-slide :name="1" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
@@ -281,7 +301,7 @@
 <script setup>
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
 // import img_sectionBanner_grass2 from 'src/assets/landing/blocks/Vector_grass2.svg'
-import img_sectionBanner_grassWithSunflowers from 'src/assets/landing/blocks/Vector_grassWithSunflowers.svg'
+// import img_sectionBanner_grassWithSunflowers from 'src/assets/landing/blocks/Vector_grassWithSunflowers.svg'
 import { ref } from 'vue'
 import AppearBlock from 'src/components/landing/AppearBlock.vue'
 import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
