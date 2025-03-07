@@ -10,24 +10,6 @@ defineEmits([
     // component will emit through useDialogPluginComponent()
     ...useDialogPluginComponent.emits
 ])
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent()
-// dialogRef      - Vue ref to be applied to QDialog
-// onDialogHide   - Function to be used as handler for @hide on QDialog
-// onDialogOK     - Function to call to settle dialog with "ok" outcome
-//                    example: onDialogOK() - no payload
-//                    example: onDialogOK({ /*...*/ }) - with payload
-// onDialogCancel - Function to call to settle dialog with "cancel" outcome
-
-// this is part of our example (so not required)
-function onOKClick() {
-    // on OK, it is REQUIRED to
-    // call onDialogOK (with optional payload)
-    onDialogOK()
-    // or with payload: onDialogOK({ ... })
-    // ...and it will also hide the dialog automatically
-}
-// regarding the template:
-// Any more of 70vh results in some weird bottom button bugs, and also scroll bugs. can't use full-height, it breaks the scroll
 </script>
 
 <template>

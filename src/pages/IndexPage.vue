@@ -86,82 +86,11 @@
             </AppearBlock>
           </div>
 
-          <q-item class="q-pa-md" style="max-width: 850px" id="accordeon1" v-if="$q.screen.width > 440">
-            <q-list bordered class="background_lightgreen text-white q-pa-md no-border"
-              style="border-radius: 20px; width: 580px;">
-              <q-expansion-item expand-separator icon="exposure_plus_1" label="Психомоторика" header-class="font_Sunday"
-                class="q-pt-md">
-                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
-                  <q-card-section class="">
-                    При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
-                    и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
-                    и социальное взаимодействие.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-
-              <q-expansion-item expand-separator icon="exposure_plus_2" label="Формат" header-class="font_Sunday">
-                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
-                  <q-card-section>
-                    12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
-                    занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
-                    с предметами и другие активности для развития ребёнка.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-
-              <q-expansion-item expand-separator label="Медиакомпетентность" header-class="font_Sunday">
-                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
-                  <q-card-section>
-                    Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
-                    направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки
-                    и
-                    помогут с развитием критического твор­ческого мышления.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-            </q-list>
-          </q-item>
-
+          <LandingAccordeon v-if="$q.screen.width > 440" />
         </div>
 
       </div>
-      <q-item class="q-pa-md" style="max-width: 850px" id="accordeon1" v-if="$q.screen.width <= 440">
-        <q-list bordered class="background_lightgreen text-white q-pa-md no-border"
-          style="border-radius: 20px; width: 580px; max-width: 100%;">
-          <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday"
-            class="q-pt-md">
-            <q-card class="background_fon text-black">
-              <q-card-section>
-                При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
-                и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
-                и социальное взаимодействие.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-
-          <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
-            <q-card class="background_fon text-black">
-              <q-card-section>
-                12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
-                занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
-                с предметами и другие активности для развития ребёнка.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-
-          <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
-            <q-card class="background_fon text-black">
-              <q-card-section>
-                Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
-                направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки
-                и
-                помогут с развитием критического твор­ческого мышления.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-list>
-      </q-item>
+      <LandingAccordeon v-if="$q.screen.width <= 440" />
     </div>
     <div class="section_speaker">
       <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width > 440">
@@ -316,6 +245,7 @@ import img_sectionBanner_grassWithSunflowers from 'src/assets/landing/blocks/Vec
 import { ref } from 'vue'
 import AppearBlock from 'src/components/landing/AppearBlock.vue'
 import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
+import LandingAccordeon from 'src/components/landing/LandingAccordeon.vue'
 
 const showMobileDialog = ref(false);
 const slide = ref(1)
@@ -405,7 +335,7 @@ const slide2 = ref(1)
 // Textblocks that do appear animation
 // Textblocks that do appear animation
 
-#accordeon1::before {
+.landing_accordeon::before {
   pointer-events: none;
   content: '';
   background-image: url(../assets/landing/blocks/Vector_cloud.svg);
@@ -422,7 +352,7 @@ const slide2 = ref(1)
   z-index: 1;
 }
 
-#accordeon1::after {
+.landing_accordeon::after {
   pointer-events: none;
   content: '';
   background-image: url(../assets/landing/blocks/Vector_cloud.svg);
@@ -752,14 +682,14 @@ const slide2 = ref(1)
     height: 340px;
   }
 
-  #accordeon1::before {
+  .landing_accordeon::before {
     width: 165px;
     height: 75px;
     top: -30px;
     left: 58%;
   }
 
-  #accordeon1::after {
+  .landing_accordeon::after {
     width: 100px;
     height: 50px;
     top: -10px;
