@@ -13,10 +13,13 @@ const showBlock = ref(false)
 onMounted(() => {
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-            showBlock.value = true
-            observer.disconnect()
+            setTimeout(() => {
+                showBlock.value = true
+                observer.disconnect()
+            }, 250);
+
         }
-    }, { threshold: 0.1 })
+    }, { threshold: 0.2 })
 
     observer.observe(block.value)
 })
