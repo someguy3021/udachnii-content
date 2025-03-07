@@ -222,7 +222,7 @@
                     <q-icon name="calendar_month" color="primary" />
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>27 сентября  2025 года</q-item-label>
+                    <q-item-label>27 сентября 2025 года</q-item-label>
                   </q-item-section>
                 </q-item>
               </div>
