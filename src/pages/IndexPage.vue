@@ -90,7 +90,9 @@
         </div>
 
       </div>
-      <LandingAccordeon v-if="$q.screen.width <= 440" />
+      <div class="q-mt-xl" v-if="$q.screen.width <= 440">
+        <LandingAccordeon />
+      </div>
     </div>
     <div class="section_speaker">
       <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width > 440">
