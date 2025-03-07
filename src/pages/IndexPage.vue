@@ -16,7 +16,7 @@
               <div class="text-primary text-center q-mx-md">Партнеры</div>
             </div>
             <div class="q-gutter-md">
-              <q-btn v-if="$q.screen.gt.sm" no-caps color="green" label="Войти" />
+              <q-btn v-if="$q.screen.gt.sm" no-caps color="green" label="Войти" size="lg" />
               <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true" />
             </div>
           </div>
