@@ -1,7 +1,7 @@
 <template>
-    <q-item class="q-pa-md" style="max-width: 850px">
+    <q-item class="q-pa-md" style="max-width: 850px; width: 100%;">
         <q-list bordered class="landing_accordeon background_lightgreen text-white q-pa-md no-border"
-            style="border-radius: 20px; width: 580px;">
+            style="border-radius: 20px; width: 100%;" dense>
             <q-expansion-item expand-separator label="Психомоторика" header-class="font_Sunday" class="q-pt-md"
                 expand-icon-class="text-white">
                 <template v-slot:header="{ expanded }">

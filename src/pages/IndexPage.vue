@@ -72,21 +72,25 @@
     </div>
     <div class="section_advantages">
       <div class="section_advantages_background">
-        <div class="flex justify-around">
 
-          <div>
-            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md">
-              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
-                <div class="font_Sunday h3">Антон Кутимский</div>
-                <div class="h6">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
-                  вместе
-                  с нами!» Наша
-                  команда разработала и создала особый контент для особенных детей.</div>
-              </div>
-            </AppearBlock>
+        <div class="row" style="height: 100%;">
+          <div class="col-12 col-sm-6">
+            <div class="q-px-md" style="margin-top: 10%;">
+              <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
+                style="min-width: 370px;">
+                <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                  <div class="font_Sunday h3">Антон Кутимский</div>
+                  <div class="h6">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
+                    вместе
+                    с нами!» Наша
+                    команда разработала и создала особый контент для особенных детей.</div>
+                </div>
+              </AppearBlock>
+            </div>
           </div>
-
-          <LandingAccordeon v-if="$q.screen.width > 440" />
+          <div class="col-12 col-sm-6">
+            <LandingAccordeon v-if="$q.screen.width > 440" style="margin-top: 23%; max-width: 550px;" />
+          </div>
         </div>
 
       </div>
@@ -439,7 +443,7 @@ const slide2 = ref(1)
   background-image: url(../assets/landing/blocks/Vector_cloud.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  width: 250px;
+  width: 220px;
   height: 113px;
   position: absolute;
   top: -50px;
