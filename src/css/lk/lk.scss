@@ -9,6 +9,19 @@
 
     &-layout {
         background: linear-gradient(180deg, #D0E7F1 0%, #EFDFBB 22.71%);
+
+        main {
+            background-image: url('src/assets/images/lk/lk-bg.webp');
+            background-size: contain;
+            background-position: bottom right;
+            background-repeat: no-repeat;
+
+            @media (max-width: $media-m) {
+                background-image: url('src/assets/images/lk/lk-bg-tablet.webp');
+                background-size: 100%;
+                background-position: top;
+            }
+        }
     }
 
     .tabs {

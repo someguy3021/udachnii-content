@@ -243,6 +243,7 @@ p {
   outline: none;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .background_fon {
@@ -259,4 +260,52 @@ p {
 
 .btn--stroke {
   @include btn--stroke;
+}
+
+.header {
+  padding: 20px 0;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__btn {
+    padding: 14px 16px;
+    position: relative;
+    display: flex;
+    gap: 8px;
+    background-color: rgba(239, 223, 187, 1);
+    color: $green;
+    border: 2px solid $green;
+    border-radius: 6px;
+    transition: all .3s ease-in-out;
+
+    &:focus-visible,
+    &:active {
+      color: $light-green;
+      border-color: $light-green;
+
+      svg path {
+        stroke: $light-green;
+      }
+      
+    }
+
+    svg path {
+      transition: stroke .3s ease-in-out;
+    }
+  
+
+    .btn__text {
+      @include desktop-text_regular_20;
+      z-index: 2;
+    }
+
+    svg {
+      z-index: 2;
+    }
+  }
 }

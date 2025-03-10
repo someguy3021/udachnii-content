@@ -1,6 +1,5 @@
 <template>
   <q-page>
-    <Header></Header>
     <div class="lk">
         <div class="lk__container">
           <div class="lk__tabs tabs">
@@ -22,13 +21,9 @@
 </template>
 
 <script>
-import Header from 'src/components/Header.vue';
 import LkCourseTab from 'src/components/LkCourseTab.vue';
 import LkProfileTab from 'src/components/LkProfileTab.vue';
 export default {
-  components: {
-    Header,
-  },
   data() {
     return {
       tabs: [

@@ -1,10 +1,12 @@
 <template>
   <section class="lk-course">
     <div class="lk-course__left">
-      <div ref="dropdown" class="lk-course__dropdown dropdown">
+      <div ref="dropdown" class="lk-course__dropdown dropdown" v-click-outside="closeDropdown">
         <button @click="toggleDropdown" class="dropdown__btn btn">Правила</button>
         <div class="dropdown__content" :class="{open: open}">
-          Изучив весь материал курса, вы получите билет на фестиваль «У-Дачник». Все модули открываются постепенно — в каждом месяце по 4 видеоурока с текстовыми методическими материалами. Если у вас возникнут вопросы или вы захотите поделиться успехами, используйте кнопку «Обратная связь».
+          Изучив весь материал курса, вы получите билет на фестиваль «У-Дачник».
+          Все модули открываются постепенно — в каждом месяце по 4 видеоурока с текстовыми методическими материалами.
+          Если у вас возникнут вопросы или вы захотите поделиться успехами, используйте кнопку «Обратная связь».
         </div>
       </div>
         <img :style="{top: `${dropdownHeight}px`}" ref="img" class="lk-course__img" src="/src/assets/images/lk/course-pic.webp" alt="">
@@ -19,12 +21,15 @@
 </template>
 
 <script>
-
+import vClickOutside from 'click-outside-vue3'
 import LkCourseSpoiler from './LkCourseSpoiler.vue';
 export default {
   components: {
     LkCourseSpoiler,
   },
+  directives: {
+      clickOutside: vClickOutside.directive
+    },
   data() {
     return {
       months: [
@@ -114,6 +119,9 @@ export default {
   methods: {
     toggleDropdown() {
       this.open = !this.open;
+    },
+    closeDropdown() {
+      this.open = false;
     },
 
     dropdownHeightHundle() {
