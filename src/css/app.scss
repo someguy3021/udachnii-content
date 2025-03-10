@@ -1,3 +1,5 @@
+@import 'src/css/mixins.scss';
+
 // app global css in SCSS form
 //-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------
 //-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------
@@ -90,8 +92,29 @@ body {
   font-display: swap;
 }
 
+
+
 .font_Sunday {
   font-family: Sunday;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 60px;
+  margin: 0 auto;
+
+  @media (max-width: $media-m) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: $media-s) {
+    padding: 0 20px;
+  }
+}
+
+img {
+  max-width: 100%;
 }
 
 //----------- Bootstrap texts
@@ -210,10 +233,30 @@ p {
 //-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------
 //-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------
 
+
+.fake_header__container {
+  width: 100%;
+}
+
+.btn {
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
 .background_fon {
   background-color: #EFDFBB;
 }
 
 .background_lightgreen {
   background-color: $light_green;
+}
+
+.btn--primary {
+  @include btn--primary;
+}
+
+.btn--stroke {
+  @include btn--stroke;
 }
