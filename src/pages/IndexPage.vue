@@ -1,39 +1,69 @@
 <template>
   <q-page>
     <div class="section_banner">
-      <div class="flex items-between justify-center section_banner_background">
-        <div class="fake_header_wrapper flex justify-center q-py-md" style="width: 100%; max-height: 10vh;">
-          <div class="fake_header row flex items-center justify-around" style="width: 100%;">
+      <div class="section_banner_background">
+
+        <div class="fake_header_wrapper flex justify-center q-py-md q-mb-md" style="width: 100%; max-height: 10vh;">
+          <div class="fake_header row flex items-center" style="width: 100%; height: 80px;"
+            :class="$q.screen.gt.sm ? 'justify-between q-px-xl' : 'justify-between q-px-md'">
             <div style="min-width: 150px;max-width: 150px;">
               <q-img src="src/assets/logo.svg" style="height: 100%; width: 100%;" />
             </div>
-            <div class="row" style="min-width: 150px;max-width: 550px;">
+            <div class="row" style="min-width: 150px;max-width: 550px;" v-if="$q.screen.gt.md">
               <div class="text-primary text-center q-mx-md">Преимущества</div>
               <div class="text-primary text-center q-mx-md">Мероприятие</div>
               <div class="text-primary text-center q-mx-md">Спикеры</div>
               <div class="text-primary text-center q-mx-md">Партнеры</div>
             </div>
-            <div>
-              <q-btn flat no-caps color="green" icon="mail" label="Войти" />
+            <div class="q-gutter-md">
+              <q-btn v-if="$q.screen.gt.sm" no-caps flat color="green" size="lg" text-color="primary"
+                style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
+              <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true"
+                size="lg" />
             </div>
           </div>
         </div>
-        <div class="self-center" style="max-width: 660px; position: relative; bottom: calc(20vh + 10vw);">
-          <div>
-            <div class="h1 font_Sunday text-primary text-center">У-дачный контент</div>
-            <div class="text-primary h5 text-center">Особенный развивающий контент для особенных детей. Получи билеты на
+
+        <div class="text_hero_wrapper self-center">
+          <div class="text_hero q-px-md">
+            <div class="h1_bigger3 font_Sunday text-primary text-center"
+              :style="$q.screen.lt.sm ? { fontSize: '48px' } : {}">У-дачный контент</div>
+            <div class="text-primary text-center" :class="$q.screen.gt.sm ? 'h4' : 'h6'">Особенный развивающий
+              контент для особенных детей. Получи билеты на
               «у-Дачный
               фестиваль -2025 года»,
               выполнив все задания.
             </div>
           </div>
         </div>
+
+        <div class="sign_button_wrapper">
+          <div class="sign_button sign_button_pillar">
+            <div>
+              <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                class="q-pa-none" style="margin-bottom: -38%;border-radius: 40px">
+                <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
+                  <div style="border: solid 2px #A27D54; border-radius: 40px;">
+                    <div style="border: solid 4px #806241; border-style: dashed; border-radius: 40px;"
+                      class="text-white q-px-xl q-py-sm">
+                      Присоединиться
+                    </div>
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div style="height: 254px; width: 100%; margin-top: -100px;"
-        :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }"
-        class="flex items-center justify-center h5 q-pa-md">
-        <div class="background_fon q-px-xl q-py-lg row" style="border-radius: 54px; min-width: 50%;">
-          <div class="col flex flex-center q-pr-lg">
+      <div style="height: 254px; width: 100%; margin-top: -100px; z-index: 100; position: relative;" :style="[
+        $q.screen.gt.sm ?
+          { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grass})` }
+          : { marginTop: '-200px', backgroundImage: `url(${img_sectionBanner_grass})` }
+      ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
+        <div class="background_fon row" style="border-radius: 54px; min-width: 50%;"
+          :class="$q.screen.gt.sm ? 'q-px-xl q-py-lg' : 'q-px-lg q-py-md'">
+          <div class="col flex flex-center q-pr-md">
             Давайте вместе сделаем лето незабываемым и полезным для наших детей!
           </div>
           <div class="col flex flex-center" style="max-width: 54px;">
@@ -43,76 +73,200 @@
       </div>
     </div>
     <div class="section_advantages">
-      <div class="section_advantages_background flex flex-center">
-        <div class="flex justify-around full-width">
-          <div class="irregularShape">
-            <div class="irregularShape_text text-primary">
-              <div class="font_Sunday h3">Антон Кутимский</div>
-              <div class="h5">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
-                вместе
-                с нами!» Наша
-                команда разработала и создала особый контент для особенных детей.</div>
+      <div class="section_advantages_background">
+
+        <div class="row" style="height: 100%;">
+          <div class="col-12 col-sm-7 flex flex-center">
+            <div class="q-px-md" style="margin-bottom: 80%;">
+              <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
+                style="min-width: 370px;">
+                <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                  <div class="font_Sunday h3">Антон Кутимский</div>
+                  <div class="h6">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
+                    вместе
+                    с нами!» Наша
+                    команда разработала и создала особый контент для особенных детей.</div>
+                </div>
+              </AppearBlock>
             </div>
           </div>
-          <q-item class="q-pa-md" style="max-width: 350px">
-            <q-list bordered class="rounded-borders background_lightgreen text-white q-pa-md no-border">
-              <q-expansion-item expand-separator icon="perm_identity" label="Психомоторика" header-class="font_Sunday">
-                <q-card class="background_fon text-black">
-                  <q-card-section>
-                    При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
-                    и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
-                    и социальное взаимодействие.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-
-              <q-expansion-item expand-separator icon="signal_wifi_off" label="Формат" header-class="font_Sunday">
-                <q-card class="background_fon text-black">
-                  <q-card-section>
-                    12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате 10-минутных
-                    занятий на даче, в том числе: упражнения и игры, разные элементы движения по логоритмике, игры
-                    с предметами и другие активности для развития ребёнка.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-
-              <q-expansion-item expand-separator icon="drafts" label="Медиакомпетентность" header-class="font_Sunday">
-                <q-card class="background_fon text-black">
-                  <q-card-section>
-                    Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
-                    направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений ребенки
-                    и
-                    помогут с развитием критического твор­ческого мышления.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-            </q-list>
-          </q-item>
+          <div class="col-12 col-sm-5">
+            <LandingAccordeon v-if="$q.screen.width > 440" style="margin-top: 23%; max-width: 550px;" />
+          </div>
         </div>
 
       </div>
+      <div class="q-mt-xl" v-if="$q.screen.width <= 440">
+        <LandingAccordeon />
+      </div>
     </div>
     <div class="section_speaker">
-      <div class="section_speaker_background" v-if="$q.screen.width >= 390">
+      <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width > 440">
+        <div>
 
+          <div class="textblockany_wrapper flex justify-end" id="textblock1_wrapper">
+            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
+              style="margin-right: 10%;">
+              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                <div class="font_Sunday h3">Алена Грядкина</div>
+                <div class="h6">Вместе, мы не только посадим урожай на грядках, но и усовершенствуем навыки счета и
+                  память. Научимся вязать узлы и ухаживать за растениями</div>
+              </div>
+            </AppearBlock>
+          </div>
+
+          <div class="textblockany_wrapper flex justify-start" id="textblock2_wrapper">
+            <AppearBlock class="textblock_general textblock_mirrored flex flex-center q-pa-md" style="margin-left: 5%;">
+              <div class="textblock_textwrapper text-primary q-pl-md q-pt-md">
+                <div class="font_Sunday h3">Егор Тепличный</div>
+                <div class="h6">Теплица на нашей даче — это не только идеальное место для выращивания урожая, но и
+                  летний театр по развитию речи</div>
+              </div>
+            </AppearBlock>
+          </div>
+
+          <div class="flex justify-center" id="textblock3_wrapper">
+            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
+              style="margin-right: 25%;">
+              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                <div class="font_Sunday h3">Павел Пчелкин</div>
+                <div class="h6">Все лето как пчелы, мы будет не только производить мед, но и научимся координации,
+                  ловкости и умению владеть своим телом</div>
+              </div>
+            </AppearBlock>
+          </div>
+
+          <div class="flex justify-end" id="textblock4_wrapper">
+            <AppearBlock class="textblock_general textblock_mirrored flex flex-center q-pa-md"
+              style="margin-right: 25%;">
+              <div class="textblock_textwrapper text-primary q-pl-md q-pt-md">
+                <div class="font_Sunday h3">Маша Садовая</div>
+                <div class="h6">Лето — это время творчества и отдыха. Я научу вас делать стильные штучки из подручных
+                  дачных предметов</div>
+              </div>
+            </AppearBlock>
+          </div>
+
+        </div>
       </div>
-      <div v-if="$q.screen.width <= 390">
-        <q-carousel style="height: 737px;" animated v-model="slide" arrows navigation infinite class="background_fon">
-          <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp" />
-          <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp" />
-          <q-carousel-slide :name="3" img-src="src/assets/landing/mobile/section_speaker_3.webp" />
-          <q-carousel-slide :name="4" img-src="src/assets/landing/mobile/section_speaker_4.webp" />
+      <div class="section_speaker_mobile" v-if="$q.screen.width <= 440">
+        <q-carousel style="height: 737px;" v-model="slide" animated arrows infinite class="background_fon"
+          control-type="unelevated" control-color="white" control-text-color="primary" transition-prev="slide-right"
+          transition-next="slide-left" swipeable>
+          <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                <div class="font_Sunday h3">Алена Грядкина</div>
+                <div class="h6">Вместе, мы не только посадим урожай на грядках, но и усовершенствуем навыки счета и
+                  память. Научимся вязать узлы и ухаживать за растениями</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
+          <q-carousel-slide :name="2" img-src="src/assets/landing/mobile/section_speaker_2.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_mirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-md q-pt-md">
+                <div class="font_Sunday h3">Егор Тепличный</div>
+                <div class="h6">Теплица на нашей даче — это не только идеальное место для выращивания урожая, но и
+                  летний театр по развитию речи</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
+          <q-carousel-slide :name="3" img-src="src/assets/landing/mobile/section_speaker_3.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
+                <div class="font_Sunday h3">Павел Пчелкин</div>
+                <div class="h6">Все лето как пчелы, мы будет не только производить мед, но и научимся координации,
+                  ловкости и умению владеть своим телом</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
+          <q-carousel-slide :name="4" img-src="src/assets/landing/mobile/section_speaker_4.webp"
+            style="background-size: contain; background-repeat: no-repeat;">
+            <AppearBlock class="textblock_general textblock_mirrored flex flex-center q-pa-md">
+              <div class="textblock_textwrapper text-primary q-pl-md q-pt-md">
+                <div class="font_Sunday h3">Маша Садовая</div>
+                <div class="h6">Лето — это время творчества и отдыха. Я научу вас делать стильные штучки из подручных
+                  дачных предметов</div>
+              </div>
+            </AppearBlock>
+          </q-carousel-slide>
         </q-carousel>
       </div>
+      <!-- <div v-if="$q.screen.width <= 440"
+        style="height: 254px; width: 100%; margin-top: -100px; z-index: 100; position: relative;" :style="[
+          $q.screen.gt.sm ?
+            { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
+            : { marginTop: '-220px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
+        ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
+      </div> -->
     </div>
     <div class="section_events">
       <div class="section_events_background">
-
+        <div class="eventsTicket_wrapper q-px-md">
+          <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
+          <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md" style="border-radius: 20px;"
+            :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
+            <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
+                spinner-color="white" style="height: 70px; width: 70px" /></div>
+            <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
+              проведем время! В программе:
+              мастер-классы, интенсивы и
+              многое другое.</div>
+          </div>
+          <div class="eventsTicket_bottomTexts">
+            <div class="eventsTicket_bottomTexts_withGrid row">
+              <div class="col-12 col-xs-6">
+                <q-item>
+                  <q-item-section side top>
+                    <q-icon name="calendar_month" color="primary" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>27 сентября 2025 года</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+              <div class="col-12 col-xs-6">
+                <q-item>
+                  <q-item-section side top>
+                    <q-icon name="not_listed_location" color="primary" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label> Актовый зал Дворца детского и юношеского творчества</q-item-label>
+                    <q-item-label caption class="text-black">г. Иркутск, улица
+                      Желябова, 5</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+            </div>
+            <div class="eventsTicket_bottomTexts_lastText text-center">
+              Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="section_registrations">
-      <div class="section_registrations_background">
-
+      <div class="section_registrations_background row">
+        <div class="registr_text_and_button col-12 col-md-8 q-pa-md flex flex-center" style="margin-top: -100px;">
+          <div class="">
+            <div class="text-primary h1 font_Sunday q-pb-xl">Сделай лето у-дачным!</div>
+            <div>
+              <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                class="q-pa-none" style="border-radius: 40px">
+                <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
+                  <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+                    class="q-px-xl q-py-sm">
+                    Присоединиться
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4"></div>
       </div>
     </div>
     <div class="section_partners">
@@ -120,7 +274,8 @@
         <div style="height: 254px; width: 100%; margin-top: -36px;"
           :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
           <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-            control-color="white" padding arrows infinite style="height: 100%; background-color: transparent;">
+            control-type="unelevated" control-color="white" control-text-color="primary" padding arrows infinite
+            style="height: 100%; background-color: transparent;">
             <q-carousel-slide :name="1" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
@@ -172,7 +327,8 @@
           <div class="col-3 flex items-center">
             <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
           </div>
-          <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" /></div>
+          <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
+          </div>
         </div>
       </div>
       <div>
@@ -185,15 +341,23 @@
         </div>
       </div>
     </div>
+    <DialogMenuMobile v-model="showMobileDialog"></DialogMenuMobile>
   </q-page>
 </template>
 
 <script setup>
 import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_grass.webp'
+// import img_sectionBanner_grass2 from 'src/assets/landing/blocks/Vector_grass2.svg'
+// import img_sectionBanner_grassWithSunflowers from 'src/assets/landing/blocks/Vector_grassWithSunflowers.svg'
 import { ref } from 'vue'
+import AppearBlock from 'src/components/landing/AppearBlock.vue'
+import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
+import LandingAccordeon from 'src/components/landing/LandingAccordeon.vue'
 
+const showMobileDialog = ref(false);
 const slide = ref(1)
 const slide2 = ref(1)
+
 </script>
 
 <style lang="scss">
@@ -203,21 +367,124 @@ const slide2 = ref(1)
 //         backgroundBlendMode: 'normal',
 //         backgroundOrigin: 'padding-box',
 //       }"
-.irregularShape {
-  padding-left: 20px;
-  padding-right: 12px;
-  padding-top: 20px;
-  padding-bottom: 40px;
-  width: 550px;
-  height: 226px;
-  transform: skew(-6deg, 5deg);
-  background: $light_yellow;
-  border: solid 2px $green;
-  border-radius: 20px;
+
+// Textblocks that do appear animation
+// Textblocks that do appear animation
+.textblockany_wrapper {
+  width: 100%;
 }
 
-.irregularShape_text {
-  transform: skew(6deg, -5deg);
+.textblock_general {
+  width: 440px;
+  height: 235px;
+  max-width: 100%;
+}
+
+// .textblock_regular,
+// .textblock_mirrored {}
+
+.textblock_notmirrored {
+  background-image: url(../assets/landing/blocks/Vector_textbox1.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.textblock_mirrored {
+  background-image: url(../assets/landing/blocks/Vector_textbox2.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.textblock_textwrapper {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+#textblock1_wrapper {
+  position: relative;
+  top: 900px;
+}
+
+#textblock1 {
+  position: relative;
+  left: 1300px;
+}
+
+#textblock2_wrapper {
+  position: relative;
+  top: 1050px;
+}
+
+#textblock2 {
+  position: relative;
+  left: 100px;
+}
+
+#textblock3_wrapper {
+  position: relative;
+  top: 1350px;
+}
+
+#textblock3 {
+  position: relative;
+  left: 600px;
+}
+
+#textblock4_wrapper {
+  position: relative;
+  top: 1700px;
+}
+
+#textblock4 {
+  position: relative;
+  left: 1050px;
+}
+
+// Textblocks that do appear animation
+// Textblocks that do appear animation
+
+.landing_accordeon::before {
+  pointer-events: none;
+  content: '';
+  background-image: url(../assets/landing/blocks/Vector_cloud.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 113px;
+  position: absolute;
+  top: -50px;
+  /* Half of image height to center on edge */
+  left: 63%;
+  transform: translateX(-20%);
+  display: block;
+  z-index: 1;
+}
+
+.landing_accordeon::after {
+  pointer-events: none;
+  content: '';
+  background-image: url(../assets/landing/blocks/Vector_cloud.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 113px;
+  position: absolute;
+  top: -20px;
+  /* Half of image height to center on edge */
+  left: 20%;
+  transform: translateX(-20%);
+  display: block;
+  z-index: 1;
+}
+
+.eventsTicket_wrapper {
+  width: 540px;
+  height: 320px;
+  max-width: 100%;
+  position: relative;
+  top: 400px;
+  left: 700px;
+  transform: rotate(-11deg);
 }
 
 // Blocks with complex vector img background, very sensitive to resizing
@@ -260,6 +527,34 @@ const slide2 = ref(1)
   height: 697px;
 }
 
+.text_hero_wrapper {
+  position: relative;
+  top: 150px;
+}
+
+.text_hero {
+  margin: 0 auto;
+  width: 850px;
+  max-width: 100%;
+}
+
+.sign_button_wrapper {
+  position: relative;
+  top: 400px;
+}
+
+.sign_button {
+  margin-left: 700px;
+  width: 850px;
+  max-width: 100%;
+}
+
+.sign_button_pillar {
+  background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
+  width: 281px;
+  height: 340px;
+}
+
 @media (max-width: 1440px) {
   .section_banner_background {
     background: url(../assets/landing/1440/section_banner.webp) no-repeat,
@@ -296,6 +591,78 @@ const slide2 = ref(1)
     background-origin: padding-box;
     height: 523px;
   }
+
+  .text_hero_wrapper {
+    top: 100px;
+  }
+
+  .sign_button_wrapper {
+    top: 290px;
+  }
+
+  .sign_button {
+    margin: 0 auto;
+  }
+
+  #textblock1_wrapper {
+    position: relative;
+    top: 600px;
+  }
+
+  #textblock1 {
+    position: relative;
+    left: 750px;
+  }
+
+  #textblock2_wrapper {
+    position: relative;
+    top: 750px;
+  }
+
+  #textblock2 {
+    position: relative;
+    left: 50px;
+  }
+
+  #textblock3_wrapper {
+    position: relative;
+    top: 850px;
+  }
+
+  #textblock3 {
+    position: relative;
+    left: 300px;
+  }
+
+  #textblock4_wrapper {
+    position: relative;
+    top: 1100px;
+  }
+
+  #textblock4 {
+    position: relative;
+    left: 650px;
+  }
+
+  .eventsTicket_wrapper {
+    top: 300px;
+    left: 480px;
+    transform: rotate(-11deg);
+  }
+
+  .landing_accordeon::before {
+    width: 165px;
+    height: 75px;
+    top: -30px;
+    left: 58%;
+  }
+
+  .landing_accordeon::after {
+    width: 100px;
+    height: 50px;
+    top: -10px;
+    left: 20%;
+  }
 }
 
 @media (max-width: 744px) {
@@ -304,7 +671,7 @@ const slide2 = ref(1)
       linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
     background-blend-mode: normal;
     background-origin: padding-box;
-    height: 480px;
+    height: 664px;
   }
 
   .section_advantages_background {
@@ -334,15 +701,98 @@ const slide2 = ref(1)
     background-origin: padding-box;
     height: 322px;
   }
+
+  .text_hero_wrapper {
+    top: 0;
+  }
+
+  .text_hero {
+    width: 450px;
+  }
+
+  .sign_button_wrapper {
+    top: 50px;
+  }
+
+  .sign_button_pillar {
+    background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
+    width: 201px;
+    height: 240px;
+  }
+
+  .textblock_general {
+    width: 350px;
+    height: 235px;
+  }
+
+  #textblock1_wrapper {
+    position: relative;
+    top: 300px;
+  }
+
+  #textblock1 {
+    position: relative;
+    left: 250px;
+  }
+
+  #textblock2_wrapper {
+    position: relative;
+    top: 380px;
+  }
+
+  #textblock2 {
+    position: relative;
+    left: 50px;
+  }
+
+  #textblock3_wrapper {
+    position: relative;
+    top: 500px;
+  }
+
+  #textblock3 {
+    position: relative;
+    left: 50px;
+  }
+
+  #textblock4_wrapper {
+    position: relative;
+    top: 530px;
+  }
+
+  #textblock4 {
+    position: relative;
+    left: 300px;
+  }
+
+  .landing_accordeon::before {
+    width: 145px;
+    height: 75px;
+    top: -30px;
+    left: 55%;
+  }
+
+  .landing_accordeon::after {
+    width: 100px;
+    height: 50px;
+    top: -10px;
+    left: 18%;
+  }
+
+  .eventsTicket_wrapper {
+    top: 240px;
+    left: 120px;
+    transform: rotate(-11deg);
+  }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 440px) {
   .section_banner_background {
     background: url(../assets/landing/mobile/section_banner.webp) no-repeat,
       linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
     background-blend-mode: normal;
     background-origin: padding-box;
-    height: 660px;
+    height: 860px;
   }
 
   .section_advantages_background {
@@ -371,6 +821,47 @@ const slide2 = ref(1)
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 420px;
+  }
+
+  .sign_button_wrapper {
+    top: 100px;
+  }
+
+  .sign_button {
+    margin-top: -20px;
+    margin-left: 30px;
+    width: 850px;
+    max-width: 100%;
+  }
+
+  .sign_button_pillar {
+    background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
+    width: 241px;
+    height: 340px;
+  }
+
+  .landing_accordeon::before {
+    width: 165px;
+    height: 75px;
+    top: -30px;
+    left: 58%;
+  }
+
+  .landing_accordeon::after {
+    width: 100px;
+    height: 50px;
+    top: -10px;
+    left: 20%;
+  }
+
+  .eventsTicket_wrapper {
+    width: 316px;
+    height: 350px;
+    max-width: 100%;
+    position: relative;
+    top: 260px;
+    left: 50px;
+    transform: rotate(0deg);
   }
 }
 
