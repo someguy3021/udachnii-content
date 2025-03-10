@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import LkCourseTab from 'src/components/LkCourseTab.vue';
-import LkProfileTab from 'src/components/LkProfileTab.vue';
+import LkCourseTab from 'src/components/lk/LkCourseTab.vue';
+import LkProfileTab from 'src/components/lk/LkProfileTab.vue';
 export default {
   data() {
     return {

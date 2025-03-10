@@ -1,17 +1,14 @@
-import IndexPage from "../pages/IndexPage.vue";
-import LkPage from "../pages/LkPage.vue";
-
 const routes = [
   {
     path: "/",
     name: 'main',
-    component: IndexPage,
+    component: () => import("pages/IndexPage.vue"),
     meta: {layout: 'mainLayout'}
   },
   {
     path: "/lk",
     name: 'lk',
-    component: LkPage,
+    component: () => import("pages/LkPage.vue"),
     meta: {layout: 'LkLayout'}
   },
 

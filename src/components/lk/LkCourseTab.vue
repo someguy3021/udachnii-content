@@ -22,7 +22,7 @@
 
 <script>
 import vClickOutside from 'click-outside-vue3'
-import LkCourseSpoiler from './LkCourseSpoiler.vue';
+import LkCourseSpoiler from 'src/components/lk/LkCourseSpoiler.vue';
 export default {
   components: {
     LkCourseSpoiler,
