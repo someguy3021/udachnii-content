@@ -1,25 +1,17 @@
 <template>
-  <q-layout class="lk-layout" view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf">
     <q-page-container>
       <AppHeader />
       <router-view />
     </q-page-container>
-    </q-layout>
+  </q-layout>
 </template>
 
-<script>
+<script setup>
 import AppHeader from 'src/components/AppHeader.vue';
-import { defineComponent } from 'vue';
-export default defineComponent({
-  name: 'LkLayout',
-  components: {
-    AppHeader,
-  }
-});
+// убрал ненужный код
 </script>
 
 <style>
-.lk-layout {
-  max-height: 100dvh;
-}
+/* лейаут и так всегда во весь экран, убрал класс */
 </style>

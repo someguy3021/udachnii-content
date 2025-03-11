@@ -1,19 +1,24 @@
 const routes = [
   {
     path: "/",
-    name: 'main',
-    component: () => import("pages/IndexPage.vue"),
-    meta: {layout: 'mainLayout'}
+    name: "Landing",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "LandingPage",
+        component: () => import("pages/IndexPage.vue"),
+      },
+    ],
   },
   {
     path: "/lk",
-    name: 'lk',
-    component: () => import("pages/LkPage.vue"),
-    meta: {layout: 'LkLayout'}
+    name: "LK",
+    component: () => import("layouts/LKLayout.vue"),
+    children: [
+      { path: "", name: "LKPage", component: () => import("pages/LkPage.vue") },
+    ],
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/404_ErrorNotFound.vue"),

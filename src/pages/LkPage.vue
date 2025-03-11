@@ -1,21 +1,22 @@
 <template>
   <q-page>
     <div class="lk">
-        <div class="lk__container">
-          <div class="lk__tabs tabs">
-            <div class="container">
-              <div class="tabs__container">
-                <router-link :to="{name: 'main'}" class="lk__tab">На главную</router-link>
-                <button v-for="tab in tabs" :key="tab.id" @click="changeTab(tab)" class="lk__tab btn" :class="{active: activeTab === tab.id}">{{ tab.name }}</button>
-              </div>
+      <div class="lk__container">
+        <div class="lk__tabs tabs">
+          <div class="container">
+            <div class="tabs__container">
+              <router-link :to="{ name: 'LK' }" class="lk__tab">На главную</router-link>
+              <button v-for="tab in tabs" :key="tab.id" @click="changeTab(tab)" class="lk__tab btn"
+                :class="{ active: activeTab === tab.id }">{{ tab.name }}</button>
             </div>
           </div>
-          <div class="container">
-            <div class="lk__content">
+        </div>
+        <div class="container">
+          <div class="lk__content">
             <component :is="selectComponent(activeTab)" />
           </div>
         </div>
-        </div>
+      </div>
     </div>
   </q-page>
 </template>
