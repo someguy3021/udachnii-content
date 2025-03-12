@@ -1,7 +1,7 @@
 <template>
-  <div class="input_fieldsAndSubmit_wrapper">
+  <div class="input_fieldsAndSubmit_wrapper q-pb-lg">
 
-    <div class="input_fields_wrapper row q-gutter-x-lg q-gutter-y-sm">
+    <div class="input_fields_wrapper row q-gutter-x-lg q-gutter-y-sm q-pb-lg">
 
       <div class="field_column_no_styles col-12 col-md">
 
@@ -90,7 +90,7 @@
   </div>
   <div class="ticketAndButton_wrapper">
 
-    <div class="ticket_wrapper"></div>
+    <div class="ticket_wrapper q-pb-lg"></div>
 
     <div class="downloadTicket_wrapper">
       <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
