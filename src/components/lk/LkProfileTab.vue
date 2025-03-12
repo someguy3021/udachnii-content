@@ -11,7 +11,7 @@
         </div>
         <div>
           <div>Телефон</div>
-          <div> <q-input filled v-model="phoneNumber" mask="(###) ### - ####" fill-mask /></div>
+          <div> <q-input filled v-model="phoneNumber" mask="8 (###) ### - ####" fill-mask /></div>
         </div>
         <div>
           <div>Текущий пароль</div>
@@ -62,12 +62,12 @@
 
         <div>
           <div>Статус ребёнка</div>
-          <div><q-select filled v-model="diagnosis_status" :options="diagnosis_status_options" label="Статус ребёнка" />
+          <div><q-select filled v-model="diagnosis_status" :options="diagnosis_status_options" />
           </div>
         </div>
         <div>
           <div>Шифр по ПМПК</div>
-          <div><q-select filled v-model="diagnosis_cipher" :options="diagnosis_cipher_options" label="Шифр по ПМПК" />
+          <div><q-select filled v-model="diagnosis_cipher" :options="diagnosis_cipher_options" />
           </div>
         </div>
 
@@ -76,14 +76,12 @@
     </div>
 
     <div class="submit_wrapper">
-      <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
+      <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
         style="border-radius: 40px">
-        <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
-          <div style="border: solid 2px #A27D54; border-radius: 40px;">
-            <div style="border: solid 4px #806241; border-style: dashed; border-radius: 40px;"
-              class="text-white q-px-xl q-py-sm">
-              Сохранить
-            </div>
+        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
+          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+            class="q-px-xl q-py-sm">
+            Сохранить
           </div>
         </div>
       </q-btn>
@@ -95,14 +93,12 @@
     <div class="ticket_wrapper q-pb-lg"></div>
 
     <div class="downloadTicket_wrapper">
-      <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
+      <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
         style="border-radius: 40px">
-        <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
-          <div style="border: solid 2px #A27D54; border-radius: 40px;">
-            <div style="border: solid 4px #806241; border-style: dashed; border-radius: 40px;"
-              class="text-white q-px-xl q-py-sm">
-              Скачать билет
-            </div>
+        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
+          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+            class="q-px-xl q-py-sm">
+            Скачать билет
           </div>
         </div>
       </q-btn>
@@ -131,10 +127,14 @@ const parent_fio = ref();
 const diagnosis_status = ref(null);
 const diagnosis_cipher = ref(null);
 const diagnosis_status_options = [
-  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+  'Ребёнок с ОВЗ', 'Ребёнок инвалид'
 ];
 const diagnosis_cipher_options = [
-  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+  'F80 (специфические расстройства речи и языка)',
+  'F 81 (расстройства развития учебных навыков)',
+  'F82 (Специфические расстройства развития моторной функции)',
+  'ЧF83 (Смешанные специфические расстройства психологического развития)',
+  'F84 (Общие расстройства психологического развития – РАС)'
 ];
 </script>
 
