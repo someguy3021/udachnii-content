@@ -13,7 +13,7 @@
         </div>
         <div>
           <div class="q-mb-md">Телефон</div>
-          <div> <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###) ### - ####"
+          <div> <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###) ### - ###"
               fill-mask class="input_field" /></div>
         </div>
         <div>
