@@ -40,7 +40,7 @@
         <div class="sign_button_wrapper">
           <div class="sign_button sign_button_pillar">
             <div>
-              <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+              <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'lg' : 'md'"
                 class="q-pa-none" style="margin-bottom: -38%;border-radius: 40px">
                 <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
                   <div style="border: solid 2px #A27D54; border-radius: 40px;">
@@ -76,13 +76,14 @@
       <div class="section_advantages_background">
 
         <div class="row" style="height: 100%;">
-          <div class="col-12 col-sm-7 flex flex-center">
-            <div class="q-px-md" style="margin-bottom: 80%;">
-              <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-pa-md"
-                style="min-width: 370px;">
+          <div class="col-12 col-md-7 flex flex-center">
+            <div style="margin-bottom: 80%;">
+              <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-py-md"
+                style="min-width: 300px;">
                 <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
                   <div class="font_Sunday h3">Антон Кутимский</div>
-                  <div class="h6">Привет! Я главный «У-Дачник, продюсер и ведущий проекта «Летом — Учимся и развиваемся
+                  <div class="" :class="$q.screen.lt.sm ? '' : 'h6'">Привет! Я главный «У-Дачник, продюсер и ведущий
+                    проекта «Летом — Учимся и развиваемся
                     вместе
                     с нами!» Наша
                     команда разработала и создала особый контент для особенных детей.</div>
@@ -90,17 +91,17 @@
               </AppearBlock>
             </div>
           </div>
-          <div class="col-12 col-sm-5">
-            <LandingAccordeon v-if="$q.screen.width > 440" style="margin-top: 23%; max-width: 550px;" />
+          <div class="col-12 col-md-5">
+            <LandingAccordeon v-if="$q.screen.gt.sm" style="margin-top: 23%; max-width: 550px;" />
           </div>
         </div>
 
       </div>
-      <div class="q-mt-xl" v-if="$q.screen.width <= 440">
+      <div class="q-mt-xl" v-if="$q.screen.lt.md">
         <LandingAccordeon />
       </div>
     </div>
-    <div class="section_speaker">
+    <div class="section_speaker" style="position: relative; z-index: 3;">
       <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width > 440">
         <div>
 
@@ -195,22 +196,17 @@
           </q-carousel-slide>
         </q-carousel>
       </div>
-      <!-- <div v-if="$q.screen.width <= 440"
-        style="height: 254px; width: 100%; margin-top: -100px; z-index: 100; position: relative;" :style="[
-          $q.screen.gt.sm ?
-            { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
-            : { marginTop: '-220px', backgroundImage: `url(${img_sectionBanner_grassWithSunflowers})`, backgroundRepeat: 'no-repeat' }
-        ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
-      </div> -->
     </div>
-    <div class="section_events">
+    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;">
       <div class="section_events_background">
-        <div class="eventsTicket_wrapper q-px-md">
+        <!-- <div class="eventsTicket_wrapper q-px-md">
           <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
           <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md" style="border-radius: 20px;"
             :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
             <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
-                spinner-color="white" style="height: 70px; width: 70px" /></div>
+                spinner-color="white"
+                :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
+            </div>
             <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
               проведем время! В программе:
               мастер-классы, интенсивы и
@@ -245,6 +241,55 @@
               Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
             </div>
           </div>
+        </div> -->
+        <div class="eventsTicket_invite_wrapper">
+          <div class="eventsTicket_invite_string"></div>
+          <div class="eventsTicket_invite_paperBody">
+            <div class="eventsTicket_invite_paperBody_text">
+              <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!
+              </div>
+              <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md"
+                style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
+                <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
+                    spinner-color="white"
+                    :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
+                </div>
+                <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
+                  проведем время! В программе:
+                  мастер-классы, интенсивы и
+                  многое другое.</div>
+              </div>
+              <div class="eventsTicket_bottomTexts">
+                <div class="eventsTicket_bottomTexts_withGrid row">
+                  <div class="col-12 col-xs-6">
+                    <q-item>
+                      <q-item-section side top>
+                        <q-icon name="calendar_month" color="primary" />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>27 сентября 2025 года</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </div>
+                  <div class="col-12 col-xs-6">
+                    <q-item>
+                      <q-item-section side top>
+                        <q-icon name="not_listed_location" color="primary" />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label> Актовый зал Дворца детского и юношеского творчества</q-item-label>
+                        <q-item-label caption class="text-black">г. Иркутск, улица
+                          Желябова, 5</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </div>
+                </div>
+                <div class="eventsTicket_bottomTexts_lastText text-center">
+                  Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -275,12 +320,9 @@
           :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
           <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" swipeable animated
             control-type="unelevated" control-color="white" control-text-color="primary" padding arrows infinite
-            style="height: 100%; background-color: transparent;">
+            :autoplay=true style="height: 100%; background-color: transparent;">
             <q-carousel-slide :name="1" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
               </div>
@@ -294,9 +336,6 @@
             </q-carousel-slide>
             <q-carousel-slide :name="3" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
@@ -443,40 +482,6 @@ const slide2 = ref(1)
 // Textblocks that do appear animation
 // Textblocks that do appear animation
 
-.landing_accordeon::before {
-  pointer-events: none;
-  content: '';
-  background-image: url(../assets/landing/blocks/Vector_cloud.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 220px;
-  height: 113px;
-  position: absolute;
-  top: -50px;
-  /* Half of image height to center on edge */
-  left: 63%;
-  transform: translateX(-20%);
-  display: block;
-  z-index: 1;
-}
-
-.landing_accordeon::after {
-  pointer-events: none;
-  content: '';
-  background-image: url(../assets/landing/blocks/Vector_cloud.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 150px;
-  height: 113px;
-  position: absolute;
-  top: -20px;
-  /* Half of image height to center on edge */
-  left: 20%;
-  transform: translateX(-20%);
-  display: block;
-  z-index: 1;
-}
-
 .eventsTicket_wrapper {
   width: 540px;
   height: 320px;
@@ -575,6 +580,42 @@ const slide2 = ref(1)
   height: 340px;
 }
 
+// .eventsTicket_invite_wrapper {}
+
+.eventsTicket_invite_string {
+  position: relative;
+  z-index: 5;
+  background-image: url(../assets/landing/blocks/invite_string_desktop.webp);
+  background-repeat: no-repeat;
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-position-x: center;
+  background-position-y: top;
+  image-rendering: pixelated;
+  height: 300px;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.eventsTicket_invite_paperBody {
+  position: relative;
+  z-index: 4;
+  margin-top: -50px;
+  background-image: url(../assets/landing/blocks/invite_paperBody_desktop.webp);
+  background-repeat: no-repeat;
+  background-blend-mode: normal;
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-position-x: center;
+  background-position-y: top;
+  image-rendering: pixelated;
+  height: 700px;
+  width: 1095px;
+  max-height: 100%;
+  max-width: 100%;
+}
+
 @media (max-width: 1440px) {
   .section_banner_background {
     background: url(../assets/landing/1440/section_banner.webp) no-repeat,
@@ -670,19 +711,6 @@ const slide2 = ref(1)
     transform: rotate(-11deg);
   }
 
-  .landing_accordeon::before {
-    width: 165px;
-    height: 75px;
-    top: -30px;
-    left: 58%;
-  }
-
-  .landing_accordeon::after {
-    width: 100px;
-    height: 50px;
-    top: -10px;
-    left: 20%;
-  }
 }
 
 @media (max-width: 744px) {
@@ -785,20 +813,6 @@ const slide2 = ref(1)
     left: 300px;
   }
 
-  .landing_accordeon::before {
-    width: 145px;
-    height: 75px;
-    top: -30px;
-    left: 55%;
-  }
-
-  .landing_accordeon::after {
-    width: 100px;
-    height: 50px;
-    top: -10px;
-    left: 18%;
-  }
-
   .eventsTicket_wrapper {
     top: 240px;
     left: 120px;
@@ -858,20 +872,6 @@ const slide2 = ref(1)
     background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
     width: 241px;
     height: 340px;
-  }
-
-  .landing_accordeon::before {
-    width: 165px;
-    height: 75px;
-    top: -30px;
-    left: 58%;
-  }
-
-  .landing_accordeon::after {
-    width: 100px;
-    height: 50px;
-    top: -10px;
-    left: 20%;
   }
 
   .eventsTicket_wrapper {

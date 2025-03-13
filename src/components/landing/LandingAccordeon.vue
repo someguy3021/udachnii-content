@@ -76,3 +76,103 @@
         </q-list>
     </q-item>
 </template>
+
+<style lang="scss" scoped>
+.landing_accordeon::before {
+    pointer-events: none;
+    content: '';
+    background-image: url(../../assets/landing/blocks/Vector_cloud.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 220px;
+    height: 113px;
+    position: absolute;
+    top: -50px;
+    /* Half of image height to center on edge */
+    left: 63%;
+    transform: translateX(-20%);
+    display: block;
+    z-index: 1;
+}
+
+.landing_accordeon::after {
+    pointer-events: none;
+    content: '';
+    background-image: url(../../assets/landing/blocks/Vector_cloud.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 113px;
+    position: absolute;
+    top: -20px;
+    /* Half of image height to center on edge */
+    left: 20%;
+    transform: translateX(-20%);
+    display: block;
+    z-index: 1;
+}
+
+@media (max-width: 1440px) {
+    .landing_accordeon::before {
+        width: 165px;
+        height: 75px;
+        top: -30px;
+        left: 58%;
+    }
+
+    .landing_accordeon::after {
+        width: 100px;
+        height: 50px;
+        top: -10px;
+        left: 20%;
+    }
+}
+
+@media (max-width: 744px) {
+    .landing_accordeon::before {
+        width: 145px;
+        height: 75px;
+        top: -30px;
+        left: 55%;
+    }
+
+    .landing_accordeon::after {
+        width: 100px;
+        height: 50px;
+        top: -10px;
+        left: 18%;
+    }
+}
+
+@media (max-width: 440px) {
+    .landing_accordeon::before {
+        width: 165px;
+        height: 75px;
+        top: -30px;
+        left: 58%;
+    }
+
+    .landing_accordeon::after {
+        width: 100px;
+        height: 50px;
+        top: -10px;
+        left: 20%;
+    }
+}
+
+@media (max-width: 380px) {
+    .landing_accordeon::before {
+        width: 135px;
+        height: 75px;
+        top: -20px;
+        left: 58%;
+    }
+
+    .landing_accordeon::after {
+        width: 100px;
+        height: 50px;
+        top: -10px;
+        left: 20%;
+    }
+}
+</style>

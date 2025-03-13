@@ -6,16 +6,20 @@
       <div class="field_column_no_styles col-12 col-md q-gutter-y-md">
 
         <div>
-          <div>Логин</div>
-          <div><q-input filled v-model="login" type="email" /></div>
+          <div class="q-mb-md">Логин</div>
+          <div><q-input bg-color="light_yellow" label-color="light_green" label="Заблоченная почта" outlined rounded
+              v-model="login" type="email" disable class="input_field" readonly />
+          </div>
         </div>
         <div>
-          <div>Телефон</div>
-          <div> <q-input filled v-model="phoneNumber" mask="8 (###) ### - ####" fill-mask /></div>
+          <div class="q-mb-md">Телефон</div>
+          <div> <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###) ### - ####"
+              fill-mask class="input_field" /></div>
         </div>
         <div>
-          <div>Текущий пароль</div>
-          <div> <q-input v-model="password_current" filled :type="isPasswordVisble_1 ? 'password' : 'text'">
+          <div class="q-mb-md">Текущий пароль</div>
+          <div> <q-input bg-color="light_yellow" v-model="password_current" placeholder="Введите текущий пароль"
+              outlined rounded :type="isPasswordVisble_1 ? 'password' : 'text'">
               <template v-slot:append>
                 <q-icon :name="isPasswordVisble_1 ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                   @click="isPasswordVisble_1 = !isPasswordVisble_1" />
@@ -23,8 +27,9 @@
             </q-input></div>
         </div>
         <div>
-          <div>Новый пароль</div>
-          <div> <q-input v-model="password_new" filled :type="isPasswordVisble_2 ? 'password' : 'text'">
+          <div class="q-mb-md">Новый пароль</div>
+          <div> <q-input bg-color="light_yellow" v-model="password_new" placeholder="Введите новый пароль" outlined
+              rounded :type="isPasswordVisble_2 ? 'password' : 'text'">
               <template v-slot:append>
                 <q-icon :name="isPasswordVisble_2 ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                   @click="isPasswordVisble_2 = !isPasswordVisble_2" />
@@ -32,8 +37,9 @@
             </q-input></div>
         </div>
         <div>
-          <div>Повторить пароль</div>
-          <div> <q-input v-model="password_newRepeat" filled :type="isPasswordVisble_3 ? 'password' : 'text'">
+          <div class="q-mb-md">Повторить пароль</div>
+          <div> <q-input bg-color="light_yellow" v-model="password_newRepeat" placeholder="Повторите новый пароль"
+              outlined rounded :type="isPasswordVisble_3 ? 'password' : 'text'">
               <template v-slot:append>
                 <q-icon :name="isPasswordVisble_3 ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                   @click="isPasswordVisble_3 = !isPasswordVisble_3" />
@@ -45,29 +51,37 @@
       <div class="field_column_no_styles col-12 col-md q-gutter-y-md">
 
         <div>
-          <div>Ф.И.О ребёнка</div>
-          <div> <q-input filled v-model="child_fio" placeholder="Ф.И.О ребёнка" :dense="dense" /></div>
+          <div class="q-mb-md">Ф.И.О ребёнка</div>
+          <div> <q-input bg-color="light_yellow" outlined rounded v-model="child_fio" placeholder="Ф.И.О ребёнка"
+              :dense="dense" />
+          </div>
         </div>
         <div>
-          <div>Возраст ребёнка</div>
-          <div> <q-input filled v-model.number="child_age" type="number" /></div>
+          <div class="q-mb-md">Возраст ребёнка</div>
+          <div> <q-input bg-color="light_yellow" outlined rounded v-model.number="child_age" type="number"
+              placeholder="Введите возраст ребенка" />
+          </div>
         </div>
         <div>
-          <div>Ф.И.О законного представителя</div>
-          <div> <q-input filled v-model="parent_fio" placeholder="Ф.И.О законного представителя" :dense="dense" /></div>
+          <div class="q-mb-md">Ф.И.О законного представителя</div>
+          <div> <q-input bg-color="light_yellow" outlined rounded v-model="parent_fio"
+              placeholder="Ф.И.О законного представителя" :dense="dense" />
+          </div>
         </div>
 
       </div>
       <div class="field_column_no_styles col-12 col-md q-gutter-y-md">
 
         <div>
-          <div>Статус ребёнка</div>
-          <div><q-select filled v-model="diagnosis_status" :options="diagnosis_status_options" />
+          <div class="q-mb-md">Статус ребёнка</div>
+          <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
+              :options="diagnosis_status_options" label="Выберите из спика" placeholder="Введите текущий пароль" />
           </div>
         </div>
         <div>
-          <div>Шифр по ПМПК</div>
-          <div><q-select filled v-model="diagnosis_cipher" :options="diagnosis_cipher_options" />
+          <div class="q-mb-md">Шифр по ПМПК</div>
+          <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
+              :options="diagnosis_cipher_options" label="Выберите из спика" />
           </div>
         </div>
 
@@ -76,7 +90,7 @@
     </div>
 
     <div class="submit_wrapper">
-      <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
+      <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
         style="border-radius: 40px">
         <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
           <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"

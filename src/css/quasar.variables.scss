@@ -36,7 +36,20 @@ $button_text: #A27D54;
 //?? 
 $skyblue: #D0E7F1;
 $verylightbrown: #FBFBF1;
-
+$uc_green: #315720;
+// quasar-like добавление цветов
+.text-light_yellow {
+    color: $light_yellow !important;
+}
+.bg-light_yellow {
+    background: $light_yellow !important;
+}
+.text-light_green {
+    color: $light_green !important;
+}
+.bg-light_green {
+    background: $light_green !important;
+}
 
 // медиазапросы
 
