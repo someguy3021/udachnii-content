@@ -157,8 +157,8 @@
         </div>
         <div class="ticked_body_sideBlock"></div>
       </div> -->
-      <div class="ticketBackground background-container" style="border-radius: 44px;">
-        <div class="grid">
+      <div class="background-container ticketBackground">
+        <div class="grid" :class="{ 'full-unlocked': isFullyUnlocked }">
           <div v-for="block in blocks" :key="block.id" class="block"
             :class="{ 'full-progress': block.progress >= 100 }">
             <div class="lock-overlay" v-if="block.locked"></div>
@@ -215,7 +215,8 @@ const diagnosis_cipher_options = [
 
 
 const ticketProgression = ref(0); // 0-12 (0 = all locked, 12 = all unlocked)
-ticketProgression.value = 1;
+ticketProgression.value = 7;
+const isFullyUnlocked = computed(() => ticketProgression.value === 12);
 const blocks = computed(() =>
   Array.from({ length: 12 }, (_, i) => ({
     id: i,
@@ -272,16 +273,21 @@ const blocks = computed(() =>
   background: transparent;
 }
 
-/* Remove right border from last column */
+/* Remove borders when fully unlocked */
+.grid.full-unlocked .block {
+  border-right: none;
+  border-bottom: none;
+}
+
 .block:nth-child(4n) {
   border-right: none;
 }
 
-/* Remove bottom border from last row */
 .block:nth-child(n+9) {
   border-bottom: none;
 }
 
+/* Existing styles remain unchanged */
 .lock-overlay {
   position: absolute;
   top: 0;

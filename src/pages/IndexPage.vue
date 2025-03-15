@@ -76,7 +76,7 @@
       <div class="section_advantages_background">
 
         <div class="row" style="height: 100%;">
-          <div class="col-12 col-md-7 flex flex-center">
+          <div class="col-12 col-md-7 flex flex-center" style="max-width: 90%;">
             <div style="margin-bottom: 80%;">
               <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-py-md"
                 style="min-width: 300px;">
@@ -91,7 +91,7 @@
               </AppearBlock>
             </div>
           </div>
-          <div class="col-12 col-md-5">
+          <div class="col-12 col-md-5" style="max-width: 90%;">
             <LandingAccordeon v-if="$q.screen.gt.sm" style="margin-top: 23%; max-width: 550px;" />
           </div>
         </div>
@@ -293,7 +293,7 @@
         </div>
       </div>
     </div>
-    <div class="section_registrations">
+    <div class="section_registrations" style="padding-top: 50px;">
       <div class="section_registrations_background row">
         <div class="registr_text_and_button col-12 col-md-8 q-pa-md flex flex-center" style="margin-top: -100px;">
           <div class="">
