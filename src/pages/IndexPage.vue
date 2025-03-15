@@ -244,30 +244,32 @@
         </div> -->
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
-          <div class="eventsTicket_invite_paperBody flex flex-center">
+          <div class="eventsTicket_invite_paperBody flex flex-center"
+            :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-xl'">
             <div class="eventsTicket_invite_paperBody_text">
-              <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!
+              <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
+                «У-дачник»!
               </div>
-              <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md"
+              <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md q-mb-md"
                 style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
                 <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
                     spinner-color="white"
                     :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
                 </div>
-                <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
+                <div class="text-center text-white h6 text-weight-regular">Подведем итоги, наградим лучших и отлично
                   проведем время! В программе:
                   мастер-классы, интенсивы и
                   многое другое.</div>
               </div>
               <div class="eventsTicket_bottomTexts">
-                <div class="eventsTicket_bottomTexts_withGrid row">
+                <div class="eventsTicket_bottomTexts_withGrid row q-mb-md">
                   <div class="col-12 col-xs-6">
                     <q-item>
                       <q-item-section side top>
                         <q-icon name="calendar_month" color="primary" />
                       </q-item-section>
                       <q-item-section>
-                        <q-item-label>27 сентября 2025 года</q-item-label>
+                        <q-item-label class="h6">27 сентября 2025 года</q-item-label>
                       </q-item-section>
                     </q-item>
                   </div>
@@ -277,14 +279,14 @@
                         <q-icon name="not_listed_location" color="primary" />
                       </q-item-section>
                       <q-item-section>
-                        <q-item-label> Актовый зал Дворца детского и юношеского творчества</q-item-label>
+                        <q-item-label class="h6"> Актовый зал Дворца детского и юношеского творчества</q-item-label>
                         <q-item-label caption class="text-black">г. Иркутск, улица
                           Желябова, 5</q-item-label>
                       </q-item-section>
                     </q-item>
                   </div>
                 </div>
-                <div class="eventsTicket_bottomTexts_lastText text-center">
+                <div class="eventsTicket_bottomTexts_lastText text-center h6">
                   Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
                 </div>
               </div>
@@ -592,11 +594,11 @@ const slide2 = ref(1)
   background-origin: padding-box;
   background-clip: border-box;
   background-position-x: center;
-  background-position-y: top;
+  background-position-y: bottom;
   image-rendering: pixelated;
   height: 300px;
-  max-height: 100%;
   max-width: 100%;
+  max-height: 100%;
 }
 
 .eventsTicket_invite_paperBody {
@@ -613,10 +615,11 @@ const slide2 = ref(1)
   background-position-x: center;
   background-position-y: top;
   image-rendering: pixelated;
-  height: 630px;
   width: 1095px;
-  max-height: 100%;
+  height: 630px;
   max-width: 100%;
+  max-height: 100%;
+  transform: rotate(-11deg);
 }
 
 .eventsTicket_invite_paperBody_text {
@@ -716,6 +719,15 @@ const slide2 = ref(1)
     top: 300px;
     left: 480px;
     transform: rotate(-11deg);
+  }
+
+  .eventsTicket_invite_string {
+    height: 200px;
+  }
+
+  .eventsTicket_invite_paperBody {
+    width: 800px;
+    height: 460px;
   }
 
 }
@@ -825,6 +837,27 @@ const slide2 = ref(1)
     left: 120px;
     transform: rotate(-11deg);
   }
+
+  .eventsTicket_invite_string {
+    background-size: cover;
+    height: 150px;
+  }
+
+  .eventsTicket_invite_paperBody {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .eventsTicket_invite_string {
+    background-image: url(../assets/landing/blocks/invite_string_tablet.svg);
+  }
+
+  .eventsTicket_invite_paperBody {
+    background-size: 200%;
+    transform: rotate(0);
+  }
 }
 
 @media (max-width: 440px) {
@@ -889,6 +922,15 @@ const slide2 = ref(1)
     top: 260px;
     left: 50px;
     transform: rotate(0deg);
+  }
+
+  .eventsTicket_invite_string {
+    height: 200px;
+    background-size: 200%;
+  }
+
+  .eventsTicket_invite_paperBody {
+    background-size: 200%;
   }
 }
 
