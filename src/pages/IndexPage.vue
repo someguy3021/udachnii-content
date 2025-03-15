@@ -3,26 +3,7 @@
     <div class="section_banner">
       <div class="section_banner_background">
 
-        <div class="fake_header_wrapper flex justify-center q-py-md q-mb-md" style="width: 100%; max-height: 10vh;">
-          <div class="fake_header row flex items-center" style="width: 100%; height: 80px;"
-            :class="$q.screen.gt.sm ? 'justify-between q-px-xl' : 'justify-between q-px-md'">
-            <div style="min-width: 150px;max-width: 150px;">
-              <q-img src="src/assets/logo.svg" style="height: 100%; width: 100%;" />
-            </div>
-            <div class="row" style="min-width: 150px;max-width: 550px;" v-if="$q.screen.gt.md">
-              <div class="text-primary text-center q-mx-md">Преимущества</div>
-              <div class="text-primary text-center q-mx-md">Мероприятие</div>
-              <div class="text-primary text-center q-mx-md">Спикеры</div>
-              <div class="text-primary text-center q-mx-md">Партнеры</div>
-            </div>
-            <div class="q-gutter-md">
-              <q-btn v-if="$q.screen.gt.sm" no-caps flat color="green" size="lg" text-color="primary"
-                style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
-              <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true"
-                size="lg" />
-            </div>
-          </div>
-        </div>
+        <AppHeaderCompact />
 
         <div class="text_hero_wrapper self-center">
           <div class="text_hero q-px-md">
@@ -256,7 +237,9 @@
                     spinner-color="white"
                     :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
                 </div>
-                <div class="text-center text-white h6 text-weight-regular">Подведем итоги, наградим лучших и отлично
+                <div class="text-center text-white" style="font-weight: 400;" :class="$q.screen.gt.sm ? 'h5' : ''">
+                  Подведем итоги,
+                  наградим лучших и отлично
                   проведем время! В программе:
                   мастер-классы, интенсивы и
                   многое другое.</div>
@@ -355,57 +338,8 @@
       </div>
     </div>
     <div class="footer_wrapper">
-      <div class="footer row flex items-center justify-around q-my-lg q-py-md q-gutter-x-lg q-gutter-y-lg"
-        v-if="$q.screen.gt.xs">
-        <div style="max-width: 150px;">
-          <div class="q-mb-lg"><q-img src="src/assets/logo.svg" /></div>
-          <div style="opacity: 0.6;" class="text-primary">© 2025 Text text text</div>
-        </div>
-        <div style="max-width: 350px;">
-          <div class="q-mb-lg">
-            <p style="margin: 0 0 4px;" class="text-primary">Политика конфиденциальности</p>
-            <p class="text-primary">Согласие на обработку персональных данных</p>
-          </div>
-          <div class="row">
-            <div class="col-3 flex items-center">
-              <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
-            </div>
-            <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="q-mb-sm">
-            <q-btn flat no-caps color="green" icon="mail" label="info@example" />
-          </div>
-          <div class="flex items-center justify-center">
-            <q-btn flat round color="green" icon="fa-brands fa-telegram" />
-            <q-btn flat round color="green" icon="fa-brands fa-vk" />
-          </div>
-        </div>
-      </div>
-      <div class="footer row flex items-center justify-around q-my-lg q-py-md" v-if="$q.screen.lt.sm">
-        <div></div>
-        <div>
-          <div style="max-width: 350px;">
-            <div class="q-mb-lg">
-              <p style="margin: 0 0 4px;" class="text-primary">Политика конфиденциальности</p>
-              <p class="text-primary">Согласие на обработку персональных данных</p>
-            </div>
-            <div class="row">
-              <div class="col-3 flex items-center">
-                <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
-              </div>
-              <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div></div>
-      </div>
-
+      <AppFooter />
     </div>
-    <DialogMenuMobile v-model="showMobileDialog"></DialogMenuMobile>
   </q-page>
 </template>
 
@@ -414,11 +348,11 @@ import img_sectionBanner_grass from 'src/assets/landing/blocks/section_banner_gr
 // import img_sectionBanner_grass2 from 'src/assets/landing/blocks/Vector_grass2.svg'
 // import img_sectionBanner_grassWithSunflowers from 'src/assets/landing/blocks/Vector_grassWithSunflowers.svg'
 import { ref } from 'vue'
+import AppHeaderCompact from 'src/components/AppHeaderCompact.vue'
+import AppFooter from 'src/components/AppFooter.vue'
 import AppearBlock from 'src/components/landing/AppearBlock.vue'
-import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
 import LandingAccordeon from 'src/components/landing/LandingAccordeon.vue'
 
-const showMobileDialog = ref(false);
 const slide = ref(1)
 const slide2 = ref(1)
 
@@ -430,7 +364,7 @@ const slide2 = ref(1)
 //         backgroundRepeat: 'no-repeat',
 //         backgroundBlendMode: 'normal',
 //         backgroundOrigin: 'padding-box',
-//       }"
+//       }" на потом себе сохранил, если когда будет хост полетят импорты
 
 // Textblocks that do appear animation
 // Textblocks that do appear animation

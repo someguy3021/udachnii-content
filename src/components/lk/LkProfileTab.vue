@@ -137,9 +137,9 @@
 
     <div class="submit_wrapper">
       <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
-        style="border-radius: 40px">
-        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
-          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+        style="border-radius: 22px">
+        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
             class="q-px-xl q-py-sm">
             Сохранить
           </div>
@@ -170,9 +170,9 @@
 
     <div class="downloadTicket_wrapper">
       <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
-        style="border-radius: 40px">
-        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
-          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+        style="border-radius: 22px">
+        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
             class="q-px-xl q-py-sm">
             Скачать билет
           </div>
