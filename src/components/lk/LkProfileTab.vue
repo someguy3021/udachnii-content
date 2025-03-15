@@ -31,12 +31,12 @@
           <div class="q-mb-md">Текущий пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_current" placeholder="Введите текущий пароль" outlined
-              rounded :type="isPasswordVisble_1 ? 'password' : 'text'">
+              rounded :type="isPasswordVisble_1 ? 'password' : 'text'" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
               <template v-slot:append>
-                <q-icon :name="isPasswordVisble_1 ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+                <q-icon :name="isPasswordVisble_1 ? 'visibility_off' : 'visibility'" class="cursor-pointer q-pr-sm"
                   @click="isPasswordVisble_1 = !isPasswordVisble_1" />
               </template>
             </q-input>
@@ -46,12 +46,12 @@
           <div class="q-mb-md">Новый пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_new" placeholder="Введите новый пароль" outlined rounded
-              :type="isPasswordVisble_2 ? 'password' : 'text'">
+              :type="isPasswordVisble_2 ? 'password' : 'text'" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
               <template v-slot:append>
-                <q-icon :name="isPasswordVisble_2 ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+                <q-icon :name="isPasswordVisble_2 ? 'visibility_off' : 'visibility'" class="cursor-pointer q-pr-sm"
                   @click="isPasswordVisble_2 = !isPasswordVisble_2" />
               </template>
             </q-input>
@@ -61,12 +61,12 @@
           <div class="q-mb-md">Повторить пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_newRepeat" placeholder="Повторите новый пароль" outlined
-              rounded :type="isPasswordVisble_3 ? 'password' : 'text'">
+              rounded :type="isPasswordVisble_3 ? 'password' : 'text'" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
               <template v-slot:append>
-                <q-icon :name="isPasswordVisble_3 ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+                <q-icon :name="isPasswordVisble_3 ? 'visibility_off' : 'visibility'" class="cursor-pointer q-pr-sm"
                   @click="isPasswordVisble_3 = !isPasswordVisble_3" />
               </template>
             </q-input>
@@ -80,7 +80,7 @@
           <div class="q-mb-md">Ф.И.О ребёнка</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="child_fio" placeholder="Ф.И.О ребёнка"
-              :dense="dense">
+              :dense="dense" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -90,7 +90,7 @@
         <div>
           <div class="q-mb-md">Возраст ребёнка</div>
           <div><q-input bg-color="light_yellow" outlined rounded v-model.number="child_age" type="number"
-              placeholder="Введите возраст ребенка"> <template v-slot:prepend>
+              placeholder="Введите возраст ребенка" class="input_field"> <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template></q-input>
           </div>
@@ -99,7 +99,7 @@
           <div class="q-mb-md">Ф.И.О законного представителя</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="parent_fio"
-              placeholder="Ф.И.О законного представителя" :dense="dense">
+              placeholder="Ф.И.О законного представителя" :dense="dense" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -113,7 +113,7 @@
         <div>
           <div class="q-mb-md">Статус ребёнка</div>
           <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
-              :options="diagnosis_status_options" label="Выберите из спика">
+              :options="diagnosis_status_options" label="Выберите из спика" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -123,7 +123,7 @@
         <div>
           <div class="q-mb-md">Шифр по ПМПК</div>
           <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
-              :options="diagnosis_cipher_options" label="Выберите из спика">
+              :options="diagnosis_cipher_options" label="Выберите из спика" class="input_field">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -198,8 +198,8 @@ const diagnosis_cipher_options = [
 ];
 </script>
 
-<style lang="scss" scoped>
-.input_field {
-  border-radius: 2px;
+<style lang="scss">
+.input_field.q-field--outlined.q-field--rounded .q-field__control {
+  border-radius: 22px;
 }
 </style>
