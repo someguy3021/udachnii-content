@@ -504,10 +504,6 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 1135px;
-  background-clip: border-box;
-  background-position-x: center;
-  background-position-y: top;
-  image-rendering: pixelated;
 }
 
 .section_advantages_background {
@@ -515,10 +511,6 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 1152px;
-  background-clip: border-box;
-  background-position-x: center;
-  background-position-y: top;
-  image-rendering: pixelated;
 }
 
 .section_speaker_background {
@@ -526,10 +518,6 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 3343px;
-  background-clip: border-box;
-  background-position-x: center;
-  background-position-y: top;
-  image-rendering: pixelated;
 }
 
 .section_events_background {
@@ -537,10 +525,7 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 1095px;
-  background-clip: border-box;
-  background-position-x: center;
-  background-position-y: top;
-  image-rendering: pixelated;
+
 }
 
 .section_registrations_background {
@@ -548,10 +533,6 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 697px;
-  background-clip: border-box;
-  background-position-x: center;
-  background-position-y: top;
-  image-rendering: pixelated;
 }
 
 .text_hero_wrapper {
