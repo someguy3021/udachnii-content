@@ -150,7 +150,23 @@
   </div>
   <div class="ticketAndButton_wrapper">
 
-    <div class="ticket_wrapper q-pb-lg"></div>
+    <div class="ticket_wrapper q-pb-lg">
+      <!-- <div class="ticket_body">
+        <div class="ticket_body_blocks">
+          <div></div>
+        </div>
+        <div class="ticked_body_sideBlock"></div>
+      </div> -->
+      <div class="ticketBackground background-container" style="border-radius: 44px;">
+        <div class="grid">
+          <div v-for="block in blocks" :key="block.id" class="block"
+            :class="{ 'full-progress': block.progress >= 100 }">
+            <div class="lock-overlay" v-if="block.locked"></div>
+            <div class="border" :class="{ unlocked: !block.locked }"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="downloadTicket_wrapper">
       <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
@@ -168,7 +184,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 const dense = false;
 const isPasswordVisble_1 = ref(true);
 const isPasswordVisble_2 = ref(true);
@@ -196,10 +212,97 @@ const diagnosis_cipher_options = [
   'ЧF83 (Смешанные специфические расстройства психологического развития)',
   'F84 (Общие расстройства психологического развития – РАС)'
 ];
+
+
+const ticketProgression = ref(0); // 0-12 (0 = all locked, 12 = all unlocked)
+ticketProgression.value = 1;
+const blocks = computed(() =>
+  Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    locked: i >= ticketProgression.value,
+    progress: i < ticketProgression.value ? 100 : 0
+  }))
+);
+
+// Example of how you would update the progression later:
+// function updateProgressionFromServer(newValue) {
+//   ticketProgression.value = Math.min(Math.max(newValue, 0), 12);
+// }
 </script>
 
 <style lang="scss">
+// здесь нельзя ставить style scoped!
 .input_field.q-field--outlined.q-field--rounded .q-field__control {
   border-radius: 22px;
+}
+
+.ticketBackground {
+  background-image: url(../../assets/images/lk/profile/profile_ticket_background.webp);
+  background-size: cover;
+  background-position: center;
+}
+
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+}
+
+.block {
+  position: relative;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  background: transparent;
+}
+
+/* Remove right border from last column */
+.block:nth-child(4n) {
+  border-right: none;
+}
+
+/* Remove bottom border from last row */
+.block:nth-child(n+9) {
+  border-bottom: none;
+}
+
+.lock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 2;
+}
+
+.border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.unlocked {
+  border: 2px solid white;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.full-progress .border {
+  border: none;
+  box-shadow: none;
 }
 </style>
