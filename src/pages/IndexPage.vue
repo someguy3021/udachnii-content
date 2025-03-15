@@ -244,7 +244,7 @@
         </div> -->
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
-          <div class="eventsTicket_invite_paperBody">
+          <div class="eventsTicket_invite_paperBody flex flex-center">
             <div class="eventsTicket_invite_paperBody_text">
               <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!
               </div>
@@ -585,7 +585,8 @@ const slide2 = ref(1)
 .eventsTicket_invite_string {
   position: relative;
   z-index: 5;
-  background-image: url(../assets/landing/blocks/invite_string_desktop.webp);
+  background-image: url(../assets/landing/blocks/invite_string_desktop.svg);
+  background-size: contain;
   background-repeat: no-repeat;
   background-blend-mode: normal;
   background-origin: padding-box;
@@ -601,8 +602,10 @@ const slide2 = ref(1)
 .eventsTicket_invite_paperBody {
   position: relative;
   z-index: 4;
-  margin-top: -50px;
+  margin: auto;
+  margin-top: -40px;
   background-image: url(../assets/landing/blocks/invite_paperBody_desktop.webp);
+  background-size: contain;
   background-repeat: no-repeat;
   background-blend-mode: normal;
   background-origin: padding-box;
@@ -610,10 +613,14 @@ const slide2 = ref(1)
   background-position-x: center;
   background-position-y: top;
   image-rendering: pixelated;
-  height: 700px;
+  height: 630px;
   width: 1095px;
   max-height: 100%;
   max-width: 100%;
+}
+
+.eventsTicket_invite_paperBody_text {
+  max-width: 540px;
 }
 
 @media (max-width: 1440px) {
