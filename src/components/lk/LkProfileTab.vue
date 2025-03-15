@@ -249,6 +249,8 @@ const blocks = computed(() =>
   position: relative;
   width: 100%;
   height: 600px;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .grid {
