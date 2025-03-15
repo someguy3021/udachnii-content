@@ -245,7 +245,7 @@
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
           <div class="eventsTicket_invite_paperBody flex flex-center"
-            :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-xl'">
+            :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-md'">
             <div class="eventsTicket_invite_paperBody_text">
               <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
                 «У-дачник»!
@@ -354,33 +354,56 @@
         </div>
       </div>
     </div>
-    <div class="footer row flex items-center justify-around q-my-lg q-py-md">
-      <div style="max-width: 150px;">
-        <div class="q-mb-lg"><q-img src="src/assets/logo.svg" /></div>
-        <div style="opacity: 0.6;" class="text-primary">© 2025 Text text text</div>
-      </div>
-      <div style="max-width: 350px;">
-        <div class="q-mb-lg">
-          <p style="margin: 0 0 4px;" class="text-primary">Политика конфиденциальности</p>
-          <p class="text-primary">Согласие на обработку персональных данных</p>
+    <div class="footer_wrapper">
+      <div class="footer row flex items-center justify-around q-my-lg q-py-md q-gutter-x-lg q-gutter-y-lg"
+        v-if="$q.screen.gt.xs">
+        <div style="max-width: 150px;">
+          <div class="q-mb-lg"><q-img src="src/assets/logo.svg" /></div>
+          <div style="opacity: 0.6;" class="text-primary">© 2025 Text text text</div>
         </div>
-        <div class="row">
-          <div class="col-3 flex items-center">
-            <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
+        <div style="max-width: 350px;">
+          <div class="q-mb-lg">
+            <p style="margin: 0 0 4px;" class="text-primary">Политика конфиденциальности</p>
+            <p class="text-primary">Согласие на обработку персональных данных</p>
           </div>
-          <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
+          <div class="row">
+            <div class="col-3 flex items-center">
+              <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
+            </div>
+            <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="q-mb-sm">
+            <q-btn flat no-caps color="green" icon="mail" label="info@example" />
+          </div>
+          <div class="flex items-center justify-center">
+            <q-btn flat round color="green" icon="fa-brands fa-telegram" />
+            <q-btn flat round color="green" icon="fa-brands fa-vk" />
           </div>
         </div>
       </div>
-      <div>
-        <div class="q-mb-sm">
-          <q-btn flat no-caps color="green" icon="mail" label="info@example" />
+      <div class="footer row flex items-center justify-around q-my-lg q-py-md" v-if="$q.screen.lt.sm">
+        <div></div>
+        <div>
+          <div style="max-width: 350px;">
+            <div class="q-mb-lg">
+              <p style="margin: 0 0 4px;" class="text-primary">Политика конфиденциальности</p>
+              <p class="text-primary">Согласие на обработку персональных данных</p>
+            </div>
+            <div class="row">
+              <div class="col-3 flex items-center">
+                <p class="text-primary" style="margin: 0 0 0px;">Сделано в</p>
+              </div>
+              <div class="col-7"><q-img src="src/assets/landing/titans_logo.svg" style="max-width: 140px;" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="flex items-center justify-center">
-          <q-btn flat round color="green" icon="fa-brands fa-telegram" />
-          <q-btn flat round color="green" icon="fa-brands fa-vk" />
-        </div>
+        <div></div>
       </div>
+
     </div>
     <DialogMenuMobile v-model="showMobileDialog"></DialogMenuMobile>
   </q-page>
