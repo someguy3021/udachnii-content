@@ -1,6 +1,6 @@
 <script setup>
 defineOptions({
-    name: "PortCards_Card_Dialog",
+    name: "DialogMenuMobile",
 });
 import { useDialogPluginComponent } from 'quasar'
 
@@ -10,10 +10,14 @@ defineEmits([
     // component will emit through useDialogPluginComponent()
     ...useDialogPluginComponent.emits
 ])
+
+// восстановление пароля - еще одно диалоговое внутри другого
 </script>
 
 <template>
     <q-dialog persistent :maximized=true transition-show="slide-up" transition-hide="slide-down">
+        <div class="reg_wrapper"></div>
+        <div class="login_wrapper"></div>
         <q-card class="text-white" style="background-color: #829F4F;">
             <q-bar style="height: 60px;">
                 <div style="height: 32px; width: 88px;">
