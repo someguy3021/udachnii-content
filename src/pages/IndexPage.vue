@@ -180,7 +180,7 @@
     </div>
     <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;">
       <div class="section_events_background">
-        <!-- <div class="eventsTicket_wrapper q-px-md">
+        <!-- <div class="eventsTicket_wrapper q-px-md"> TODO еще не удалил легаси стилей отсюда, удалю потом
           <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
           <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md" style="border-radius: 20px;"
             :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
@@ -316,19 +316,16 @@
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
               </div>
             </q-carousel-slide>
             <q-carousel-slide :name="3" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
               </div>
             </q-carousel-slide>
             <q-carousel-slide :name="4" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
               </div>
@@ -793,7 +790,8 @@ const slide2 = ref(1)
   }
 
   .eventsTicket_invite_paperBody {
-    background-size: 200%;
+    background-image: url(../assets/landing/blocks/invite_paperBody_mobile.webp);
+    background-size: contain;
     transform: rotate(0);
   }
 }
