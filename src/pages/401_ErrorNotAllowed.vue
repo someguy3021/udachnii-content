@@ -7,16 +7,18 @@
       </div>
 
       <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+        Страница не найдена!
       </div>
 
       <q-btn class="q-mt-xl" color="white" text-color="blue" unelevated to="/" label="Go Home" no-caps />
     </div>
+    <AppFooter footerTypeProp="white" />
   </div>
 </template>
 
 <script setup>
 import AppHeaderCompact from 'src/components/AppHeaderCompact.vue'
+import AppFooter from 'src/components/AppFooter.vue'
 </script>
 
 <style lang="scss">
