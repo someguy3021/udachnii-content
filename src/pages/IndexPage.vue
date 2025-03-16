@@ -8,7 +8,7 @@
         <div class="text_hero_wrapper self-center">
           <div class="text_hero q-px-md">
             <div class="h1_bigger3 font_Sunday text-primary text-center"
-              :style="$q.screen.lt.sm ? { fontSize: '48px' } : {}">У-дачный контент</div>
+              :style="$q.screen.width <= 440 ? { fontSize: '48px' } : {}">У-дачный контент</div>
             <div class="text-primary text-center" :class="$q.screen.gt.sm ? 'h4' : 'h6'">Особенный развивающий
               контент для особенных детей. Получи билеты на
               «у-Дачный
