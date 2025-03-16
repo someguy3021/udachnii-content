@@ -51,10 +51,6 @@ import AppFooter from 'src/components/AppFooter.vue'
 //   background-blend-mode: normal;
 //   background-origin: padding-box;
 // }
-.body_404 {
-  background: url(../assets/images/401_404/bg_404_390px.webp) no-repeat,
-    linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
-}
 
 .flex_footer_container {
   max-height: 160px !important;
@@ -64,6 +60,16 @@ import AppFooter from 'src/components/AppFooter.vue'
   .flex_footer_container {
     max-height: 260px !important;
   }
+}
+
+// background image stuff
+.body_404 {
+  background: url(../assets/images/401_404/bg_404_390px.webp) no-repeat,
+    linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
+  background-clip: border-box;
+  background-position-x: center;
+  background-position-y: top;
+  image-rendering: pixelated;
 }
 
 @media (min-width: 390.99px) {

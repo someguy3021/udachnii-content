@@ -21,7 +21,8 @@ const routes = [
   },
   {
     path: "/:catchAll(.*)*",
-    component: () => import("pages/404_ErrorNotFound.vue"),
+    // component: () => import("pages/404_ErrorNotFound.vue"),
+    component: () => import("pages/401_ErrorNotAllowed.vue"),
   },
 ];
 
