@@ -11,7 +11,7 @@
           <div class="text-uc_button_text col-12 col-sm flex flex-center"
             :class="$q.screen.lt.sm ? 'text-center h5' : 'text-left h1'" style="margin-bottom: 0;">
             Страница
-            не найдена!</div>
+            не найдена!</div>
         </div>
         <div>
           <q-btn flat no-caps color="white" size="lg" class="q-pa-none full-width" style="border-radius: 22px">

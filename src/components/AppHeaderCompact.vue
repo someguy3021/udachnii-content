@@ -13,18 +13,23 @@
             </div>
             <div class="q-gutter-md">
                 <q-btn v-if="$q.screen.gt.sm" no-caps flat color="green" size="lg" text-color="primary"
-                    style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
+                    style="background-color: #EFDFBB;border: solid 2px #315720;"
+                    @click="showAuthDialog = true">Войти</q-btn>
                 <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu" @click="showMobileDialog = true"
                     size="lg" />
             </div>
         </div>
     </div>
     <DialogMenuMobile v-model="showMobileDialog"></DialogMenuMobile>
+    <AppAuthDialog v-model="showAuthDialog" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
+import AppAuthDialog from 'src/components/AppAuthDialog.vue';
+
 const showMobileDialog = ref(false);
+const showAuthDialog = ref(false);
 
 </script>
