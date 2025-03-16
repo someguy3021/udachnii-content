@@ -1,10 +1,10 @@
 <template>
-  <div class="body_404 fullscreen column">
-    <div class="col-4">
+  <div class="body_404 fullscreen flex justify-center items-center column">
+    <div class="full-width">
       <AppHeaderCompact />
     </div>
 
-    <div class="col text-white text-center q-pa-md" style="margin: 0 auto;">
+    <div class="col text-white text-center q-pa-md flex items-end" style="margin: 0 auto;">
       <div style="max-width: 570px;">
         <div class="row q-pa-md">
           <div class="text-uc_button_text h1_bigger7 col-12 col-sm" style="font-weight: 700;">404</div>
@@ -26,7 +26,7 @@
       </div>
 
     </div>
-    <div class="col">
+    <div class="full-width self-end flex_footer_container" style="background-color: #CBA377;">
       <AppFooter footerTypeProp="white" />
     </div>
 
@@ -45,10 +45,57 @@ import AppFooter from 'src/components/AppFooter.vue'
 //     linear-gradient(180deg, rgba(203, 163, 119, 0) 10%, rgba(203, 163, 119, 1) 20%, rgba(203, 163, 119, 1) 100%);
 // }
 
+// .body_404 {
+//   background: url(../assets/images/401_404/bg_404_1440px.webp) no-repeat,
+//     linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
+//   background-blend-mode: normal;
+//   background-origin: padding-box;
+// }
 .body_404 {
-  background: url(../assets/images/401_404/bg_404_1440px.webp) no-repeat,
+  background: url(../assets/images/401_404/bg_404_390px.webp) no-repeat,
     linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
-  background-blend-mode: normal;
-  background-origin: padding-box;
+}
+
+.flex_footer_container {
+  max-height: 160px !important;
+}
+
+@media (max-width: 600px) {
+  .flex_footer_container {
+    max-height: 260px !important;
+  }
+}
+
+@media (min-width: 390.99px) {
+  .body_404 {
+    background: url(../assets/images/401_404/bg_404_744px.webp) no-repeat,
+      linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
+    background-clip: border-box;
+    background-position-x: center;
+    background-position-y: top;
+    image-rendering: pixelated;
+  }
+}
+
+@media (min-width: 744.99px) {
+  .body_404 {
+    background: url(../assets/images/401_404/bg_404_1440px.webp) no-repeat,
+      linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
+    background-clip: border-box;
+    background-position-x: center;
+    background-position-y: top;
+    image-rendering: pixelated;
+  }
+}
+
+@media (min-width: 1440.99px) {
+  .body_404 {
+    background: url(../assets/images/401_404/bg_404_1920px.webp) no-repeat,
+      linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);
+    background-clip: border-box;
+    background-position-x: center;
+    background-position-y: top;
+    image-rendering: pixelated;
+  }
 }
 </style>
