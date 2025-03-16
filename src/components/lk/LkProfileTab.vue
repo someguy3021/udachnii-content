@@ -150,15 +150,48 @@
   </div>
   <div class="ticketAndButton_wrapper">
 
-    <div class="ticket_wrapper q-pb-lg">
+    <div class="ticket_wrapper q-pb-lg row">
       <!-- <div class="ticket_body">
         <div class="ticket_body_blocks">
           <div></div>
         </div>
         <div class="ticked_body_sideBlock"></div>
       </div> -->
-      <div class="background-container ticketBackground">
-        <div class="grid" :class="{ 'full-unlocked': isFullyUnlocked }">
+      <div class="background-container ticketBackground col-2">
+        <div class="text-overlay q-pa-md" style="max-width: 500px;">
+          <div class="text_overlay_container">
+            <div>
+              <q-item>
+                <q-item-section side top>
+                  <q-icon name="calendar_month" color="light_green" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label class="h5 text-uc_dark_green">27 сентября 2025 года</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+            <div>
+              <q-item>
+                <q-item-section side top>
+                  <q-icon name="not_listed_location" color="light_green" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label class="h6 text-uc_dark_green">г. Иркутск, улица
+                    Желябова, 5</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+            <div>
+              <q-item>
+                <q-item-section>
+                  <q-item-label class="h5 text-uc_dark_green">Актовый зал Дворца детского и юношеского
+                    творчества</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+          </div>
+        </div>
+        <div class="grid" :class="{ 'full-unlocked': isTicketFullyUnlocked }">
           <div v-for="block in blocks" :key="block.id" class="block"
             :class="{ 'full-progress': block.progress >= 100 }">
             <div class="lock-overlay" v-if="block.locked"></div>
@@ -166,11 +199,13 @@
           </div>
         </div>
       </div>
+      <div class="ticked_body_sideText col-3">
+      </div>
     </div>
 
     <div class="downloadTicket_wrapper">
       <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
-        style="border-radius: 22px">
+        style="border-radius: 22px" :disable="!isTicketFullyUnlocked">
         <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
           <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
             class="q-px-xl q-py-sm">
@@ -215,8 +250,8 @@ const diagnosis_cipher_options = [
 
 
 const ticketProgression = ref(0); // 0-12 (0 = all locked, 12 = all unlocked)
-ticketProgression.value = 7;
-const isFullyUnlocked = computed(() => ticketProgression.value === 12);
+ticketProgression.value = 7; // test value
+const isTicketFullyUnlocked = computed(() => ticketProgression.value === 12);
 const blocks = computed(() =>
   Array.from({ length: 12 }, (_, i) => ({
     id: i,
@@ -238,20 +273,39 @@ const blocks = computed(() =>
 }
 
 // apply a border-radius: 22px !important; to an element that has a input_field class, that element is a 2nd level child input_field>child1>child2_TARGET
-
+.ticked_body_sideText {
+  background-image: url(../../assets/images/lk/profile/profile_ticket_sideText_descktop.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 .ticketBackground {
   background-image: url(../../assets/images/lk/profile/profile_ticket_background.webp);
   background-size: cover;
-  background-position: center;
+  background-position: left;
+  background-repeat: no-repeat;
 }
 
 .background-container {
   position: relative;
-  width: 100%;
+  width: 70%;
   height: 600px;
   border-radius: 24px;
   overflow: hidden;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  /* Between background (0) and grid (2) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  /* Allows clicks to pass through */
 }
 
 .grid {
@@ -268,8 +322,8 @@ const blocks = computed(() =>
 
 .block {
   position: relative;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
   background: transparent;
 }
 
