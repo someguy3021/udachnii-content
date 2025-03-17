@@ -22,7 +22,7 @@ const routes = [
   {
     path: "/errortest",
     name: "ErrorTest",
-    component: () => import("layouts/LKLayout.vue"),
+    component: () => import("layouts/LandingLayout.vue"),
     children: [
       {
         path: "401",
