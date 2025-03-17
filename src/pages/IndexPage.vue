@@ -353,6 +353,7 @@ import LandingAccordeon from 'src/components/landing/LandingAccordeon.vue'
 const slide = ref(1)
 const slide2 = ref(1)
 
+// const showAuthDialog = ref(false);
 </script>
 
 <style lang="scss">
