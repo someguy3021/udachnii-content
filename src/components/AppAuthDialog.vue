@@ -198,18 +198,47 @@ const diagnosis_cipher_options = [
         <!-- Second dialog -->
         <q-dialog v-model="restorePasswordDialog" persistent maximized transition-show="slide-down"
             transition-hide="slide-down">
-            <q-card class="bg-uc_light_green fullscreen restorePassword_dialog">
-                <q-card-section>
-                    <div class="text-h6">Alert</div>
-                </q-card-section>
+            <q-card class="fullscreen bg-uc_light_green">
+                <div class="fullscreen restorePassword_dialog flex flex-center">
 
-                <q-card-section class="q-pt-none">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </q-card-section>
+                    <div class="restorePassword_formWrapper flex flex-center q-pa-sm"
+                        style="width: 100%; max-width: 650px; pointer-events: auto;">
 
-                <q-card-actions align="right">
-                    <q-btn flat label="OK" color="primary" v-close-popup />
-                </q-card-actions>
+                        <div class="bg-uc_fon q-pa-lg" style="border-radius: 20px;"
+                            :class="$q.screen.lt.md ? 'fullscreen' : ''"
+                            :style="$q.screen.lt.md ? '' : 'max-width: 426px'">
+                            <div class="q-gutter-y-md restorePassword_formWrapper_fields">
+                                <q-bar style="height: 60px; background-color: transparent;">
+                                    <q-space />
+                                    <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
+                                        style="border: solid 2px #315720">
+                                        <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
+                                    </q-btn>
+                                </q-bar>
+                                <div class="text-center font_Sunday h1 text-uc_green q-pb-md">Восстановление пароля
+                                </div>
+                                <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email"
+                                    outlined rounded v-model="login" type="email" class="input_field_UCStyle">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                                    class="q-pa-none full-width" style="border-radius: 22px">
+                                    <div class="full-width"
+                                        style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+                                        <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
+                                            class="q-px-xl q-py-sm">
+                                            Далее
+                                        </div>
+                                    </div>
+                                </q-btn>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </q-card>
         </q-dialog>
     </q-dialog>
