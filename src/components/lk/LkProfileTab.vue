@@ -1,9 +1,10 @@
 <template>
   <div class="input_fieldsAndSubmit_wrapper q-pb-lg">
 
-    <div class="input_fields_wrapper row q-gutter-y-sm q-pb-xl">
+    <div class="input_fields_wrapper row q-gutter-y-sm q-pb-xl"
+      :class="$q.screen.lt.sm ? 'q-gutter-x-sm' : 'q-gutter-x-lg'">
 
-      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-px-md q-pb-md">
+      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-pb-md">
 
         <div>
           <div class="q-mb-md">Логин</div>
@@ -74,7 +75,7 @@
         </div>
 
       </div>
-      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-px-md q-pb-md">
+      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-pb-md">
 
         <div>
           <div class="q-mb-md">Ф.И.О ребёнка</div>
@@ -108,7 +109,7 @@
         </div>
 
       </div>
-      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-px-md q-pb-md">
+      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-pb-md">
 
         <div>
           <div class="q-mb-md">Статус ребёнка</div>
