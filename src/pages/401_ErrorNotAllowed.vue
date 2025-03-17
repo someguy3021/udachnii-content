@@ -61,7 +61,7 @@ import AppFooter from 'src/components/AppFooter.vue'
   image-rendering: pixelated;
 }
 
-@media (min-width: 390.99px) {
+@media (min-width: 600.99px) {
   .body_401 {
     background: url(../assets/images/401_404/bg_401_744px.webp) no-repeat,
       linear-gradient(180deg, rgba(208, 231, 241, 1) 0%, rgba(239, 223, 187, 1) 66%, rgba(239, 223, 187, 1) 100%);

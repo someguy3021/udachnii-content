@@ -459,6 +459,11 @@ const slide2 = ref(1)
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 1135px;
+  // background-size: cover;
+  // background-clip: border-box;
+  // background-position-x: center;
+  // background-position-y: top;
+  // image-rendering: pixelated;
 }
 
 .section_advantages_background {
