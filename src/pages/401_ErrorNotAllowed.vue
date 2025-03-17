@@ -26,9 +26,8 @@
               </div>
             </q-btn>
             <q-btn flat no-caps color="white" size="lg" class="q-pa-none full-width" style="border-radius:  24px">
-              <div style="border: solid 4px #F8CB96; background-color: #F8CB96; border-radius:  24px;"
-                class="full-width">
-                <div style="border: solid 2px #A27D54; border-style: dashed; border-radius:  24px; color:#A27D54"
+              <div class="full-width">
+                <div style="border: solid 2px white; border-style: dashed; border-radius:  24px; color:white"
                   class="q-px-md q-py-md full-width">
                   Вернуться на главную
                 </div>

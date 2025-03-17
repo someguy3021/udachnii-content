@@ -1,4 +1,7 @@
 <script setup>
+import { ref } from 'vue'
+import AppAuthDialog from 'src/components/AppAuthDialog.vue';
+const showAuthDialog = ref(false);
 defineOptions({
     name: "DialogMenuMobile",
 });
@@ -32,11 +35,13 @@ defineEmits([
                     <div class="h1 text-center q-pa-md">Партнеры</div>
                     <div class="flex flex-center justify-center">
                         <q-btn no-caps flat color="green" size="lg" text-color="primary"
-                            style="background-color: #EFDFBB;border: solid 2px #315720;">Войти</q-btn>
+                            style="background-color: #EFDFBB;border: solid 2px #315720;"
+                            @click="showAuthDialog = true">Войти</q-btn>
                     </div>
                 </div>
 
             </div>
         </q-card>
+        <AppAuthDialog v-model="showAuthDialog" />
     </q-dialog>
 </template>
