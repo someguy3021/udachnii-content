@@ -23,7 +23,7 @@
     font-family: Involve;
     font-weight: 400;
     font-size: 20px;
-    line-height: 22px;
+    line-height: 20px;
 }
 
 @mixin desktop-text_regular_14() {
@@ -158,8 +158,8 @@
         top: 50%;
         left: 50%;
         border-radius: 22px;
-        width: calc(100% - 8px);
-        height: calc(100% - 8px);
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
         border: 2px dotted rgba(162, 125, 84, 1);
         transform: translate(-50%, -50%);
         transition: all .3s ease-in-out;
