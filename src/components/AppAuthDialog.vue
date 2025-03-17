@@ -63,9 +63,9 @@ const password_current = ref();
                 <div class="login_bgVectorClouds col-12 col-md flex flex-center">
                     <div class="login_form_wrapper q-pa-sm q-gutter-y-md"
                         style="width: 100%; max-width: 580px; pointer-events: auto;">
-                        <div class="text-center font_Sunday h1 text-white">Авторизация</div>
+                        <div class="text-center font_Sunday h1 text-white q-pb-md">Авторизация</div>
 
-                        <div class="q-gutter-y-md">
+                        <div class="q-gutter-y-md q-pb-md">
                             <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
                                 rounded v-model="login" type="email" class="input_field_UCStyle">
                                 <template v-slot:prepend>
@@ -86,18 +86,19 @@ const password_current = ref();
                             </q-input>
                         </div>
 
-                        <div class="q-gutter-y-md">
+                        <div class="q-gutter-y-md q-pb-md">
                             <div @click="restorePasswordDialog = true" class="text-white" style="cursor: pointer;">Не
                                 помню пароль
                                 <!-- <q-btn flat align="left" color="white" label="Не помню пароль"
                                     @click="restorePasswordDialog = true" no-caps /> -->
                             </div>
                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                class="q-pa-none" style="border-radius: 22px">
-                                <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+                                class="q-pa-none full-width" style="border-radius: 22px">
+                                <div class="full-width"
+                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
                                     <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
                                         class="q-px-xl q-py-sm">
-                                        Сохранить
+                                        Войти
                                     </div>
                                 </div>
                             </q-btn>
