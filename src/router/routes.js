@@ -20,9 +20,26 @@ const routes = [
     ],
   },
   {
+    path: "/errortest",
+    name: "ErrorTest",
+    component: () => import("layouts/LKLayout.vue"),
+    children: [
+      {
+        path: "401",
+        name: "ErrorTest401",
+        component: () => import("pages/401_ErrorNotAllowed.vue"),
+      },
+      {
+        path: "404",
+        name: "ErrorTest404",
+        component: () => import("pages/404_ErrorNotFound.vue"),
+      },
+    ],
+  },
+  {
     path: "/:catchAll(.*)*",
-    // component: () => import("pages/404_ErrorNotFound.vue"),
-    component: () => import("pages/401_ErrorNotAllowed.vue"),
+    component: () => import("pages/404_ErrorNotFound.vue"),
+    // component: () => import("pages/401_ErrorNotAllowed.vue"),
   },
 ];
 
