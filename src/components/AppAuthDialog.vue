@@ -47,7 +47,7 @@ const diagnosis_cipher_options = [
 </script>
 
 <template>
-    <q-dialog ref="dialogRef" persistent maximized transition-show="slide-up" transition-hide="slide-down">
+    <q-dialog ref="dialogRef" persistent maximized>
         <q-card class="bg-uc_light_green reg_wrapper" v-if="showLogin">
             <q-bar style="height: 60px; background-color: transparent;">
                 <q-space />
@@ -113,8 +113,8 @@ const diagnosis_cipher_options = [
         <q-card class="login_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
             <q-bar style="height: 60px; background-color: transparent;">
                 <q-space />
-                <q-btn dense flat round icon="close" v-close-popup size="lg" color=" uc_green' : 'white'"
-                    style="border: solid 2px #315720">
+                <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
+                    style="border: solid 2px #315720;background-color: #EFDFBB;">
                     <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                 </q-btn>
             </q-bar>
@@ -196,8 +196,7 @@ const diagnosis_cipher_options = [
             </div>
         </q-card>
         <!-- Second dialog -->
-        <q-dialog v-model="restorePasswordDialog" persistent maximized transition-show="slide-down"
-            transition-hide="slide-down">
+        <q-dialog v-model="restorePasswordDialog" persistent maximized>
             <q-card class="fullscreen bg-uc_light_green">
                 <div class="fullscreen restorePassword_dialog flex flex-center">
 
@@ -269,7 +268,6 @@ const diagnosis_cipher_options = [
     background-size: 986px auto;
     background-position-x: right;
     background-position-y: bottom;
-    image-rendering: crisp-edges;
 }
 
 .signIn_bgVectorClouds {
@@ -281,6 +279,7 @@ const diagnosis_cipher_options = [
 
 .signIn_emptySpaceImg {
     background: url(../assets/images/authDialog/signIn_emptySpaceImg_desktop.webp) no-repeat;
+    background-color: #E2B377;
     background-size: auto auto;
     background-position-x: center; // (посмотреть подробнее из-за суб-пиксельного рендеринга)
     background-position-y: top;

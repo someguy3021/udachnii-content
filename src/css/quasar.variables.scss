@@ -79,6 +79,12 @@ $uc_button_text: #A27D54;
 .bg-uc_fon {
     background: $uc_fon !important;
 }
+.text-uc_button_text {
+    color: $uc_button_text !important;
+}
+.bg-uc_button_text {
+    background: $uc_button_text !important;
+}
 
 // медиазапросы
 
