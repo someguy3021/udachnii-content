@@ -20,6 +20,30 @@ const props = defineProps({
 const showLogin = ref(props.isShowLogin);
 
 const restorePasswordDialog = ref(false);
+
+const isPasswordVisble_1 = ref(true);
+const login = ref();
+// const phoneNumber = ref();
+const password_current = ref();
+
+// const child_fio = ref();
+// const child_age = ref();
+// const parent_fio = ref();
+
+// const diagnosis_status = ref(null);
+// const diagnosis_cipher = ref(null);
+// const diagnosis_status_options = [
+//   'Ребёнок с ОВЗ', 'Ребёнок инвалид'
+// ];
+// const diagnosis_cipher_options = [
+//   'F80 (специфические расстройства речи и языка)',
+//   'F 81 (расстройства развития учебных навыков)',
+//   'F82 (Специфические расстройства развития моторной функции)',
+//   'ЧF83 (Смешанные специфические расстройства психологического развития)',
+//   'F84 (Общие расстройства психологического развития – РАС)'
+// ];
+
+
 </script>
 
 <template>
@@ -27,29 +51,30 @@ const restorePasswordDialog = ref(false);
         <q-card class="bg-uc_light_green reg_wrapper" v-if="showLogin">
             <q-bar style="height: 60px; background-color: transparent; position: relative; z-index: 22;">
                 <q-space />
-                <q-btn dense flat round icon="close" v-close-popup size="lg" color="white"
-                    style="border: solid 2px white;">
-                    <q-tooltip class="bg-white text-primary">Close</q-tooltip>
+                <q-btn dense flat round icon="close" v-close-popup size="lg"
+                    :color="$q.screen.lt.md ? 'uc_green' : 'white'"
+                    :style="$q.screen.lt.md ? 'border: solid 2px #315720' : 'border: solid 2px white'">
+                    <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                 </q-btn>
             </q-bar>
-            <div class="fullscreen row" style="pointer-events: none;">
-                <div class="login_emptySpaceImg col-12 col-md">
+            <div class="fullscreen row" style="pointer-events: none; z-index: 12;">
+                <div class="login_emptySpaceImg col-12 col-md" style="min-height: 50%;">
                 </div>
                 <div class="login_bgVectorClouds col-12 col-md flex flex-center">
-                    <div class="login_form_wrapper" style="width: 80%;">
-                        <div>Авторизация</div>
+                    <div class="login_form_wrapper q-pa-sm q-gutter-y-md"
+                        style="width: 100%; max-width: 580px; pointer-events: auto;">
+                        <div class="text-center font_Sunday h1 text-white">Авторизация</div>
 
-                        <div>
-                            <q-input bg-color="light_yellow" label-color="uc_light_green" label="Заблоченная почта"
-                                outlined rounded v-model="login" type="email" disable class="lkProfile_input_field"
-                                readonly>
+                        <div class="q-gutter-y-md">
+                            <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
+                                rounded v-model="login" type="email" class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-input>
                             <q-input bg-color="light_yellow" v-model="password_current"
                                 placeholder="Введите текущий пароль" outlined rounded
-                                :type="isPasswordVisble_1 ? 'password' : 'text'" class="lkProfile_input_field">
+                                :type="isPasswordVisble_1 ? 'password' : 'text'" class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
@@ -61,10 +86,11 @@ const restorePasswordDialog = ref(false);
                             </q-input>
                         </div>
 
-                        <div>
-                            <div @click="restorePasswordDialog = true">Не помню пароль
-                                <q-btn flat align="left" color="white" label="Не помню пароль"
-                                    @click="restorePasswordDialog = true" no-caps />
+                        <div class="q-gutter-y-md">
+                            <div @click="restorePasswordDialog = true" class="text-white" style="cursor: pointer;">Не
+                                помню пароль
+                                <!-- <q-btn flat align="left" color="white" label="Не помню пароль"
+                                    @click="restorePasswordDialog = true" no-caps /> -->
                             </div>
                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
                                 class="q-pa-none" style="border-radius: 22px">
@@ -77,7 +103,8 @@ const restorePasswordDialog = ref(false);
                             </q-btn>
                         </div>
 
-                        <div>Нет аккаунта? Зарегистрироваться</div>
+                        <div class="text-white text-center" style="cursor: pointer;">Нет аккаунта? Зарегистрироваться
+                        </div>
 
                     </div>
                 </div>
@@ -88,7 +115,7 @@ const restorePasswordDialog = ref(false);
                 <q-space />
                 <q-btn dense flat round icon="close" v-close-popup size="lg" color="white"
                     style="border: solid 2px white;">
-                    <q-tooltip class="bg-white text-primary">Close</q-tooltip>
+                    <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                 </q-btn>
             </q-bar>
             <q-btn label="Click me" color="primary" @click="restorePasswordDialog = true" />
@@ -112,7 +139,11 @@ const restorePasswordDialog = ref(false);
     </q-dialog>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.input_field_UCStyle :deep>*>.q-field__control {
+    border-radius: 22px !important;
+}
+
 .login_bgVectorClouds {
     background: url(../assets/images/authDialog/login_bgVectorClouds.svg) repeat;
     background-clip: border-box;
@@ -122,8 +153,22 @@ const restorePasswordDialog = ref(false);
 
 .login_emptySpaceImg {
     background: url(../assets/images/authDialog/login_emptySpaceImg_desktop.webp) no-repeat;
-    background-size: 986px cover;
+    background-size: 986px auto;
     background-position-x: right;
-    background-position-y: top;
+    background-position-y: bottom;
+}
+
+@media (max-width: 1024px) {
+    .login_bgVectorClouds {
+        background: url(../assets/images/authDialog/login_bgVectorClouds_tablet.svg) repeat;
+    }
+
+    .login_emptySpaceImg {
+        background: url(../assets/images/authDialog/login_emptySpaceImg_tablet.webp) no-repeat;
+        background-size: auto 100%;
+        background-clip: border-box;
+        background-position-x: center;
+        background-position-y: bottom;
+    }
 }
 </style>

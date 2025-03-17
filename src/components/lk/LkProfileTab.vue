@@ -9,7 +9,7 @@
           <div class="q-mb-md">Логин</div>
           <div>
             <q-input bg-color="light_yellow" label-color="uc_light_green" label="Заблоченная почта" outlined rounded
-              v-model="login" type="email" disable class="lkProfile_input_field" readonly>
+              v-model="login" type="email" disable class="input_field_UCStyle" readonly>
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -20,7 +20,7 @@
           <div class="q-mb-md">Телефон</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###) ### - ###" fill-mask
-              class="lkProfile_input_field">
+              class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -31,7 +31,7 @@
           <div class="q-mb-md">Текущий пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_current" placeholder="Введите текущий пароль" outlined
-              rounded :type="isPasswordVisble_1 ? 'password' : 'text'" class="lkProfile_input_field">
+              rounded :type="isPasswordVisble_1 ? 'password' : 'text'" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -46,7 +46,7 @@
           <div class="q-mb-md">Новый пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_new" placeholder="Введите новый пароль" outlined rounded
-              :type="isPasswordVisble_2 ? 'password' : 'text'" class="lkProfile_input_field">
+              :type="isPasswordVisble_2 ? 'password' : 'text'" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -61,7 +61,7 @@
           <div class="q-mb-md">Повторить пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_newRepeat" placeholder="Повторите новый пароль" outlined
-              rounded :type="isPasswordVisble_3 ? 'password' : 'text'" class="lkProfile_input_field">
+              rounded :type="isPasswordVisble_3 ? 'password' : 'text'" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -80,7 +80,7 @@
           <div class="q-mb-md">Ф.И.О ребёнка</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="child_fio" placeholder="Ф.И.О ребёнка"
-              :dense="dense" class="lkProfile_input_field">
+              :dense="dense" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -90,7 +90,7 @@
         <div>
           <div class="q-mb-md">Возраст ребёнка</div>
           <div><q-input bg-color="light_yellow" outlined rounded v-model.number="child_age" type="number"
-              placeholder="Введите возраст ребенка" class="lkProfile_input_field"> <template v-slot:prepend>
+              placeholder="Введите возраст ребенка" class="input_field_UCStyle"> <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template></q-input>
           </div>
@@ -99,7 +99,7 @@
           <div class="q-mb-md">Ф.И.О законного представителя</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="parent_fio"
-              placeholder="Ф.И.О законного представителя" :dense="dense" class="lkProfile_input_field">
+              placeholder="Ф.И.О законного представителя" :dense="dense" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -113,7 +113,7 @@
         <div>
           <div class="q-mb-md">Статус ребёнка</div>
           <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
-              :options="diagnosis_status_options" label="Выберите из спика" class="lkProfile_input_field">
+              :options="diagnosis_status_options" label="Выберите из спика" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -123,7 +123,7 @@
         <div>
           <div class="q-mb-md">Шифр по ПМПК</div>
           <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
-              :options="diagnosis_cipher_options" label="Выберите из спика" class="lkProfile_input_field">
+              :options="diagnosis_cipher_options" label="Выберите из спика" class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -268,7 +268,7 @@ const blocks = computed(() =>
 
 <style lang="scss" scoped>
 // со style scoped работает только :deep!
-.lkProfile_input_field :deep>*>.q-field__control {
+.input_field_UCStyle :deep>*>.q-field__control {
   border-radius: 22px !important;
 }
 
