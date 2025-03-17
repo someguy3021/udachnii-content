@@ -39,6 +39,7 @@ $verylightbrown: #FBFBF1;
 // remake
 $uc_dark_green: #1F3613;
 $uc_green: #315720;
+$uc_light_green: #829F4F;
 $uc_button_text: #A27D54;
 // quasar-like добавление цветов
 .text-uc_dark_green {
@@ -53,11 +54,11 @@ $uc_button_text: #A27D54;
 .bg-light_yellow {
     background: $light_yellow !important;
 }
-.text-light_green {
-    color: $light_green !important;
+.text-uc_light_green {
+    color: $uc_light_green !important;
 }
-.bg-light_green {
-    background: $light_green !important;
+.bg-uc_light_green {
+    background: $uc_light_green !important;
 }
 .text-uc_button_text {
     color: $uc_button_text !important;

@@ -8,7 +8,7 @@
         <div>
           <div class="q-mb-md">Логин</div>
           <div>
-            <q-input bg-color="light_yellow" label-color="light_green" label="Заблоченная почта" outlined rounded
+            <q-input bg-color="light_yellow" label-color="uc_light_green" label="Заблоченная почта" outlined rounded
               v-model="login" type="email" disable class="lkProfile_input_field" readonly>
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
@@ -163,7 +163,7 @@
             <div>
               <q-item>
                 <q-item-section side top>
-                  <q-icon name="calendar_month" color="light_green" />
+                  <q-icon name="calendar_month" color="uc_light_green" />
                 </q-item-section>
                 <q-item-section>
                   <q-item-label class="h5 text-uc_dark_green">27 сентября 2025 года</q-item-label>
@@ -173,7 +173,7 @@
             <div>
               <q-item>
                 <q-item-section side top>
-                  <q-icon name="not_listed_location" color="light_green" />
+                  <q-icon name="not_listed_location" color="uc_light_green" />
                 </q-item-section>
                 <q-item-section>
                   <q-item-label class="h6 text-uc_dark_green">г. Иркутск, улица
