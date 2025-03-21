@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onUnmounted } from 'vue';
+import { useQuasar } from 'quasar';
+const $q = useQuasar();
 defineOptions({
     name: "AppAuthDialogue",
 });
@@ -19,23 +21,21 @@ const props = defineProps({
 });
 const showLogin = ref(props.isShowLogin);
 
-const restorePasswordDialog = ref(false);
+const form1_isPasswordVisble_1 = ref(true);
+const form1_login = ref();
+const form1_phoneNumber = ref();
+const form1_password_current = ref();
 
-const isPasswordVisble_1 = ref(true);
-const login = ref();
-const phoneNumber = ref();
-const password_current = ref();
+const form1_child_fio = ref();
+const form1_child_age = ref();
+const form1_parent_fio = ref();
 
-const child_fio = ref();
-const child_age = ref();
-// const parent_fio = ref();
-
-const diagnosis_status = ref(null);
-const diagnosis_cipher = ref(null);
-const diagnosis_status_options = [
+const form1_diagnosis_status = ref(null);
+const form1_diagnosis_cipher = ref(null);
+const form1_diagnosis_status_options = [
     'Ребёнок с ОВЗ', 'Ребёнок инвалид'
 ];
-const diagnosis_cipher_options = [
+const form1_diagnosis_cipher_options = [
     'F80 (специфические расстройства речи и языка)',
     'F 81 (расстройства развития учебных навыков)',
     'F82 (Специфические расстройства развития моторной функции)',
@@ -43,7 +43,58 @@ const diagnosis_cipher_options = [
     'F84 (Общие расстройства психологического развития – РАС)'
 ];
 
+// restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------
 
+
+const timeRemaining = ref(0);
+const isCooldown = ref(false);
+const intervalId = ref(null);
+
+const formattedTime = computed(() => {
+    const minutes = Math.floor(timeRemaining.value / 60);
+    const seconds = timeRemaining.value % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+});
+
+const startTimer = () => {
+    if (isCooldown.value) return;
+
+    // Set cooldown duration in seconds (5 minutes = 300 seconds)
+    timeRemaining.value = 62;
+    isCooldown.value = true;
+
+    intervalId.value = setInterval(() => {
+        timeRemaining.value -= 1;
+
+        if (timeRemaining.value <= 0) {
+            clearInterval(intervalId.value);
+            isCooldown.value = false;
+        }
+    }, 1000);
+};
+
+// Cleanup interval when component unmounts
+onUnmounted(() => {
+    if (intervalId.value) {
+        clearInterval(intervalId.value);
+    }
+});
+
+const restorePasswordDialog = ref(false);
+const restorePasswordState = ref(0);
+const restorePassword_EmailInput = ref("");
+const restorePassword_writeSendEmail = () => {
+    restorePasswordState.value = 1;
+    restorePassword_EmailInput.value = "Qwerty";
+    startTimer();
+};
+const restorePassword_writeSendCodeFromEmail = () => {
+    restorePasswordState.value = 2;
+};
+const restorePassword_writeSendNewPassword = () => {
+    restorePasswordState.value = 0;
+    restorePasswordDialog.value = false;
+};
 </script>
 
 <template>
@@ -70,26 +121,27 @@ const diagnosis_cipher_options = [
                     </q-bar>
                 </div>
                 <div class="login_bgVectorClouds col-12 col-md flex flex-center">
-                    <div class="login_form_wrapper q-pa-sm q-gutter-y-md"
+                    <div class="login_form_wrapper q-pa-md q-gutter-y-md"
                         style="width: 100%; max-width: 580px; pointer-events: auto;">
                         <div class="text-center font_Sunday h1 text-white q-pb-md">Авторизация</div>
 
                         <div class="q-gutter-y-md q-pb-md">
                             <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
-                                rounded v-model="login" type="email" class="input_field_UCStyle">
+                                rounded v-model="form1_login" type="email" class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-input>
-                            <q-input bg-color="light_yellow" v-model="password_current" placeholder="Пароль" outlined
-                                rounded :type="isPasswordVisble_1 ? 'password' : 'text'" class="input_field_UCStyle">
+                            <q-input bg-color="light_yellow" v-model="form1_password_current" placeholder="Пароль"
+                                outlined rounded :type="form1_isPasswordVisble_1 ? 'password' : 'text'"
+                                class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                                 <template v-slot:append>
-                                    <q-icon :name="isPasswordVisble_1 ? 'visibility_off' : 'visibility'"
+                                    <q-icon :name="form1_isPasswordVisble_1 ? 'visibility_off' : 'visibility'"
                                         class="cursor-pointer q-pr-sm"
-                                        @click="isPasswordVisble_1 = !isPasswordVisble_1" />
+                                        @click="form1_isPasswordVisble_1 = !form1_isPasswordVisble_1" />
                                 </template>
                             </q-input>
                         </div>
@@ -131,7 +183,7 @@ const diagnosis_cipher_options = [
                 <div class="signIn_emptySpaceImg col-12 col-md" style="min-height: 50%;" v-if="$q.screen.gt.sm">
                 </div>
                 <div class="signIn_bgVectorClouds col-12 col-md flex flex-center">
-                    <div class="login_form_wrapper q-pa-sm q-gutter-y-md"
+                    <div class="login_form_wrapper q-pa-md q-gutter-y-md"
                         style="width: 100%; max-width: 580px; pointer-events: auto;">
                         <div class="text-center text-uc_green q-pb-md" v-if="$q.screen.lt.md">
                             <div class="font_Sunday h3 q-pb-md">Вступайте в команду «у-Дачников»</div>
@@ -142,38 +194,46 @@ const diagnosis_cipher_options = [
 
 
                         <div class="q-gutter-y-md q-pb-md">
-                            <q-input bg-color="light_yellow" outlined rounded v-model="child_fio"
+                            <q-input bg-color="light_yellow" outlined rounded v-model="form1_child_fio"
                                 placeholder="Ф.И.О ребёнка" class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-input>
-                            <q-input bg-color="light_yellow" outlined rounded v-model.number="child_age" type="number"
-                                placeholder="Возраст ребенка" class="input_field_UCStyle">
+                            <q-input bg-color="light_yellow" outlined rounded v-model.number="form1_child_age"
+                                type="number" placeholder="Возраст ребенка" class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-input>
-                            <q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
-                                :options="diagnosis_status_options" label="Статус ребенка" class="input_field_UCStyle">
+                            <q-input bg-color="light_yellow" outlined rounded v-model="form1_parent_fio"
+                                placeholder="Ф.И.О законного представителя" class="input_field_UCStyle">
+                                <template v-slot:prepend>
+                                    <div class="q-px-xs"></div>
+                                </template>
+                            </q-input>
+                            <q-select bg-color="light_yellow" outlined rounded v-model="form1_diagnosis_status"
+                                :options="form1_diagnosis_status_options" label="Статус ребенка"
+                                class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-select>
-                            <q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
-                                :options="diagnosis_cipher_options" label="Шифр по ПМПК" class="input_field_UCStyle">
+                            <q-select bg-color="light_yellow" outlined rounded v-model="form1_diagnosis_cipher"
+                                :options="form1_diagnosis_cipher_options" label="Шифр по ПМПК"
+                                class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-select>
-                            <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" label="Телефон"
-                                mask="8 (###) ### - ###" fill-mask class="input_field_UCStyle">
+                            <q-input bg-color="light_yellow" outlined rounded v-model="form1_phoneNumber"
+                                label="Телефон" mask="8 (###) ### - ###" fill-mask class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-input>
                             <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
-                                rounded v-model="login" type="email" class="input_field_UCStyle">
+                                rounded v-model="form1_login" type="email" class="input_field_UCStyle">
                                 <template v-slot:prepend>
                                     <div class="q-px-xs"></div>
                                 </template>
@@ -209,7 +269,7 @@ const diagnosis_cipher_options = [
             <q-card class="fullscreen bg-uc_light_green">
                 <div class="fullscreen restorePassword_dialog flex flex-center">
 
-                    <div class="restorePassword_formWrapper flex flex-center q-pa-sm"
+                    <div class="restorePassword_formWrapper flex flex-center q-pa-md"
                         style="width: 100%; max-width: 650px; pointer-events: auto;">
 
                         <div class="bg-uc_fon q-pa-lg" style="border-radius: 20px; height: 100%;"
@@ -224,27 +284,84 @@ const diagnosis_cipher_options = [
                                     </q-btn>
                                 </q-bar>
                                 <div class="flex flex-center" style="height: 80%;">
+
                                     <div class="q-gutter-y-md">
+
                                         <div class="text-center font_Sunday h1 text-uc_green q-pb-md">Восстановление
                                             пароля
                                         </div>
-                                        <q-input bg-color="light_yellow" label-color="uc_light_green"
-                                            placeholder="Email" outlined rounded v-model="login" type="email"
-                                            class="input_field_UCStyle">
-                                            <template v-slot:prepend>
-                                                <div class="q-px-xs"></div>
-                                            </template>
-                                        </q-input>
-                                        <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                            class="q-pa-none full-width" style="border-radius: 22px">
-                                            <div class="full-width"
-                                                style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
-                                                <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
-                                                    class="q-px-xl q-py-sm">
-                                                    Далее
+                                        <div class="q-gutter-y-md" v-if="restorePasswordState == 0">
+                                            <q-input bg-color="light_yellow" label-color="uc_light_green"
+                                                placeholder="Email" outlined rounded v-model="form1_login" type="email"
+                                                class="input_field_UCStyle">
+                                                <template v-slot:prepend>
+                                                    <div class="q-px-xs"></div>
+                                                </template>
+                                            </q-input>
+                                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                                                @click="restorePassword_writeSendEmail" class="q-pa-none full-width"
+                                                style="border-radius: 22px">
+                                                <div class="full-width"
+                                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+                                                    <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
+                                                        class="q-px-xl q-py-sm">
+                                                        Далее
+                                                    </div>
+                                                </div>
+                                            </q-btn>
+                                        </div>
+                                        <div class="q-gutter-y-md" v-if="restorePasswordState == 1">
+                                            <div>Введите код с почты</div>
+                                            <q-input bg-color="light_yellow" label-color="uc_light_green"
+                                                placeholder="Введите код с почты" outlined rounded v-model="form1_login"
+                                                class="input_field_UCStyle">
+                                                <template v-slot:prepend>
+                                                    <div class="q-px-xs"></div>
+                                                </template>
+                                            </q-input>
+                                            <div>
+                                                <div>Мы отправили проверочный код на почту по адресу {{
+                                                    restorePassword_EmailInput }}.
+                                                    Если
+                                                    сообщение не пришло, повторите попытку.</div>
+                                                <div class="send_again_timerAndText_wrapper">
+                                                    <div class="send_again_text">Отправить код еще раз</div>
+                                                    <div class="send_again_timer">через {{ formattedTime }}</div>
                                                 </div>
                                             </div>
-                                        </q-btn>
+                                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                                                @click="restorePassword_writeSendCodeFromEmail"
+                                                class="q-pa-none full-width" style="border-radius: 22px">
+                                                <div class="full-width"
+                                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+                                                    <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
+                                                        class="q-px-xl q-py-sm">
+                                                        Далее
+                                                    </div>
+                                                </div>
+                                            </q-btn>
+                                        </div>
+                                        <div class="q-gutter-y-md" v-if="restorePasswordState == 2">
+                                            <q-input bg-color="light_yellow" label-color="uc_light_green"
+                                                placeholder="Email" outlined rounded v-model="form1_login" type="email"
+                                                class="input_field_UCStyle">
+                                                <template v-slot:prepend>
+                                                    <div class="q-px-xs"></div>
+                                                </template>
+                                            </q-input>
+                                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                                                @click="restorePassword_writeSendNewPassword"
+                                                class="q-pa-none full-width" style="border-radius: 22px">
+                                                <div class="full-width"
+                                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+                                                    <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
+                                                        class="q-px-xl q-py-sm">
+                                                        Далее
+                                                    </div>
+                                                </div>
+                                            </q-btn>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -261,7 +378,7 @@ const diagnosis_cipher_options = [
 </template>
 
 <style lang="scss" scoped>
-.input_field_UCStyle :deep>*>.q-field__control {
+.input_field_UCStyle :deep(.q-field__control) {
     border-radius: 22px !important;
 }
 

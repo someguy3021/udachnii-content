@@ -269,7 +269,10 @@ const blocks = computed(() =>
 
 <style lang="scss" scoped>
 // со style scoped работает только :deep!
-.input_field_UCStyle :deep>*>.q-field__control {
+// .input_field_UCStyle :deep>*>.q-field__control {
+//   border-radius: 22px !important;
+// }
+.input_field_UCStyle :deep(.q-field__control) {
   border-radius: 22px !important;
 }
 
