@@ -79,13 +79,16 @@ onUnmounted(() => {
         clearInterval(intervalId.value);
     }
 });
+const restorePasswordForms_emailCode = ref("");
+const restorePasswordForms_newPassword = ref("");
+const restorePasswordForms_newPasswordIsHidden = ref(true);
 
 const restorePasswordDialog = ref(false);
 const restorePasswordState = ref(0);
-const restorePassword_EmailInput = ref("");
+const restorePassword_EmailWhereWasSend = ref("");
 const restorePassword_writeSendEmail = () => {
     restorePasswordState.value = 1;
-    restorePassword_EmailInput.value = "Qwerty";
+    restorePassword_EmailWhereWasSend.value = form1_login.value; // form1_login это почта, называется логин из-за макетов
     startTimer();
 };
 const restorePassword_writeSendCodeFromEmail = () => {
@@ -311,22 +314,27 @@ const restorePassword_writeSendNewPassword = () => {
                                             </q-btn>
                                         </div>
                                         <div class="q-gutter-y-md" v-if="restorePasswordState == 1">
-                                            <div>Введите код с почты</div>
+                                            <div class="text-uc_green text-center text-weight-bold h6">Введите код с
+                                                почты
+                                            </div>
                                             <q-input bg-color="light_yellow" label-color="uc_light_green"
-                                                placeholder="Введите код с почты" outlined rounded v-model="form1_login"
-                                                class="input_field_UCStyle">
+                                                placeholder="Введите код с почты" outlined rounded
+                                                v-model="restorePasswordForms_emailCode" class="input_field_UCStyle">
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
                                             </q-input>
-                                            <div>
+                                            <div class="text-uc_green">
                                                 <div>Мы отправили проверочный код на почту по адресу {{
-                                                    restorePassword_EmailInput }}.
+                                                    restorePassword_EmailWhereWasSend }}.
                                                     Если
                                                     сообщение не пришло, повторите попытку.</div>
-                                                <div class="send_again_timerAndText_wrapper">
-                                                    <div class="send_again_text">Отправить код еще раз</div>
-                                                    <div class="send_again_timer">через {{ formattedTime }}</div>
+                                                <div
+                                                    class="send_again_timerAndText_wrapper row text-uc_green text-weight-bold h6">
+                                                    <div class="send_again_text col-8">Отправить код еще раз</div>
+                                                    <div class="send_again_timer col-4 text-right">через {{
+                                                        formattedTime }}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
@@ -342,11 +350,18 @@ const restorePassword_writeSendNewPassword = () => {
                                             </q-btn>
                                         </div>
                                         <div class="q-gutter-y-md" v-if="restorePasswordState == 2">
-                                            <q-input bg-color="light_yellow" label-color="uc_light_green"
-                                                placeholder="Email" outlined rounded v-model="form1_login" type="email"
+                                            <q-input bg-color="light_yellow" v-model="restorePasswordForms_newPassword"
+                                                placeholder="Введите новый пароль" outlined rounded
+                                                :type="restorePasswordForms_newPasswordIsHidden ? 'password' : 'text'"
                                                 class="input_field_UCStyle">
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
+                                                </template>
+                                                <template v-slot:append>
+                                                    <q-icon
+                                                        :name="restorePasswordForms_newPasswordIsHidden ? 'visibility_off' : 'visibility'"
+                                                        class="cursor-pointer q-pr-sm"
+                                                        @click="restorePasswordForms_newPasswordIsHidden = !restorePasswordForms_newPasswordIsHidden" />
                                                 </template>
                                             </q-input>
                                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"

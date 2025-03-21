@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="section_advantages">
+    <div class="section_advantages" id="landing_section_advantages">
       <div class="section_advantages_background">
 
         <div class="row" style="height: 100%;">
@@ -82,7 +82,7 @@
         <LandingAccordeon />
       </div>
     </div>
-    <div class="section_speaker" style="position: relative; z-index: 3;">
+    <div class="section_speaker" style="position: relative; z-index: 3;" id="landing_section_speaker">
       <div class="section_speaker_desktopORtablets section_speaker_background" v-if="$q.screen.width > 440">
         <div>
 
@@ -178,7 +178,7 @@
         </q-carousel>
       </div>
     </div>
-    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;">
+    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;" id="landing_section_events">
       <div class="section_events_background">
         <!-- <div class="eventsTicket_wrapper q-px-md"> TODO еще не удалил легаси стилей отсюда, удалю потом
           <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
@@ -299,7 +299,7 @@
         <div class="col-12 col-md-4"></div>
       </div>
     </div>
-    <div class="section_partners">
+    <div class="section_partners" id="landing_section_partners">
       <div class="section_partners_background">
         <div style="height: 254px; width: 100%; margin-top: -36px;"
           :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
