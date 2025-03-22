@@ -86,18 +86,225 @@ const restorePasswordForms_newPasswordIsHidden = ref(true);
 const restorePasswordDialog = ref(false);
 const restorePasswordState = ref(0);
 const restorePassword_EmailWhereWasSend = ref("");
-const restorePassword_writeSendEmail = () => {
-    restorePasswordState.value = 1;
-    restorePassword_EmailWhereWasSend.value = form1_login.value; // form1_login это почта, называется логин из-за макетов
-    startTimer();
+// Restore Password API requests
+const restorePasswordApi = {
+    writeSendEmail: async () => {
+        try {
+            // const response = await api.post('/auth/forgot-password', {
+            //     email: form1_login.value
+            // });
+
+            // // On success
+            // restorePasswordState.value = 1;
+            // restorePassword_EmailWhereWasSend.value = form1_login.value;
+            // startTimer();
+            if (response.status === 200) {
+                restorePasswordState.value = 1;
+                restorePassword_EmailWhereWasSend.value = form1_login.value;
+                startTimer();
+
+                $q.notify({
+                    color: 'uc_green',
+                    message: 'Сообщение отправлено на вашу электронную почту!',
+                    icon: 'check'
+                });
+            }
+
+            // setTimeout(() => {
+            //     if (response.status === 200) {
+            //         restorePasswordState.value = 1;
+            //         restorePassword_EmailWhereWasSend.value = form1_login.value;
+            //         startTimer();
+
+            //         $q.notify({
+            //             color: 'uc_green',
+            //             message: 'Сообщение отправлено на вашу электронную почту!',
+            //             icon: 'check'
+            //         });
+            //     }
+            // }, 500);
+
+        } catch (error) {
+            let message = 'Ошибка при отправлении запроса';
+            if (error.response) {
+                switch (error.response.status) {
+                    case 404:
+                        message = 'Ошибка - такой электронной почты не существует';
+                        break;
+                    case 429:
+                        message = 'Ошибка - слишком много запросов. Пожалуйста, попробуйте чуть позже.';
+                        break;
+                    default:
+                        message = error.response.data?.message || message;
+                }
+            }
+
+            $q.notify({
+                color: 'negative',
+                message,
+                icon: 'report_problem'
+            });
+        }
+    },
+    writeSendCodeFromEmail: async () => {
+        try {
+            // const response = await api.post('/auth/verify-reset-code', {
+            //     email: form1_login.value,
+            //     code: form2_code.value
+            // });
+            // // On success
+            // restorePasswordState.value = 2;
+            if (response.status === 200) {
+                restorePasswordState.value = 2;
+                $q.notify({
+                    color: 'uc_green',
+                    message: 'Код подтвержден!',
+                    icon: 'check'
+                });
+            }
+
+        } catch (error) {
+            let message = 'Неверный код';
+            if (error.response) {
+                switch (error.response.status) {
+                    case 400:
+                        message = 'Истек срок годности кода или код неверен';
+                        break;
+                    case 410:
+                        message = 'Истек срок годности кода';
+                        break;
+                    default:
+                        message = error.response.data?.message || message;
+                }
+            }
+
+            $q.notify({
+                color: 'negative',
+                message,
+                icon: 'report_problem'
+            });
+        }
+    },
+    writeSendNewPassword: async () => {
+        try {
+            // const response = await api.post('/auth/reset-password', {
+            //     email: form1_login.value,
+            //     code: form2_code.value,
+            //     newPassword: form3_password.value
+            // });
+
+            // // On success
+            // restorePasswordState.value = 0;
+            // restorePasswordDialog.value = false;
+
+            if (response.status === 200) {
+                restorePasswordState.value = 0;
+                restorePasswordDialog.value = false;
+
+                $q.notify({
+                    color: 'uc_green',
+                    message: 'Пароль успешно изменен, вы можете использовать его для входа в аккаунт',
+                    icon: 'check'
+                });
+            }
+
+        } catch (error) {
+            let message = 'Ошибка - изменение пароля провалено';
+            if (error.response) {
+                switch (error.response.status) {
+                    case 400:
+                        message = 'Ваш новый пароль слишком простой, пожалуйста, придумайте другой пароль';
+                        break;
+                    case 401:
+                        message = 'Срок действия сессии истек, закройте это окно и повторите процедуру введения кода снова';
+                        break;
+                    case 409:
+                        message = 'Новый пароль не может совпадать со старым паролем';
+                        break;
+                    default:
+                        message = error.response.data?.message || message;
+                }
+            }
+
+            $q.notify({
+                color: 'negative',
+                message,
+                icon: 'report_problem',
+                timeout: 3000
+            });
+        }
+    }
 };
-const restorePassword_writeSendCodeFromEmail = () => {
-    restorePasswordState.value = 2;
-};
-const restorePassword_writeSendNewPassword = () => {
-    restorePasswordState.value = 0;
-    restorePasswordDialog.value = false;
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Restore Password API requests
+// const restorePasswordApiTEST = {
+//     sendEmail: async () => {
+//         try {
+//             const response = await axios.post('/restore-password/send-email', {
+//                 email: form1_login.value
+//             });
+//             if (response.status === 200) {
+//                 restorePasswordState.value = 1;
+//                 restorePassword_EmailWhereWasSend.value = form1_login.value;
+//                 startTimer();
+//             } else {
+//                 console.error('Error sending email:', response.data);
+//             }
+//         } catch (error) {
+//             console.error('Error sending email:', error);
+//         }
+//     },
+//     sendCodeFromEmail: async () => {
+//         try {
+//             const response = await axios.post('/restore-password/send-code', {
+//                 email: restorePassword_EmailWhereWasSend.value
+//             });
+//             if (response.status === 200) {
+//                 restorePasswordState.value = 2;
+//             } else {
+//                 console.error('Error sending code:', response.data);
+//             }
+//         } catch (error) {
+//             console.error('Error sending code:', error);
+//         }
+//     },
+//     sendNewPassword: async () => {
+//         try {
+//             const response = await axios.post('/restore-password/new-password', {
+//                 email: restorePassword_EmailWhereWasSend.value,
+//                 newPassword: form1_newPassword.value
+//             });
+//             if (response.status === 200) {
+//                 restorePasswordState.value = 0;
+//                 restorePasswordDialog.value = false;
+//             } else {
+//                 console.error('Error setting new password:', response.data);
+//             }
+//         } catch (error) {
+//             console.error('Error setting new password:', error);
+//         }
+//     }
+// };
 </script>
 
 <template>
@@ -282,7 +489,7 @@ const restorePassword_writeSendNewPassword = () => {
                                 <q-bar style="height: 60px; background-color: transparent;">
                                     <q-space />
                                     <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
-                                        style="border: solid 2px #315720">
+                                        style="border: solid 2px #315720" @click="restorePasswordState = 0">
                                         <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                                     </q-btn>
                                 </q-bar>
@@ -302,7 +509,7 @@ const restorePassword_writeSendNewPassword = () => {
                                                 </template>
                                             </q-input>
                                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                                @click="restorePassword_writeSendEmail" class="q-pa-none full-width"
+                                                @click="restorePasswordApi.writeSendEmail" class="q-pa-none full-width"
                                                 style="border-radius: 22px">
                                                 <div class="full-width"
                                                     style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
@@ -338,7 +545,7 @@ const restorePassword_writeSendNewPassword = () => {
                                                 </div>
                                             </div>
                                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                                @click="restorePassword_writeSendCodeFromEmail"
+                                                @click="restorePasswordApi.writeSendCodeFromEmail"
                                                 class="q-pa-none full-width" style="border-radius: 22px">
                                                 <div class="full-width"
                                                     style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
@@ -365,7 +572,7 @@ const restorePassword_writeSendNewPassword = () => {
                                                 </template>
                                             </q-input>
                                             <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                                @click="restorePassword_writeSendNewPassword"
+                                                @click="restorePasswordApi.writeSendNewPassword"
                                                 class="q-pa-none full-width" style="border-radius: 22px">
                                                 <div class="full-width"
                                                     style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">

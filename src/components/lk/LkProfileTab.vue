@@ -151,58 +151,63 @@
   </div>
   <div class="ticketAndButton_wrapper">
 
-    <div class="ticket_wrapper q-pb-lg row">
-      <!-- <div class="ticket_body">
+    <div v-if="$q.screen.gt.sm">
+      <div class="ticket_wrapper q-pb-lg row">
+        <!-- <div class="ticket_body">
         <div class="ticket_body_blocks">
           <div></div>
         </div>
         <div class="ticked_body_sideBlock"></div>
       </div> -->
-      <div class="background-container ticketBackground col-2">
-        <div class="text-overlay q-pa-md" style="max-width: 500px;">
-          <div class="text_overlay_container">
-            <div>
-              <q-item>
-                <q-item-section side top>
-                  <q-icon name="calendar_month" color="uc_light_green" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label class="h5 text-uc_dark_green">27 сентября 2025 года</q-item-label>
-                </q-item-section>
-              </q-item>
+        <div class="background-container ticketBackground col-2">
+          <div class="text-overlay q-pa-md" style="max-width: 500px;">
+            <div class="text_overlay_container">
+              <div>
+                <q-item>
+                  <q-item-section side top>
+                    <q-icon name="calendar_month" color="uc_light_green" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label class="h5 text-uc_dark_green">27 сентября 2025 года</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+              <div>
+                <q-item>
+                  <q-item-section side top>
+                    <q-icon name="not_listed_location" color="uc_light_green" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label class="h6 text-uc_dark_green">г. Иркутск, улица
+                      Желябова, 5</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+              <div>
+                <q-item>
+                  <q-item-section>
+                    <q-item-label class="h5 text-uc_dark_green">Актовый зал Дворца детского и юношеского
+                      творчества</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
             </div>
-            <div>
-              <q-item>
-                <q-item-section side top>
-                  <q-icon name="not_listed_location" color="uc_light_green" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label class="h6 text-uc_dark_green">г. Иркутск, улица
-                    Желябова, 5</q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
-            <div>
-              <q-item>
-                <q-item-section>
-                  <q-item-label class="h5 text-uc_dark_green">Актовый зал Дворца детского и юношеского
-                    творчества</q-item-label>
-                </q-item-section>
-              </q-item>
+          </div>
+          <div class="grid" :class="{ 'full-unlocked': isTicketFullyUnlocked }">
+            <div v-for="block in blocks" :key="block.id" class="block"
+              :class="{ 'full-progress': block.progress >= 100 }">
+              <div class="lock-overlay" v-if="block.locked"></div>
+              <div class="border" :class="{ unlocked: !block.locked }"></div>
             </div>
           </div>
         </div>
-        <div class="grid" :class="{ 'full-unlocked': isTicketFullyUnlocked }">
-          <div v-for="block in blocks" :key="block.id" class="block"
-            :class="{ 'full-progress': block.progress >= 100 }">
-            <div class="lock-overlay" v-if="block.locked"></div>
-            <div class="border" :class="{ unlocked: !block.locked }"></div>
-          </div>
+        <div class="ticked_body_sideText col-3">
         </div>
-      </div>
-      <div class="ticked_body_sideText col-3">
       </div>
     </div>
+    <div v-else>Mobile ticket placeholder</div>
+
+
 
     <div class="downloadTicket_wrapper">
       <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"

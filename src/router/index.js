@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { defineRouter } from "#q-app/wrappers";
 import {
   createRouter,
@@ -28,7 +29,7 @@ export default defineRouter(function (/* { store, ssrContext } */) {
       if (to.hash) {
         return {
           el: to.hash,
-          top: 60, // offset by 60 pixels
+          top: 0, // offset by X pixels
           behavior: "smooth",
         };
       }
