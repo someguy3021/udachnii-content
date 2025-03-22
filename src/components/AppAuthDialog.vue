@@ -419,9 +419,11 @@ const restorePasswordApi = {
                                                 class="q-pa-none full-width" style="border-radius: 22px"
                                                 :loading="loadingStates.email">
                                                 <template v-slot:loading>
-                                                    <div class="full-width text-uc_green">
-                                                        <q-spinner-hourglass class="on-left" color="uc_green" />
-                                                        Загрузка...
+                                                    <div class="full-width button_wrapper_1_uc_green text-uc_green">
+                                                        <div class="button_wrapper_2_uc_green q-px-xl q-py-sm">
+                                                            <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                            Загрузка...
+                                                        </div>
                                                     </div>
                                                 </template>
                                                 <template v-slot:default>
@@ -462,9 +464,11 @@ const restorePasswordApi = {
                                                 class="q-pa-none full-width" style="border-radius: 22px"
                                                 :loading="loadingStates.code">
                                                 <template v-slot:loading>
-                                                    <div class="full-width text-uc_green">
-                                                        <q-spinner-hourglass class="on-left" color="uc_green" />
-                                                        Загрузка...
+                                                    <div class="full-width button_wrapper_1_uc_green text-uc_green">
+                                                        <div class="button_wrapper_2_uc_green q-px-xl q-py-sm">
+                                                            <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                            Загрузка...
+                                                        </div>
                                                     </div>
                                                 </template>
                                                 <template v-slot:default>
@@ -496,9 +500,11 @@ const restorePasswordApi = {
                                                 class="q-pa-none full-width" style="border-radius: 22px"
                                                 :loading="loadingStates.password">
                                                 <template v-slot:loading>
-                                                    <div class="full-width text-uc_green">
-                                                        <q-spinner-hourglass class="on-left" color="uc_green" />
-                                                        Загрузка...
+                                                    <div class="full-width button_wrapper_1_uc_green text-uc_green">
+                                                        <div class="button_wrapper_2_uc_green q-px-xl q-py-sm">
+                                                            <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                            Загрузка...
+                                                        </div>
                                                     </div>
                                                 </template>
                                                 <template v-slot:default>
@@ -548,6 +554,25 @@ const restorePasswordApi = {
     border: solid 2px #E4D8C9;
     background-color: #E4D8C9;
     border-radius: 22px;
+}
+
+.button_wrapper_2_disable_UNUSEDbutReserved {
+    border: solid 4px #A27D54;
+    border-style: dashed;
+    border-radius: 22px;
+    color: #A27D54
+}
+
+.button_wrapper_1_uc_green {
+    border: solid 2px transparent;
+    border-radius: 22px;
+}
+
+.button_wrapper_2_uc_green {
+    border: solid 4px $uc_green;
+    border-style: dashed;
+    border-radius: 22px;
+    color: $uc_green
 }
 
 .login_bgVectorClouds {
