@@ -86,44 +86,28 @@ const restorePasswordForms_newPasswordIsHidden = ref(true);
 const restorePasswordDialog = ref(false);
 const restorePasswordState = ref(0);
 const restorePassword_EmailWhereWasSend = ref("");
+const loadingStates = ref({
+    email: false,
+    code: false,
+    password: false
+});
 // Restore Password API requests
 const restorePasswordApi = {
     writeSendEmail: async () => {
+        loadingStates.value.email = true;
         try {
-            // const response = await api.post('/auth/forgot-password', {
-            //     email: form1_login.value
-            // });
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            // if (response.status === 200) {
+            restorePasswordState.value = 1;
+            restorePassword_EmailWhereWasSend.value = form1_login.value;
+            startTimer();
 
-            // // On success
-            // restorePasswordState.value = 1;
-            // restorePassword_EmailWhereWasSend.value = form1_login.value;
-            // startTimer();
-            if (response.status === 200) {
-                restorePasswordState.value = 1;
-                restorePassword_EmailWhereWasSend.value = form1_login.value;
-                startTimer();
-
-                $q.notify({
-                    color: 'uc_green',
-                    message: 'Сообщение отправлено на вашу электронную почту!',
-                    icon: 'check'
-                });
-            }
-
-            // setTimeout(() => {
-            //     if (response.status === 200) {
-            //         restorePasswordState.value = 1;
-            //         restorePassword_EmailWhereWasSend.value = form1_login.value;
-            //         startTimer();
-
-            //         $q.notify({
-            //             color: 'uc_green',
-            //             message: 'Сообщение отправлено на вашу электронную почту!',
-            //             icon: 'check'
-            //         });
-            //     }
-            // }, 500);
-
+            $q.notify({
+                color: 'uc_green',
+                message: 'Сообщение отправлено на вашу электронную почту!',
+                icon: 'check'
+            });
+            // }
         } catch (error) {
             let message = 'Ошибка при отправлении запроса';
             if (error.response) {
@@ -144,25 +128,22 @@ const restorePasswordApi = {
                 message,
                 icon: 'report_problem'
             });
+        } finally {
+            loadingStates.value.email = false;
         }
     },
     writeSendCodeFromEmail: async () => {
+        loadingStates.value.code = true;
         try {
-            // const response = await api.post('/auth/verify-reset-code', {
-            //     email: form1_login.value,
-            //     code: form2_code.value
-            // });
-            // // On success
-            // restorePasswordState.value = 2;
-            if (response.status === 200) {
-                restorePasswordState.value = 2;
-                $q.notify({
-                    color: 'uc_green',
-                    message: 'Код подтвержден!',
-                    icon: 'check'
-                });
-            }
-
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            // if (response.status === 200) {
+            restorePasswordState.value = 2;
+            $q.notify({
+                color: 'uc_green',
+                message: 'Код подтвержден!',
+                icon: 'check'
+            });
+            // }
         } catch (error) {
             let message = 'Неверный код';
             if (error.response) {
@@ -183,30 +164,24 @@ const restorePasswordApi = {
                 message,
                 icon: 'report_problem'
             });
+        } finally {
+            loadingStates.value.code = false;
         }
     },
     writeSendNewPassword: async () => {
+        loadingStates.value.password = true;
         try {
-            // const response = await api.post('/auth/reset-password', {
-            //     email: form1_login.value,
-            //     code: form2_code.value,
-            //     newPassword: form3_password.value
-            // });
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            // if (response.status === 200) {
+            restorePasswordState.value = 0;
+            restorePasswordDialog.value = false;
 
-            // // On success
-            // restorePasswordState.value = 0;
-            // restorePasswordDialog.value = false;
-
-            if (response.status === 200) {
-                restorePasswordState.value = 0;
-                restorePasswordDialog.value = false;
-
-                $q.notify({
-                    color: 'uc_green',
-                    message: 'Пароль успешно изменен, вы можете использовать его для входа в аккаунт',
-                    icon: 'check'
-                });
-            }
+            $q.notify({
+                color: 'uc_green',
+                message: 'Пароль успешно изменен, вы можете использовать его для входа в аккаунт',
+                icon: 'check'
+            });
+            // }
 
         } catch (error) {
             let message = 'Ошибка - изменение пароля провалено';
@@ -232,79 +207,11 @@ const restorePasswordApi = {
                 icon: 'report_problem',
                 timeout: 3000
             });
+        } finally {
+            loadingStates.value.password = false;
         }
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Restore Password API requests
-// const restorePasswordApiTEST = {
-//     sendEmail: async () => {
-//         try {
-//             const response = await axios.post('/restore-password/send-email', {
-//                 email: form1_login.value
-//             });
-//             if (response.status === 200) {
-//                 restorePasswordState.value = 1;
-//                 restorePassword_EmailWhereWasSend.value = form1_login.value;
-//                 startTimer();
-//             } else {
-//                 console.error('Error sending email:', response.data);
-//             }
-//         } catch (error) {
-//             console.error('Error sending email:', error);
-//         }
-//     },
-//     sendCodeFromEmail: async () => {
-//         try {
-//             const response = await axios.post('/restore-password/send-code', {
-//                 email: restorePassword_EmailWhereWasSend.value
-//             });
-//             if (response.status === 200) {
-//                 restorePasswordState.value = 2;
-//             } else {
-//                 console.error('Error sending code:', response.data);
-//             }
-//         } catch (error) {
-//             console.error('Error sending code:', error);
-//         }
-//     },
-//     sendNewPassword: async () => {
-//         try {
-//             const response = await axios.post('/restore-password/new-password', {
-//                 email: restorePassword_EmailWhereWasSend.value,
-//                 newPassword: form1_newPassword.value
-//             });
-//             if (response.status === 200) {
-//                 restorePasswordState.value = 0;
-//                 restorePasswordDialog.value = false;
-//             } else {
-//                 console.error('Error setting new password:', response.data);
-//             }
-//         } catch (error) {
-//             console.error('Error setting new password:', error);
-//         }
-//     }
-// };
 </script>
 
 <template>
@@ -497,7 +404,7 @@ const restorePasswordApi = {
 
                                     <div class="q-gutter-y-md">
 
-                                        <div class="text-center font_Sunday h1 text-uc_green q-pb-md">Восстановление
+                                        <div class="text-center font_Sunday h1 text-uc_green q-pb-xl">Восстановление
                                             пароля
                                         </div>
                                         <div class="q-gutter-y-md" v-if="restorePasswordState == 0">
@@ -508,16 +415,22 @@ const restorePasswordApi = {
                                                     <div class="q-px-xs"></div>
                                                 </template>
                                             </q-input>
-                                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                                @click="restorePasswordApi.writeSendEmail" class="q-pa-none full-width"
-                                                style="border-radius: 22px">
-                                                <div class="full-width"
-                                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
-                                                    <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
-                                                        class="q-px-xl q-py-sm">
-                                                        Далее
+                                            <q-btn flat no-caps size="xl" @click="restorePasswordApi.writeSendEmail"
+                                                class="q-pa-none full-width" style="border-radius: 22px"
+                                                :loading="loadingStates.email">
+                                                <template v-slot:loading>
+                                                    <div class="full-width text-uc_green">
+                                                        <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                        Загрузка...
                                                     </div>
-                                                </div>
+                                                </template>
+                                                <template v-slot:default>
+                                                    <div class="full-width button_wrapper_1">
+                                                        <div class="button_wrapper_2 q-px-xl q-py-sm">
+                                                            Далее
+                                                        </div>
+                                                    </div>
+                                                </template>
                                             </q-btn>
                                         </div>
                                         <div class="q-gutter-y-md" v-if="restorePasswordState == 1">
@@ -532,7 +445,7 @@ const restorePasswordApi = {
                                                 </template>
                                             </q-input>
                                             <div class="text-uc_green">
-                                                <div>Мы отправили проверочный код на почту по адресу {{
+                                                <div class="q-mb-md">Мы отправили проверочный код на почту по адресу {{
                                                     restorePassword_EmailWhereWasSend }}.
                                                     Если
                                                     сообщение не пришло, повторите попытку.</div>
@@ -544,16 +457,23 @@ const restorePasswordApi = {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                                            <q-btn flat no-caps size="xl"
                                                 @click="restorePasswordApi.writeSendCodeFromEmail"
-                                                class="q-pa-none full-width" style="border-radius: 22px">
-                                                <div class="full-width"
-                                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
-                                                    <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
-                                                        class="q-px-xl q-py-sm">
-                                                        Далее
+                                                class="q-pa-none full-width" style="border-radius: 22px"
+                                                :loading="loadingStates.code">
+                                                <template v-slot:loading>
+                                                    <div class="full-width text-uc_green">
+                                                        <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                        Загрузка...
                                                     </div>
-                                                </div>
+                                                </template>
+                                                <template v-slot:default>
+                                                    <div class="full-width button_wrapper_1">
+                                                        <div class="button_wrapper_2 q-px-xl q-py-sm">
+                                                            Далее
+                                                        </div>
+                                                    </div>
+                                                </template>
                                             </q-btn>
                                         </div>
                                         <div class="q-gutter-y-md" v-if="restorePasswordState == 2">
@@ -571,16 +491,23 @@ const restorePasswordApi = {
                                                         @click="restorePasswordForms_newPasswordIsHidden = !restorePasswordForms_newPasswordIsHidden" />
                                                 </template>
                                             </q-input>
-                                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
+                                            <q-btn flat no-caps size="xl"
                                                 @click="restorePasswordApi.writeSendNewPassword"
-                                                class="q-pa-none full-width" style="border-radius: 22px">
-                                                <div class="full-width"
-                                                    style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
-                                                    <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
-                                                        class="q-px-xl q-py-sm">
-                                                        Далее
+                                                class="q-pa-none full-width" style="border-radius: 22px"
+                                                :loading="loadingStates.password">
+                                                <template v-slot:loading>
+                                                    <div class="full-width text-uc_green">
+                                                        <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                        Загрузка...
                                                     </div>
-                                                </div>
+                                                </template>
+                                                <template v-slot:default>
+                                                    <div class="full-width button_wrapper_1">
+                                                        <div class="button_wrapper_2 q-px-xl q-py-sm">
+                                                            Далее
+                                                        </div>
+                                                    </div>
+                                                </template>
                                             </q-btn>
                                         </div>
 
@@ -602,6 +529,25 @@ const restorePasswordApi = {
 <style lang="scss" scoped>
 .input_field_UCStyle :deep(.q-field__control) {
     border-radius: 22px !important;
+}
+
+.button_wrapper_1 {
+    border: solid 2px #F8CB96;
+    background-color: #F8CB96;
+    border-radius: 22px;
+}
+
+.button_wrapper_2 {
+    border: solid 4px #A27D54;
+    border-style: dashed;
+    border-radius: 22px;
+    color: #A27D54
+}
+
+.button_wrapper_1_disable {
+    border: solid 2px #E4D8C9;
+    background-color: #E4D8C9;
+    border-radius: 22px;
 }
 
 .login_bgVectorClouds {
