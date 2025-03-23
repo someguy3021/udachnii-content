@@ -279,9 +279,46 @@ input[type="number"] {
 //-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------
 //-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------Basic styling-----------
 
+.ucButtonToQuasar {
 
-.fake_header__container {
-  width: 100%;
+  &__wrapper_1 {
+      border: solid 2px #F8CB96;
+      background-color: #F8CB96;
+      border-radius: 22px;
+  }
+
+  &__wrapper_2 {
+      border: solid 4px #A27D54;
+      border-style: dashed;
+      border-radius: 22px;
+      color: #A27D54
+  }
+
+  &__wrapper_1_disable {
+      border: solid 2px #E4D8C9;
+      background-color: #E4D8C9;
+      border-radius: 22px;
+  }
+
+  &__wrapper_2_disable_UNUSEDbutReserved {
+      border: solid 4px #A27D54;
+      border-style: dashed;
+      border-radius: 22px;
+      color: #A27D54
+  }
+
+  &__wrapper_1_uc_green {
+      border: solid 2px transparent;
+      border-radius: 22px;
+  }
+
+  &__wrapper_2_uc_green {
+      border: solid 4px $uc_green;
+      border-style: dashed;
+      border-radius: 22px;
+      color: $uc_green
+  }
+
 }
 
 .btn {
