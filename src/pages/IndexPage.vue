@@ -42,7 +42,7 @@
           { marginTop: '-100px', backgroundImage: `url(${img_sectionBanner_grass})` }
           : { marginTop: '-200px', backgroundImage: `url(${img_sectionBanner_grass})` }
       ]" class="flex items-center justify-center" :class="$q.screen.gt.sm ? 'h5 q-pa-md' : 'q-pa-sm'">
-        <div class="background_fon row" style="border-radius: 54px; min-width: 50%;"
+        <div class="bg-uc_fon row" style="border-radius: 54px; min-width: 50%;"
           :class="$q.screen.gt.sm ? 'q-px-xl q-py-lg' : 'q-px-lg q-py-md'">
           <div class="col flex flex-center q-pr-md">
             Давайте вместе сделаем лето незабываемым и полезным для наших детей!
@@ -132,7 +132,7 @@
         </div>
       </div>
       <div class="section_speaker_mobile" v-if="$q.screen.width <= 440">
-        <q-carousel style="height: 737px;" v-model="slide" animated arrows infinite class="background_fon"
+        <q-carousel style="height: 737px;" v-model="slide" animated arrows infinite class="bg-uc_fon"
           control-type="unelevated" control-color="white" control-text-color="primary" transition-prev="slide-right"
           transition-next="slide-left" swipeable>
           <q-carousel-slide :name="1" img-src="src/assets/landing/mobile/section_speaker_1.webp"
@@ -182,7 +182,7 @@
       <div class="section_events_background">
         <!-- <div class="eventsTicket_wrapper q-px-md"> TODO еще не удалил легаси стилей отсюда, удалю потом
           <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
-          <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md" style="border-radius: 20px;"
+          <div class="eventsTicket_blockWBackgroundAndPic bg-uc_light_green q-px-md" style="border-radius: 20px;"
             :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
             <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
                 spinner-color="white"
@@ -231,7 +231,7 @@
               <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
                 «У-дачник»!
               </div>
-              <div class="eventsTicket_blockWBackgroundAndPic background_lightgreen q-px-md q-mb-md"
+              <div class="eventsTicket_blockWBackgroundAndPic bg-uc_light_green q-px-md q-mb-md"
                 style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
                 <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
                     spinner-color="white"

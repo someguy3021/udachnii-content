@@ -292,14 +292,6 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.background_fon {
-  background-color: #EFDFBB;
-}
-
-.background_lightgreen {
-  background-color: $light_green;
-}
-
 .btn--primary {
   @include btn--primary;
 }

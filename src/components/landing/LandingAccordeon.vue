@@ -4,7 +4,7 @@
 
 <template>
     <q-item class="q-pa-md" style="max-width: 850px; width: 100%;">
-        <q-list bordered class="landing_accordeon background_lightgreen text-white q-pa-md no-border"
+        <q-list bordered class="landing_accordeon bg-uc_light_green text-white q-pa-md no-border"
             style="border-radius: 20px; width: 100%;" dense>
             <q-expansion-item expand-separator label="Психомоторика" header-class="font_Sunday" class="q-pt-md"
                 expand-icon-class="text-white">
@@ -19,7 +19,7 @@
                         Психомоторика
                     </q-item-section>
                 </template>
-                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
+                <q-card class="bg-uc_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
                     <q-card-section class="">
                         При работе с детьми с особыми потребностями развиваем физические навыки: координацию, моторику
                         и равновесие совместно с психологическими навыками, улучшая концентрацию, память, самооценку
@@ -40,7 +40,7 @@
                         Формат
                     </q-item-section>
                 </template>
-                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
+                <q-card class="bg-uc_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
                     <q-card-section>
                         12 выпусков коррекционно-развивающего видеоконтента разбитые по летним месяцам формате
                         10-минутных
@@ -63,7 +63,7 @@
                         Медиакомпетентность
                     </q-item-section>
                 </template>
-                <q-card class="background_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
+                <q-card class="bg-uc_fon text-black" style="border-radius: 0 0 20px 20px / 0% 0% 20px 20px ;">
                     <q-card-section>
                         Короткие видеоролики с совместным участием педагогов, логопедов, нейропсихологов и детей с ОВЗ,
                         направленные на развитие психомоторики, речи и когнитивных функций, поднимут уровень умений
