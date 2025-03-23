@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onUnmounted } from 'vue';
+import { ref, reactive, computed, onUnmounted } from 'vue';
 import { useQuasar } from 'quasar';
 const $q = useQuasar();
 defineOptions({
@@ -19,7 +19,7 @@ const props = defineProps({
         default: true
     }
 });
-const showLogin = ref(props.isShowLogin);
+const showLogin = ref(props.isShowLogin); // for handling what window to show
 
 const form1_isPasswordVisble_1 = ref(true);
 const form1_login = ref();
@@ -43,8 +43,8 @@ const form1_diagnosis_cipher_options = [
     'F84 (Общие расстройства психологического развития – РАС)'
 ];
 
-// restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------
 
+// restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------
 
 const timeRemaining = ref(0);
 const isCooldown = ref(false);
@@ -79,27 +79,52 @@ onUnmounted(() => {
         clearInterval(intervalId.value);
     }
 });
-const restorePasswordForms_emailCode = ref("");
-const restorePasswordForms_newPassword = ref("");
-const restorePasswordForms_newPasswordIsHidden = ref(true);
 
-const restorePasswordDialog = ref(false);
-const restorePasswordState = ref(0);
-const restorePassword_EmailWhereWasSend = ref("");
-const loadingStates = ref({
-    email: false,
-    code: false,
-    password: false
-});
 // Restore Password API requests------Restore Password API requests------Restore Password API requests------Restore Password API requests------Restore Password API requests------
+const restorePasswordDialog = ref(false);
+// const restorePasswordState = ref(0); //
+// const restorePasswordForms_emailCode = ref("");//
+// const restorePasswordForms_newPassword = ref("");//
+// const restorePasswordForms_newPasswordIsHidden = ref(true);//
+// const restorePassword_EmailWhereWasSend = ref("");
+// const loadingStates = ref({ //
+//     email: false,
+//     code: false,
+//     password: false
+// });
 const restorePasswordApi = {
+    formRefs: {
+        emailForm: ref(null), // Email form
+        codeForm: ref(null), // Code verification form
+        newPasswordForm: ref(null)  // Password form
+    },
+    formIsValid: {
+        emailForm: ref(false), // Email form
+        codeForm: ref(false), // Code verification form
+        newPasswordForm: ref(false)  // Password form
+    },
+    currentStep: ref(0),
+    forms: reactive({
+        userEmail: "",
+        emailCode: "",
+        newPassword: "",
+        newPasswordIsHidden: true,
+    }),
+    loadingStates: ref({
+        email: false,
+        code: false,
+        password: false,
+    }),
     writeSendEmail: async () => {
-        loadingStates.value.email = true;
+        const isValid = await restorePasswordApi.formRefs.emailForm?.value.validate(true)
+        if (!isValid) return
+
+        restorePasswordApi.loadingStates.value.email = true;
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
             // if (response.status === 200) {
-            restorePasswordState.value = 1;
-            restorePassword_EmailWhereWasSend.value = form1_login.value;
+            restorePasswordApi.currentStep.value = 1;
+            restorePasswordApi.forms.userEmail = form1_login.value;
             startTimer();
 
             $q.notify({
@@ -129,15 +154,18 @@ const restorePasswordApi = {
                 icon: 'report_problem'
             });
         } finally {
-            loadingStates.value.email = false;
+            restorePasswordApi.loadingStates.value.email = false;
         }
     },
     writeSendCodeFromEmail: async () => {
-        loadingStates.value.code = true;
+        const isValid = await restorePasswordApi.formRefs.codeForm?.value.validate(true)
+        if (!isValid) return
+
+        restorePasswordApi.loadingStates.value.code = true;
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
             // if (response.status === 200) {
-            restorePasswordState.value = 2;
+            restorePasswordApi.currentStep.value = 2;
             $q.notify({
                 color: 'uc_green',
                 message: 'Код подтвержден!',
@@ -165,15 +193,18 @@ const restorePasswordApi = {
                 icon: 'report_problem'
             });
         } finally {
-            loadingStates.value.code = false;
+            restorePasswordApi.loadingStates.value.code = false;
         }
     },
     writeSendNewPassword: async () => {
-        loadingStates.value.password = true;
+        const isValid = await restorePasswordApi.formRefs.newPasswordForm?.value.validate(true)
+        if (!isValid) return
+
+        restorePasswordApi.loadingStates.value.password = true;
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
             // if (response.status === 200) {
-            restorePasswordState.value = 0;
+            restorePasswordApi.currentStep.value = 0;
             restorePasswordDialog.value = false;
 
             $q.notify({
@@ -208,7 +239,7 @@ const restorePasswordApi = {
                 timeout: 3000
             });
         } finally {
-            loadingStates.value.password = false;
+            restorePasswordApi.loadingStates.value.password = false;
         }
     }
 };
@@ -267,8 +298,7 @@ const restorePasswordApi = {
                             <div @click="restorePasswordDialog = true" class="text-white" style="cursor: pointer;">Не
                                 помню пароль
                             </div>
-                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                class="q-pa-none full-width" style="border-radius: 22px">
+                            <q-btn flat no-caps size="xl" class="q-pa-none full-width" style="border-radius: 22px">
                                 <div class="full-width"
                                     style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
                                     <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
@@ -358,8 +388,7 @@ const restorePasswordApi = {
                         </div>
 
                         <div class="q-gutter-y-md q-pb-md">
-                            <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                                class="q-pa-none full-width" style="border-radius: 22px">
+                            <q-btn flat no-caps size="xl" class="q-pa-none full-width" style="border-radius: 22px">
                                 <div class="full-width"
                                     style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
                                     <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
@@ -396,7 +425,8 @@ const restorePasswordApi = {
                                 <q-bar style="height: 60px; background-color: transparent;">
                                     <q-space />
                                     <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
-                                        style="border: solid 2px #315720" @click="restorePasswordState = 0">
+                                        style="border: solid 2px #315720"
+                                        @click="restorePasswordApi.currentStep.value = 0">
                                         <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                                     </q-btn>
                                 </q-bar>
@@ -407,17 +437,22 @@ const restorePasswordApi = {
                                         <div class="text-center font_Sunday h1 text-uc_green q-pb-xl">Восстановление
                                             пароля
                                         </div>
-                                        <div class="q-gutter-y-md" v-if="restorePasswordState == 0">
+                                        <q-form :ref="restorePasswordApi.formRefs.emailForm"
+                                            @submit.prevent="restorePasswordApi.writeSendEmail" class="q-gutter-y-md"
+                                            v-if="restorePasswordApi.currentStep.value == 0">
                                             <q-input bg-color="light_yellow" label-color="uc_light_green"
                                                 placeholder="Email" outlined rounded v-model="form1_login" type="email"
-                                                class="input_field_UCStyle">
+                                                class="input_field_UCStyle" :rules="[
+                                                    val => !!val || 'Пожалуйста, напишите свою электронную почту',
+                                                    val => /.+@.+\..+/.test(val) || 'Неверный email'
+                                                ]" lazy-rules reactive-rules>
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
                                             </q-input>
-                                            <q-btn flat no-caps size="xl" @click="restorePasswordApi.writeSendEmail"
-                                                class="q-pa-none full-width" style="border-radius: 22px"
-                                                :loading="loadingStates.email">
+                                            <q-btn flat no-caps size="xl" type="submit" class="q-pa-none full-width"
+                                                style="border-radius: 22px"
+                                                :loading="restorePasswordApi.loadingStates.value.email">
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -436,21 +471,25 @@ const restorePasswordApi = {
                                                     </div>
                                                 </template>
                                             </q-btn>
-                                        </div>
-                                        <div class="q-gutter-y-md" v-if="restorePasswordState == 1">
+                                        </q-form>
+                                        <q-form :ref="restorePasswordApi.formRefs.codeForm"
+                                            @submit.prevent="restorePasswordApi.writeSendCodeFromEmail"
+                                            class="q-gutter-y-md" v-if="restorePasswordApi.currentStep.value == 1">
                                             <div class="text-uc_green text-center text-weight-bold h6">Введите код с
                                                 почты
                                             </div>
                                             <q-input bg-color="light_yellow" label-color="uc_light_green"
                                                 placeholder="Введите код с почты" outlined rounded
-                                                v-model="restorePasswordForms_emailCode" class="input_field_UCStyle">
+                                                v-model="restorePasswordApi.forms.emailCode" class="input_field_UCStyle"
+                                                :rules="[val => !!val || 'Пожалуйста, напишите код с почты']" lazy-rules
+                                                reactive-rules>
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
                                             </q-input>
                                             <div class="text-uc_green">
                                                 <div class="q-mb-md">Мы отправили проверочный код на почту по адресу {{
-                                                    restorePassword_EmailWhereWasSend }}.
+                                                    restorePasswordApi.forms.userEmail }}.
                                                     Если
                                                     сообщение не пришло, повторите попытку.</div>
                                                 <div
@@ -461,10 +500,9 @@ const restorePasswordApi = {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <q-btn flat no-caps size="xl"
-                                                @click="restorePasswordApi.writeSendCodeFromEmail"
-                                                class="q-pa-none full-width" style="border-radius: 22px"
-                                                :loading="loadingStates.code">
+                                            <q-btn flat no-caps size="xl" type="submit" class="q-pa-none full-width"
+                                                style="border-radius: 22px"
+                                                :loading="restorePasswordApi.loadingStates.value.code">
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -483,26 +521,31 @@ const restorePasswordApi = {
                                                     </div>
                                                 </template>
                                             </q-btn>
-                                        </div>
-                                        <div class="q-gutter-y-md" v-if="restorePasswordState == 2">
-                                            <q-input bg-color="light_yellow" v-model="restorePasswordForms_newPassword"
+                                        </q-form>
+                                        <q-form :ref="restorePasswordApi.formRefs.newPasswordForm"
+                                            @submit.prevent="restorePasswordApi.writeSendNewPassword"
+                                            class="q-gutter-y-md" v-if="restorePasswordApi.currentStep.value == 2">
+                                            <q-input bg-color="light_yellow"
+                                                v-model="restorePasswordApi.forms.newPassword"
                                                 placeholder="Введите новый пароль" outlined rounded
-                                                :type="restorePasswordForms_newPasswordIsHidden ? 'password' : 'text'"
-                                                class="input_field_UCStyle">
+                                                :type="restorePasswordApi.forms.newPasswordIsHidden ? 'password' : 'text'"
+                                                class="input_field_UCStyle" :rules="[
+                                                    val => !!val || 'Пожалуйста, напишите свой новый пароль',
+                                                    val => val.length >= 6 || 'Минимум 6 символов'
+                                                ]" lazy-rules reactive-rules>
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
                                                 <template v-slot:append>
                                                     <q-icon
-                                                        :name="restorePasswordForms_newPasswordIsHidden ? 'visibility_off' : 'visibility'"
+                                                        :name="restorePasswordApi.forms.newPasswordIsHidden ? 'visibility_off' : 'visibility'"
                                                         class="cursor-pointer q-pr-sm"
-                                                        @click="restorePasswordForms_newPasswordIsHidden = !restorePasswordForms_newPasswordIsHidden" />
+                                                        @click="restorePasswordApi.forms.newPasswordIsHidden = !restorePasswordApi.forms.newPasswordIsHidden" />
                                                 </template>
                                             </q-input>
-                                            <q-btn flat no-caps size="xl"
-                                                @click="restorePasswordApi.writeSendNewPassword"
-                                                class="q-pa-none full-width" style="border-radius: 22px"
-                                                :loading="loadingStates.password">
+                                            <q-btn flat no-caps size="xl" type="submit" class="q-pa-none full-width"
+                                                style="border-radius: 22px"
+                                                :loading="restorePasswordApi.loadingStates.value.password">
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -521,7 +564,7 @@ const restorePasswordApi = {
                                                     </div>
                                                 </template>
                                             </q-btn>
-                                        </div>
+                                        </q-form>
 
                                     </div>
 
