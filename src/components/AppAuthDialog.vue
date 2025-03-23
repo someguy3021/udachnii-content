@@ -115,6 +115,21 @@ const restorePasswordApi = {
         code: false,
         password: false,
     }),
+    // this is weird generated code for handling checking if form is valid
+    async validateForm(formName) {
+        const form = this.formRefs[formName].value;
+        if (!form) return false;
+
+        const isValid = await form.validate();
+        this.formIsValid[formName].value = isValid;
+        return isValid;
+    },
+    get currentFormIsValid() {
+        const forms = Object.keys(this.formIsValid);
+        const currentFormName = forms[this.currentStep.value];
+        return this.formIsValid[currentFormName].value;
+    },
+    // this is weird generated code for handling checking if form is valid END
     writeSendEmail: async () => {
         const isValid = await restorePasswordApi.formRefs.emailForm?.value.validate(true)
         if (!isValid) return
@@ -445,7 +460,8 @@ const restorePasswordApi = {
                                                 class="input_field_UCStyle" :rules="[
                                                     val => !!val || 'Пожалуйста, напишите свою электронную почту',
                                                     val => /.+@.+\..+/.test(val) || 'Неверный email'
-                                                ]" lazy-rules reactive-rules>
+                                                ]" lazy-rules reactive-rules
+                                                @update:model-value="restorePasswordApi.validateForm('emailForm')">
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
@@ -464,7 +480,8 @@ const restorePasswordApi = {
                                                     </div>
                                                 </template>
                                                 <template v-slot:default>
-                                                    <div class="full-width ucButtonToQuasar__wrapper_1">
+                                                    <div class="full-width ucButtonToQuasar__wrapper_1"
+                                                        :class="restorePasswordApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
                                                         <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
                                                             Далее
                                                         </div>
@@ -482,7 +499,8 @@ const restorePasswordApi = {
                                                 placeholder="Введите код с почты" outlined rounded
                                                 v-model="restorePasswordApi.forms.emailCode" class="input_field_UCStyle"
                                                 :rules="[val => !!val || 'Пожалуйста, напишите код с почты']" lazy-rules
-                                                reactive-rules>
+                                                reactive-rules
+                                                @update:model-value="restorePasswordApi.validateForm('codeForm')">
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
@@ -514,7 +532,8 @@ const restorePasswordApi = {
                                                     </div>
                                                 </template>
                                                 <template v-slot:default>
-                                                    <div class="full-width ucButtonToQuasar__wrapper_1">
+                                                    <div class="full-width ucButtonToQuasar__wrapper_1"
+                                                        :class="restorePasswordApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
                                                         <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
                                                             Далее
                                                         </div>
@@ -532,7 +551,8 @@ const restorePasswordApi = {
                                                 class="input_field_UCStyle" :rules="[
                                                     val => !!val || 'Пожалуйста, напишите свой новый пароль',
                                                     val => val.length >= 6 || 'Минимум 6 символов'
-                                                ]" lazy-rules reactive-rules>
+                                                ]" lazy-rules reactive-rules
+                                                @update:model-value="restorePasswordApi.validateForm('newPasswordForm')">
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
@@ -557,7 +577,8 @@ const restorePasswordApi = {
                                                     </div>
                                                 </template>
                                                 <template v-slot:default>
-                                                    <div class="full-width ucButtonToQuasar__wrapper_1">
+                                                    <div class="full-width ucButtonToQuasar__wrapper_1"
+                                                        :class="restorePasswordApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
                                                         <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
                                                             Далее
                                                         </div>
