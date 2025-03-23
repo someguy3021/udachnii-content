@@ -43,7 +43,7 @@ const form1_diagnosis_cipher_options = [
     'F84 (Общие расстройства психологического развития – РАС)'
 ];
 
-// restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------
+// restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------
 
 
 const timeRemaining = ref(0);
@@ -91,7 +91,7 @@ const loadingStates = ref({
     code: false,
     password: false
 });
-// Restore Password API requests
+// Restore Password API requests------Restore Password API requests------Restore Password API requests------Restore Password API requests------Restore Password API requests------
 const restorePasswordApi = {
     writeSendEmail: async () => {
         loadingStates.value.email = true;
@@ -506,7 +506,8 @@ const restorePasswordApi = {
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
-                                                        <div class="button_wrapper_2_uc_green q-px-xl q-py-sm">
+                                                        <div
+                                                            class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
                                                             <q-spinner-hourglass class="on-left" color="uc_green" />
                                                             Загрузка...
                                                         </div>
