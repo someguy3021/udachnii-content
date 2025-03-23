@@ -42,8 +42,8 @@ const form1_diagnosis_cipher_options = [
     'ЧF83 (Смешанные специфические расстройства психологического развития)',
     'F84 (Общие расстройства психологического развития – РАС)'
 ];
-
-
+const loginApi = {}
+const signinApi = {}
 // restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------restore password functions-----------
 
 const timeRemaining = ref(0);
@@ -73,8 +73,8 @@ const startTimer = () => {
     }, 1000);
 };
 
-// Cleanup interval when component unmounts
 onUnmounted(() => {
+    // Cleanup interval when component unmounts
     if (intervalId.value) {
         clearInterval(intervalId.value);
     }
@@ -457,7 +457,7 @@ const restorePasswordApi = {
                                             v-if="restorePasswordApi.currentStep.value == 0">
                                             <q-input bg-color="light_yellow" label-color="uc_light_green"
                                                 placeholder="Email" outlined rounded v-model="form1_login" type="email"
-                                                class="input_field_UCStyle" :rules="[
+                                                class="input_field_UCStyle" input-class="text-uc_green" :rules="[
                                                     val => !!val || 'Пожалуйста, напишите свою электронную почту',
                                                     val => /.+@.+\..+/.test(val) || 'Неверный email'
                                                 ]" lazy-rules reactive-rules
@@ -498,6 +498,7 @@ const restorePasswordApi = {
                                             <q-input bg-color="light_yellow" label-color="uc_light_green"
                                                 placeholder="Введите код с почты" outlined rounded
                                                 v-model="restorePasswordApi.forms.emailCode" class="input_field_UCStyle"
+                                                input-class="text-uc_green"
                                                 :rules="[val => !!val || 'Пожалуйста, напишите код с почты']" lazy-rules
                                                 reactive-rules
                                                 @update:model-value="restorePasswordApi.validateForm('codeForm')">
@@ -548,7 +549,7 @@ const restorePasswordApi = {
                                                 v-model="restorePasswordApi.forms.newPassword"
                                                 placeholder="Введите новый пароль" outlined rounded
                                                 :type="restorePasswordApi.forms.newPasswordIsHidden ? 'password' : 'text'"
-                                                class="input_field_UCStyle" :rules="[
+                                                class="input_field_UCStyle" input-class="text-uc_green" :rules="[
                                                     val => !!val || 'Пожалуйста, напишите свой новый пароль',
                                                     val => val.length >= 6 || 'Минимум 6 символов'
                                                 ]" lazy-rules reactive-rules
