@@ -180,49 +180,6 @@
     </div>
     <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;" id="landing_section_events">
       <div class="section_events_background">
-        <!-- <div class="eventsTicket_wrapper q-px-md"> TODO еще не удалил легаси стилей отсюда, удалю потом
-          <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md">Приглашаем на Фестиваль «У-дачник»!</div>
-          <div class="eventsTicket_blockWBackgroundAndPic bg-uc_light_green q-px-md" style="border-radius: 20px;"
-            :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
-            <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
-                spinner-color="white"
-                :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
-            </div>
-            <div class="text-center text-white">Подведем итоги, наградим лучших и отлично
-              проведем время! В программе:
-              мастер-классы, интенсивы и
-              многое другое.</div>
-          </div>
-          <div class="eventsTicket_bottomTexts">
-            <div class="eventsTicket_bottomTexts_withGrid row">
-              <div class="col-12 col-xs-6">
-                <q-item>
-                  <q-item-section side top>
-                    <q-icon name="calendar_month" color="primary" />
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label>27 сентября 2025 года</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </div>
-              <div class="col-12 col-xs-6">
-                <q-item>
-                  <q-item-section side top>
-                    <q-icon name="not_listed_location" color="primary" />
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label> Актовый зал Дворца детского и юношеского творчества</q-item-label>
-                    <q-item-label caption class="text-black">г. Иркутск, улица
-                      Желябова, 5</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </div>
-            </div>
-            <div class="eventsTicket_bottomTexts_lastText text-center">
-              Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
-            </div>
-          </div>
-        </div> -->
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
           <div class="eventsTicket_invite_paperBody flex flex-center"
@@ -439,16 +396,6 @@ const slide2 = ref(1)
 // Textblocks that do appear animation
 // Textblocks that do appear animation
 
-.eventsTicket_wrapper {
-  width: 540px;
-  height: 320px;
-  max-width: 100%;
-  position: relative;
-  top: 400px;
-  left: 700px;
-  transform: rotate(-11deg);
-}
-
 // Blocks with complex vector img background, very sensitive to resizing
 // Blocks with complex vector img background, very sensitive to resizing
 // Blocks with complex vector img background, very sensitive to resizing
@@ -656,12 +603,6 @@ const slide2 = ref(1)
     left: 650px;
   }
 
-  .eventsTicket_wrapper {
-    top: 300px;
-    left: 480px;
-    transform: rotate(-11deg);
-  }
-
   .eventsTicket_invite_string {
     height: 200px;
   }
@@ -773,12 +714,6 @@ const slide2 = ref(1)
     left: 300px;
   }
 
-  .eventsTicket_wrapper {
-    top: 240px;
-    left: 120px;
-    transform: rotate(-11deg);
-  }
-
   .eventsTicket_invite_string {
     background-size: cover;
     height: 150px;
@@ -854,16 +789,6 @@ const slide2 = ref(1)
     background: url(../assets/landing/blocks/Pillar_for_button.svg) no-repeat;
     width: 241px;
     height: 340px;
-  }
-
-  .eventsTicket_wrapper {
-    width: 316px;
-    height: 350px;
-    max-width: 100%;
-    position: relative;
-    top: 260px;
-    left: 50px;
-    transform: rotate(0deg);
   }
 
   .eventsTicket_invite_string {
