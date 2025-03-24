@@ -557,7 +557,7 @@ const restorePasswordApi = {
                                 </template>
                             </q-select>
                             <q-input bg-color="light_yellow" outlined rounded v-model="form1_phoneNumber"
-                                label="Телефон" mask="8 (###)###-##-##" fill-mask class="input_field_UCStyle" :rules="[
+                                label="Телефон" mask="8 (###) ###-##-##" fill-mask class="input_field_UCStyle" :rules="[
                                     val => !!val || 'Пожалуйста, заполните это поле'
                                 ]" lazy-rules reactive-rules
                                 @update:model-value="signinApi.validateForm('signinForm')">

@@ -1,16 +1,19 @@
 <template>
-  <div class="input_fieldsAndSubmit_wrapper q-pb-lg">
+  <q-form :ref="redactUserDataApi.formRefs.redactUserForm" @submit.prevent="redactUserDataApi.redactUser" no-error-focus
+    class="input_fieldsAndSubmit_wrapper q-pb-lg">
 
     <div class="input_fields_wrapper row q-gutter-y-sm q-pb-xl"
       :class="$q.screen.lt.sm ? 'q-gutter-x-sm' : 'q-gutter-x-lg'">
 
-      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-pb-md">
+      <div class="field_column_no_styles col-12 col-md q-gutter-y-md q-pb-md">
 
         <div>
           <div class="q-mb-md">Логин</div>
           <div>
-            <q-input bg-color="light_yellow" label-color="uc_light_green" label="Заблоченная почта" outlined rounded
-              v-model="login" type="email" disable class="input_field_UCStyle" readonly>
+            <q-input bg-color="light_yellow" label-color="uc_light_green" input-class="text-uc_light_green" outlined
+              rounded v-model="login" type="email" disable class="input_field_UCStyle" readonly :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules>
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -20,8 +23,10 @@
         <div>
           <div class="q-mb-md">Телефон</div>
           <div>
-            <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###)###-##-##" fill-mask
-              class="input_field_UCStyle">
+            <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###) ###-##-##" fill-mask
+              class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -32,7 +37,9 @@
           <div class="q-mb-md">Текущий пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_current" placeholder="Введите текущий пароль" outlined
-              rounded :type="isPasswordVisble_1 ? 'password' : 'text'" class="input_field_UCStyle">
+              rounded :type="isPasswordVisble_1 ? 'password' : 'text'" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -47,7 +54,9 @@
           <div class="q-mb-md">Новый пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_new" placeholder="Введите новый пароль" outlined rounded
-              :type="isPasswordVisble_2 ? 'password' : 'text'" class="input_field_UCStyle">
+              :type="isPasswordVisble_2 ? 'password' : 'text'" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -62,7 +71,9 @@
           <div class="q-mb-md">Повторить пароль</div>
           <div>
             <q-input bg-color="light_yellow" v-model="password_newRepeat" placeholder="Повторите новый пароль" outlined
-              rounded :type="isPasswordVisble_3 ? 'password' : 'text'" class="input_field_UCStyle">
+              rounded :type="isPasswordVisble_3 ? 'password' : 'text'" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -75,13 +86,15 @@
         </div>
 
       </div>
-      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-pb-md">
+      <div class="field_column_no_styles col-12 col-md q-gutter-y-md q-pb-md">
 
         <div>
           <div class="q-mb-md">Ф.И.О ребёнка</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="child_fio" placeholder="Ф.И.О ребёнка"
-              :dense="dense" class="input_field_UCStyle">
+              :dense="dense" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -90,17 +103,24 @@
         </div>
         <div>
           <div class="q-mb-md">Возраст ребёнка</div>
-          <div><q-input bg-color="light_yellow" outlined rounded v-model.number="child_age" type="number"
-              placeholder="Введите возраст ребенка" class="input_field_UCStyle"> <template v-slot:prepend>
+          <div>
+            <q-input bg-color="light_yellow" outlined rounded v-model.number="child_age" type="number"
+              placeholder="Введите возраст ребенка" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
+              <template v-slot:prepend>
                 <div class="q-px-xs"></div>
-              </template></q-input>
+              </template>
+            </q-input>
           </div>
         </div>
         <div>
           <div class="q-mb-md">Ф.И.О законного представителя</div>
           <div>
             <q-input bg-color="light_yellow" outlined rounded v-model="parent_fio"
-              placeholder="Ф.И.О законного представителя" :dense="dense" class="input_field_UCStyle">
+              placeholder="Ф.И.О законного представителя" :dense="dense" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -109,12 +129,15 @@
         </div>
 
       </div>
-      <div class="field_column_no_styles col-12 col-md q-gutter-y-lg q-pb-md">
+      <div class="field_column_no_styles col-12 col-md q-gutter-y-md q-pb-md">
 
         <div>
           <div class="q-mb-md">Статус ребёнка</div>
-          <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
-              :options="diagnosis_status_options" label="Выберите из спика" class="input_field_UCStyle">
+          <div>
+            <q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
+              :options="diagnosis_status_options" label="Выберите из спика" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -123,8 +146,11 @@
         </div>
         <div>
           <div class="q-mb-md">Шифр по ПМПК</div>
-          <div><q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
-              :options="diagnosis_cipher_options" label="Выберите из спика" class="input_field_UCStyle">
+          <div>
+            <q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
+              :options="diagnosis_cipher_options" label="Выберите из спика" class="input_field_UCStyle" :rules="[
+                val => !!val || 'Пожалуйста, заполните это поле'
+              ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
               </template>
@@ -137,18 +163,29 @@
     </div>
 
     <div class="submit_wrapper">
-      <q-btn flat no-caps :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
-        style="border-radius: 22px">
-        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
-          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
-            class="q-px-xl q-py-sm">
-            Сохранить
+      <q-btn type="submit" flat no-caps size="xl" class="q-pa-none" style="border-radius: 22px"
+        :loading="redactUserDataApi.loadingStates.value.redactUser" :disable="!redactUserDataApi.currentFormIsValid">
+        <template v-slot:loading>
+          <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
+            <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
+              <q-spinner-hourglass class="on-left" color="uc_green" />
+              Сохраняем...
+            </div>
           </div>
-        </div>
+        </template>
+        <template v-slot:default>
+          <div class="full-width ucButtonToQuasar__wrapper_1"
+            :class="redactUserDataApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
+            <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
+              Сохранить
+            </div>
+          </div>
+        </template>
       </q-btn>
     </div>
 
-  </div>
+  </q-form>
+
   <div class="ticketAndButton_wrapper">
 
     <div v-if="$q.screen.gt.sm">
@@ -225,13 +262,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, reactive } from 'vue';
+import { useQuasar } from 'quasar';
+const $q = useQuasar();
 const dense = false;
 const isPasswordVisble_1 = ref(true);
 const isPasswordVisble_2 = ref(true);
 const isPasswordVisble_3 = ref(true);
 
-const login = ref();
+const login = ref("login");
 const phoneNumber = ref();
 const password_current = ref();
 const password_new = ref();
@@ -253,6 +292,74 @@ const diagnosis_cipher_options = [
   'ЧF83 (Смешанные специфические расстройства психологического развития)',
   'F84 (Общие расстройства психологического развития – РАС)'
 ];
+
+const redactUserDataApi = {
+  formRefs: {
+    redactUserForm: ref(null)
+  },
+  formIsValid: {
+    redactUserForm: ref(false)
+  },
+  formFields: reactive({
+    userEmail: "",
+    password: "",
+    passwordIsHidden: true,
+  }),
+  loadingStates: ref({
+    redactUser: false
+  }),
+  async validateForm(formName) {
+    const form = this.formRefs[formName].value;
+    if (!form) return false;
+
+    const isValid = await form.validate();
+    this.formIsValid[formName].value = isValid;
+    return isValid;
+  },
+  get currentFormIsValid() {
+    return this.formIsValid.redactUserForm.value;
+  },
+  redactUser: async () => {
+    const isValid = await redactUserDataApi.formRefs.redactUserForm?.value.validate(true)
+    if (!isValid) return
+
+    redactUserDataApi.loadingStates.value.redactUser = true;
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // if (response.status === 200) {
+      $q.notify({
+        color: 'uc_green',
+        message: 'Вы успешно отредактировали данные своего аккаунта!',
+        icon: 'check'
+      });
+      // }
+    } catch (error) {
+      let message = 'Ошибка при отправлении запроса';
+      if (error.response) {
+        switch (error.response.status) {
+          case 404:
+            message = 'Ошибка - такой электронной почты не существует';
+            break;
+          case 429:
+            message = 'Ошибка - слишком много запросов. Пожалуйста, попробуйте чуть позже.';
+            break;
+          default:
+            message = error.response.data?.message || message;
+        }
+      }
+
+      $q.notify({
+        color: 'negative',
+        message,
+        icon: 'report_problem'
+      });
+    } finally {
+      redactUserDataApi.loadingStates.value.redactUser = false;
+    }
+  }
+};
+
+
 
 
 const ticketProgression = ref(0); // 0-12 (0 = all locked, 12 = all unlocked)
