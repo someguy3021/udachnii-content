@@ -1,3 +1,121 @@
+<script setup>
+import { ref, computed, reactive } from 'vue';
+import { useQuasar } from 'quasar';
+const $q = useQuasar();
+const dense = false;
+const isPasswordVisble_1 = ref(true);
+const isPasswordVisble_2 = ref(true);
+const isPasswordVisble_3 = ref(true);
+
+const login = ref("login");
+const phoneNumber = ref();
+const password_current = ref();
+const password_new = ref();
+const password_newRepeat = ref();
+
+const child_fio = ref();
+const child_age = ref();
+const parent_fio = ref();
+
+const diagnosis_status = ref(null);
+const diagnosis_cipher = ref(null);
+const diagnosis_status_options = [
+  'Ребёнок с ОВЗ', 'Ребёнок инвалид'
+];
+const diagnosis_cipher_options = [
+  'F80 (специфические расстройства речи и языка)',
+  'F 81 (расстройства развития учебных навыков)',
+  'F82 (Специфические расстройства развития моторной функции)',
+  'ЧF83 (Смешанные специфические расстройства психологического развития)',
+  'F84 (Общие расстройства психологического развития – РАС)'
+];
+
+const redactUserDataApi = {
+  formRefs: {
+    redactUserForm: ref(null)
+  },
+  formIsValid: {
+    redactUserForm: ref(false)
+  },
+  formFields: reactive({
+    userEmail: "",
+    password: "",
+    passwordIsHidden: true,
+  }),
+  loadingStates: ref({
+    redactUser: false
+  }),
+  async validateForm(formName) {
+    const form = this.formRefs[formName].value;
+    if (!form) return false;
+
+    const isValid = await form.validate();
+    this.formIsValid[formName].value = isValid;
+    return isValid;
+  },
+  get currentFormIsValid() {
+    return this.formIsValid.redactUserForm.value;
+  },
+  redactUser: async () => {
+    const isValid = await redactUserDataApi.formRefs.redactUserForm?.value.validate(true)
+    if (!isValid) return
+
+    redactUserDataApi.loadingStates.value.redactUser = true;
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // if (response.status === 200) {
+      $q.notify({
+        color: 'uc_green',
+        message: 'Вы успешно отредактировали данные своего аккаунта!',
+        icon: 'check'
+      });
+      // }
+    } catch (error) {
+      let message = 'Ошибка при отправлении запроса';
+      if (error.response) {
+        switch (error.response.status) {
+          case 404:
+            message = 'Ошибка - такой электронной почты не существует';
+            break;
+          case 429:
+            message = 'Ошибка - слишком много запросов. Пожалуйста, попробуйте чуть позже.';
+            break;
+          default:
+            message = error.response.data?.message || message;
+        }
+      }
+
+      $q.notify({
+        color: 'negative',
+        message,
+        icon: 'report_problem'
+      });
+    } finally {
+      redactUserDataApi.loadingStates.value.redactUser = false;
+    }
+  }
+};
+
+
+
+
+const ticketProgression = ref(0); // 0-12 (0 = all locked, 12 = all unlocked)
+ticketProgression.value = 7; // test value
+const isTicketFullyUnlocked = computed(() => ticketProgression.value === 12);
+const blocks = computed(() =>
+  Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    locked: i >= ticketProgression.value,
+    progress: i < ticketProgression.value ? 100 : 0
+  }))
+);
+
+// Example of how you would update the progression later:
+// function updateProgressionFromServer(newValue) {
+//   ticketProgression.value = Math.min(Math.max(newValue, 0), 12);
+// }
+</script>
+
 <template>
   <q-form :ref="redactUserDataApi.formRefs.redactUserForm" @submit.prevent="redactUserDataApi.redactUser" no-error-focus
     class="input_fieldsAndSubmit_wrapper q-pb-lg">
@@ -190,12 +308,6 @@
 
     <div v-if="$q.screen.gt.sm">
       <div class="ticket_wrapper q-pb-lg row">
-        <!-- <div class="ticket_body">
-        <div class="ticket_body_blocks">
-          <div></div>
-        </div>
-        <div class="ticked_body_sideBlock"></div>
-      </div> -->
         <div class="background-container ticketBackground col-2">
           <div class="text-overlay q-pa-md" style="max-width: 500px;">
             <div class="text_overlay_container">
@@ -242,7 +354,53 @@
         </div>
       </div>
     </div>
-    <div v-else>Mobile ticket placeholder</div>
+    <div v-else class="flex flex-center">
+      <div class="ticket_wrapper q-pb-lg" style="width: 100%; max-width: 600px;">
+        <q-img src="src/assets/images/lk/profile/profile_ticket_sideText_mobile.svg" fit="fill"></q-img>
+        <div class="background-container_mobile ticketBackground">
+          <div class="text-overlay q-pa-md" style="width: 100%;">
+            <div class="text_overlay_container">
+              <div>
+                <q-item>
+                  <q-item-section side top>
+                    <q-icon name="calendar_month" color="uc_light_green" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label class="h5 text-uc_dark_green">27 сентября 2025 года</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+              <div>
+                <q-item>
+                  <q-item-section side top>
+                    <q-icon name="not_listed_location" color="uc_light_green" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label class="h6 text-uc_dark_green">г. Иркутск, улица
+                      Желябова, 5</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+              <div>
+                <q-item>
+                  <q-item-section>
+                    <q-item-label class="h5 text-uc_dark_green">Актовый зал Дворца детского и юношеского
+                      творчества</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+            </div>
+          </div>
+          <div class="grid_mobile" :class="{ 'full-unlocked': isTicketFullyUnlocked }">
+            <div v-for="block in blocks" :key="block.id" class="block_moblie"
+              :class="{ 'full-progress': block.progress >= 100 }">
+              <div class="lock-overlay" v-if="block.locked"></div>
+              <div class="border" :class="{ unlocked: !block.locked }"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -261,124 +419,6 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, reactive } from 'vue';
-import { useQuasar } from 'quasar';
-const $q = useQuasar();
-const dense = false;
-const isPasswordVisble_1 = ref(true);
-const isPasswordVisble_2 = ref(true);
-const isPasswordVisble_3 = ref(true);
-
-const login = ref("login");
-const phoneNumber = ref();
-const password_current = ref();
-const password_new = ref();
-const password_newRepeat = ref();
-
-const child_fio = ref();
-const child_age = ref();
-const parent_fio = ref();
-
-const diagnosis_status = ref(null);
-const diagnosis_cipher = ref(null);
-const diagnosis_status_options = [
-  'Ребёнок с ОВЗ', 'Ребёнок инвалид'
-];
-const diagnosis_cipher_options = [
-  'F80 (специфические расстройства речи и языка)',
-  'F 81 (расстройства развития учебных навыков)',
-  'F82 (Специфические расстройства развития моторной функции)',
-  'ЧF83 (Смешанные специфические расстройства психологического развития)',
-  'F84 (Общие расстройства психологического развития – РАС)'
-];
-
-const redactUserDataApi = {
-  formRefs: {
-    redactUserForm: ref(null)
-  },
-  formIsValid: {
-    redactUserForm: ref(false)
-  },
-  formFields: reactive({
-    userEmail: "",
-    password: "",
-    passwordIsHidden: true,
-  }),
-  loadingStates: ref({
-    redactUser: false
-  }),
-  async validateForm(formName) {
-    const form = this.formRefs[formName].value;
-    if (!form) return false;
-
-    const isValid = await form.validate();
-    this.formIsValid[formName].value = isValid;
-    return isValid;
-  },
-  get currentFormIsValid() {
-    return this.formIsValid.redactUserForm.value;
-  },
-  redactUser: async () => {
-    const isValid = await redactUserDataApi.formRefs.redactUserForm?.value.validate(true)
-    if (!isValid) return
-
-    redactUserDataApi.loadingStates.value.redactUser = true;
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // if (response.status === 200) {
-      $q.notify({
-        color: 'uc_green',
-        message: 'Вы успешно отредактировали данные своего аккаунта!',
-        icon: 'check'
-      });
-      // }
-    } catch (error) {
-      let message = 'Ошибка при отправлении запроса';
-      if (error.response) {
-        switch (error.response.status) {
-          case 404:
-            message = 'Ошибка - такой электронной почты не существует';
-            break;
-          case 429:
-            message = 'Ошибка - слишком много запросов. Пожалуйста, попробуйте чуть позже.';
-            break;
-          default:
-            message = error.response.data?.message || message;
-        }
-      }
-
-      $q.notify({
-        color: 'negative',
-        message,
-        icon: 'report_problem'
-      });
-    } finally {
-      redactUserDataApi.loadingStates.value.redactUser = false;
-    }
-  }
-};
-
-
-
-
-const ticketProgression = ref(0); // 0-12 (0 = all locked, 12 = all unlocked)
-ticketProgression.value = 7; // test value
-const isTicketFullyUnlocked = computed(() => ticketProgression.value === 12);
-const blocks = computed(() =>
-  Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    locked: i >= ticketProgression.value,
-    progress: i < ticketProgression.value ? 100 : 0
-  }))
-);
-
-// Example of how you would update the progression later:
-// function updateProgressionFromServer(newValue) {
-//   ticketProgression.value = Math.min(Math.max(newValue, 0), 12);
-// }
-</script>
-
 <style lang="scss" scoped>
 // со style scoped работает только :deep!
 // .input_field_UCStyle :deep>*>.q-field__control {
@@ -390,7 +430,7 @@ const blocks = computed(() =>
 
 // apply a border-radius: 22px !important; to an element that has a input_field class, that element is a 2nd level child input_field>child1>child2_TARGET
 .ticked_body_sideText {
-  background-image: url(../../assets/images/lk/profile/profile_ticket_sideText_descktop.svg);
+  background-image: url(../../assets/images/lk/profile/profile_ticket_sideText_desktop.svg);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -405,6 +445,14 @@ const blocks = computed(() =>
 .background-container {
   position: relative;
   width: 70%;
+  height: 600px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.background-container_mobile {
+  position: relative;
+  width: 100%;
   height: 600px;
   border-radius: 24px;
   overflow: hidden;
@@ -436,7 +484,26 @@ const blocks = computed(() =>
   gap: 0;
 }
 
+.grid_mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0;
+}
+
 .block {
+  position: relative;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  background: transparent;
+}
+
+.block_moblie {
   position: relative;
   border-right: 2px solid white;
   border-bottom: 2px solid white;
@@ -454,6 +521,11 @@ const blocks = computed(() =>
 }
 
 .block:nth-child(n+9) {
+  border-bottom: none;
+}
+
+.grid_moblie.full-unlocked .block_moblie {
+  border-right: none;
   border-bottom: none;
 }
 
