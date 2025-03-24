@@ -178,13 +178,14 @@
         </q-carousel>
       </div>
     </div>
-    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;" id="landing_section_events">
+    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;   overflow: hidden;"
+      id="landing_section_events">
       <div class="section_events_background">
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
           <div class="flex flex-center">
             <div class="eventsTicket_invite_paperBody flex flex-center"
-              :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-md'">
+              :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-lg'">
               <div class="eventsTicket_invite_paperBody_text">
                 <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
                   «У-дачник»!
@@ -724,6 +725,7 @@ const slide2 = ref(1)
   .eventsTicket_invite_paperBody {
     height: 100%;
     width: 100%;
+    margin-top: -20px;
   }
 }
 
@@ -734,7 +736,7 @@ const slide2 = ref(1)
 
   .eventsTicket_invite_paperBody {
     background-image: url(../assets/landing/blocks/invite_paperBody_mobile.webp);
-    background-size: contain;
+    background-size: cover;
     transform: rotate(0);
   }
 }
