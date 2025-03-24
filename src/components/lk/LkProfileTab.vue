@@ -20,7 +20,7 @@
         <div>
           <div class="q-mb-md">Телефон</div>
           <div>
-            <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###) ### - ###" fill-mask
+            <q-input bg-color="light_yellow" outlined rounded v-model="phoneNumber" mask="8 (###)###-##-##" fill-mask
               class="input_field_UCStyle">
               <template v-slot:prepend>
                 <div class="q-px-xs"></div>
