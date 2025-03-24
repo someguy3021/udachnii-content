@@ -1,6 +1,8 @@
 <script setup>
 import { ref, reactive, computed, onUnmounted } from 'vue';
 import { useQuasar } from 'quasar';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const $q = useQuasar();
 defineOptions({
     name: "AppAuthDialogue",
@@ -76,13 +78,12 @@ const loginApi = {
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
             // if (response.status === 200) {
-
-
             $q.notify({
                 color: 'uc_green',
                 message: 'Сообщение отправлено на вашу электронную почту!',
                 icon: 'check'
             });
+            router.push({ name: 'LKPage' });
             // }
         } catch (error) {
             let message = 'Ошибка при отправлении запроса';
@@ -143,13 +144,12 @@ const signinApi = {
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
             // if (response.status === 200) {
-
-
             $q.notify({
                 color: 'uc_green',
                 message: 'Сообщение отправлено на вашу электронную почту!',
                 icon: 'check'
             });
+            router.push({ name: 'LKPage' });
             // }
         } catch (error) {
             let message = 'Ошибка при отправлении запроса';
@@ -567,7 +567,8 @@ const restorePasswordApi = {
                             </q-input>
                             <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
                                 rounded v-model="form1_login" type="email" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
+                                    val => !!val || 'Пожалуйста, напишите свою электронную почту',
+                                    val => /.+@.+\..+/.test(val) || 'Неверный email'
                                 ]" lazy-rules reactive-rules
                                 @update:model-value="signinApi.validateForm('signinForm')">
                                 <template v-slot:prepend>
