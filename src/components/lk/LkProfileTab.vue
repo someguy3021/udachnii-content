@@ -163,11 +163,11 @@
     </div>
 
     <div class="submit_wrapper">
-      <q-btn type="submit" flat no-caps size="xl" class="q-pa-none" style="border-radius: 22px"
+      <q-btn type="submit" flat no-caps size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 330px;"
         :loading="redactUserDataApi.loadingStates.value.redactUser" :disable="!redactUserDataApi.currentFormIsValid">
         <template v-slot:loading>
           <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
-            <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
+            <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm row">
               <q-spinner-hourglass class="on-left" color="uc_green" />
               Сохраняем...
             </div>
