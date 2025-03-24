@@ -178,7 +178,7 @@
         </q-carousel>
       </div>
     </div>
-    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2;   overflow: hidden;"
+    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2; overflow: hidden;"
       id="landing_section_events">
       <div class="section_events_background">
         <div class="eventsTicket_invite_wrapper">
@@ -613,6 +613,7 @@ const slide2 = ref(1)
   .eventsTicket_invite_paperBody {
     width: 800px;
     height: 460px;
+    margin-top: -20px;
   }
 
 }
