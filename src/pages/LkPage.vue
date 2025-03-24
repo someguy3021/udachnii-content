@@ -39,7 +39,7 @@ export default {
           name: 'Курс',
         },
       ],
-      activeTab: 0,
+      activeTab: 1,
     }
   },
   methods: {

@@ -80,7 +80,7 @@ const loginApi = {
             // if (response.status === 200) {
             $q.notify({
                 color: 'uc_green',
-                message: 'Сообщение отправлено на вашу электронную почту!',
+                message: 'Вы успешно вошли в аккаунт!',
                 icon: 'check'
             });
             router.push({ name: 'LKPage' });
@@ -146,7 +146,7 @@ const signinApi = {
             // if (response.status === 200) {
             $q.notify({
                 color: 'uc_green',
-                message: 'Сообщение отправлено на вашу электронную почту!',
+                message: 'Вы успешно создали аккаунт!',
                 icon: 'check'
             });
             router.push({ name: 'LKPage' });
