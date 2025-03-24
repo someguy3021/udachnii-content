@@ -182,56 +182,59 @@
       <div class="section_events_background">
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
-          <div class="eventsTicket_invite_paperBody flex flex-center"
-            :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-md'">
-            <div class="eventsTicket_invite_paperBody_text">
-              <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
-                «У-дачник»!
-              </div>
-              <div class="eventsTicket_blockWBackgroundAndPic bg-uc_light_green q-px-md q-mb-md"
-                style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
-                <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
-                    spinner-color="white"
-                    :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
+          <div class="flex flex-center">
+            <div class="eventsTicket_invite_paperBody flex flex-center"
+              :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-md'">
+              <div class="eventsTicket_invite_paperBody_text">
+                <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
+                  «У-дачник»!
                 </div>
-                <div class="text-center text-white" style="font-weight: 400;" :class="$q.screen.gt.sm ? 'h5' : ''">
-                  Подведем итоги,
-                  наградим лучших и отлично
-                  проведем время! В программе:
-                  мастер-классы, интенсивы и
-                  многое другое.</div>
-              </div>
-              <div class="eventsTicket_bottomTexts">
-                <div class="eventsTicket_bottomTexts_withGrid row q-mb-md">
-                  <div class="col-12 col-xs-6">
-                    <q-item>
-                      <q-item-section side top>
-                        <q-icon name="calendar_month" color="primary" />
-                      </q-item-section>
-                      <q-item-section>
-                        <q-item-label class="h6">27 сентября 2025 года</q-item-label>
-                      </q-item-section>
-                    </q-item>
+                <div class="eventsTicket_blockWBackgroundAndPic bg-uc_light_green q-px-md q-mb-md"
+                  style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
+                  <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
+                      spinner-color="white"
+                      :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
                   </div>
-                  <div class="col-12 col-xs-6">
-                    <q-item>
-                      <q-item-section side top>
-                        <q-icon name="not_listed_location" color="primary" />
-                      </q-item-section>
-                      <q-item-section>
-                        <q-item-label class="h6"> Актовый зал Дворца детского и юношеского творчества</q-item-label>
-                        <q-item-label caption class="text-black">г. Иркутск, улица
-                          Желябова, 5</q-item-label>
-                      </q-item-section>
-                    </q-item>
-                  </div>
+                  <div class="text-center text-white" style="font-weight: 400;" :class="$q.screen.gt.sm ? 'h5' : ''">
+                    Подведем итоги,
+                    наградим лучших и отлично
+                    проведем время! В программе:
+                    мастер-классы, интенсивы и
+                    многое другое.</div>
                 </div>
-                <div class="eventsTicket_bottomTexts_lastText text-center h6">
-                  Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
+                <div class="eventsTicket_bottomTexts">
+                  <div class="eventsTicket_bottomTexts_withGrid row q-mb-md">
+                    <div class="col-12 col-xs-6">
+                      <q-item>
+                        <q-item-section side top>
+                          <q-icon name="calendar_month" color="primary" />
+                        </q-item-section>
+                        <q-item-section>
+                          <q-item-label class="h6">27 сентября 2025 года</q-item-label>
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                    <div class="col-12 col-xs-6">
+                      <q-item>
+                        <q-item-section side top>
+                          <q-icon name="not_listed_location" color="primary" />
+                        </q-item-section>
+                        <q-item-section>
+                          <q-item-label class="h6"> Актовый зал Дворца детского и юношеского творчества</q-item-label>
+                          <q-item-label caption class="text-black">г. Иркутск, улица
+                            Желябова, 5</q-item-label>
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </div>
+                  <div class="eventsTicket_bottomTexts_lastText text-center h6">
+                    Вход по билетам "У-дачника". Участвуйте и получите свой шанс!
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -492,7 +495,6 @@ const slide2 = ref(1)
 .eventsTicket_invite_paperBody {
   position: relative;
   z-index: 4;
-  margin: auto;
   margin-top: -40px;
   background-image: url(../assets/landing/blocks/invite_paperBody_desktop.webp);
   background-size: contain;
