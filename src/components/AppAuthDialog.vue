@@ -453,11 +453,12 @@ const restorePasswordApi = {
                                 помню пароль
                             </div>
                             <q-btn type="submit" flat no-caps size="xl" class="q-pa-none full-width"
-                                style="border-radius: 22px" :loading="loginApi.loadingStates.value.login">
+                                style="border-radius: 22px" :loading="loginApi.loadingStates.value.login"
+                                :disable="!loginApi.currentFormIsValid">
                                 <template v-slot:loading>
-                                    <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
-                                        <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
-                                            <q-spinner-hourglass class="on-left" color="uc_green" />
+                                    <div class="full-width ucButtonToQuasar__wrapper_1_white text-white">
+                                        <div class="ucButtonToQuasar__wrapper_2_white q-px-xl q-py-sm">
+                                            <q-spinner-hourglass class="on-left" color="white" />
                                             Загрузка...
                                         </div>
                                     </div>
@@ -533,9 +534,10 @@ const restorePasswordApi = {
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-input>
-                            <q-select bg-color="light_yellow" outlined rounded v-model="form1_diagnosis_status"
-                                :options="form1_diagnosis_status_options" label="Статус ребенка"
-                                class="input_field_UCStyle" :rules="[
+                            <q-select bg-color="light_yellow"
+                                popup-content-class="ucSelectToQuasar__popup_content_class" outlined rounded
+                                v-model="form1_diagnosis_status" :options="form1_diagnosis_status_options"
+                                label="Статус ребенка" class="input_field_UCStyle" :rules="[
                                     val => !!val || 'Пожалуйста, заполните это поле'
                                 ]" lazy-rules reactive-rules
                                 @update:model-value="signinApi.validateForm('signinForm')">
@@ -543,9 +545,10 @@ const restorePasswordApi = {
                                     <div class="q-px-xs"></div>
                                 </template>
                             </q-select>
-                            <q-select bg-color="light_yellow" outlined rounded v-model="form1_diagnosis_cipher"
-                                :options="form1_diagnosis_cipher_options" label="Шифр по ПМПК"
-                                class="input_field_UCStyle" :rules="[
+                            <q-select bg-color="light_yellow"
+                                popup-content-class="ucSelectToQuasar__popup_content_class" outlined rounded
+                                v-model="form1_diagnosis_cipher" :options="form1_diagnosis_cipher_options"
+                                label="Шифр по ПМПК" class="input_field_UCStyle" :rules="[
                                     val => !!val || 'Пожалуйста, заполните это поле'
                                 ]" lazy-rules reactive-rules
                                 @update:model-value="signinApi.validateForm('signinForm')">
@@ -575,7 +578,8 @@ const restorePasswordApi = {
 
                         <div class="q-gutter-y-md q-pb-md">
                             <q-btn type="submit" flat no-caps size="xl" class="q-pa-none full-width"
-                                style="border-radius: 22px" :loading="signinApi.loadingStates.value.login">
+                                style="border-radius: 22px" :loading="signinApi.loadingStates.value.login"
+                                :disable="!signinApi.currentFormIsValid">
                                 <template v-slot:loading>
                                     <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
                                         <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
@@ -649,7 +653,8 @@ const restorePasswordApi = {
                                             </q-input>
                                             <q-btn flat no-caps size="xl" type="submit" class="q-pa-none full-width"
                                                 style="border-radius: 22px"
-                                                :loading="restorePasswordApi.loadingStates.value.email">
+                                                :loading="restorePasswordApi.loadingStates.value.email"
+                                                :disable="!restorePasswordApi.currentFormIsValid">
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -702,7 +707,8 @@ const restorePasswordApi = {
                                             </div>
                                             <q-btn flat no-caps size="xl" type="submit" class="q-pa-none full-width"
                                                 style="border-radius: 22px"
-                                                :loading="restorePasswordApi.loadingStates.value.code">
+                                                :loading="restorePasswordApi.loadingStates.value.code"
+                                                :disable="!restorePasswordApi.currentFormIsValid">
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -747,7 +753,8 @@ const restorePasswordApi = {
                                             </q-input>
                                             <q-btn flat no-caps size="xl" type="submit" class="q-pa-none full-width"
                                                 style="border-radius: 22px"
-                                                :loading="restorePasswordApi.loadingStates.value.password">
+                                                :loading="restorePasswordApi.loadingStates.value.password"
+                                                :disable="!restorePasswordApi.currentFormIsValid">
                                                 <template v-slot:loading>
                                                     <div
                                                         class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">

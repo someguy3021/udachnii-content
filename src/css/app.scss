@@ -319,6 +319,24 @@ input[type="number"] {
       color: $uc_green
   }
 
+  &__wrapper_1_white {
+    border: solid 2px transparent;
+    border-radius: 22px;
+  }
+
+  &__wrapper_2_white {
+    border: solid 4px white;
+    border-style: dashed;
+    border-radius: 22px;
+    color: white
+  }
+
+}
+.ucSelectToQuasar {
+  &__popup_content_class{
+    background-color: $uc_light_yellow;
+    border-radius: 22px;
+  }
 }
 
 .btn {
