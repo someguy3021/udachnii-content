@@ -118,9 +118,9 @@ const blocks = computed(() =>
 
 <template>
   <q-form :ref="redactUserDataApi.formRefs.redactUserForm" @submit.prevent="redactUserDataApi.redactUser" no-error-focus
-    class="input_fieldsAndSubmit_wrapper q-pb-lg">
+    class="input_fieldsAndSubmit_wrapper q-pb-lg q-mb-lg">
 
-    <div class="input_fields_wrapper row q-gutter-y-sm q-pb-xl"
+    <div class="input_fields_wrapper row q-gutter-y-sm q-pb-sm"
       :class="$q.screen.lt.sm ? 'q-gutter-x-sm' : 'q-gutter-x-lg'">
 
       <div class="field_column_no_styles col-12 col-md q-gutter-y-md q-pb-md">
@@ -253,7 +253,8 @@ const blocks = computed(() =>
           <div class="q-mb-md">Статус ребёнка</div>
           <div>
             <q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_status"
-              :options="diagnosis_status_options" label="Выберите из спика" class="input_field_UCStyle" :rules="[
+              popup-content-class="ucSelectToQuasar__popup_content_class" :options="diagnosis_status_options"
+              label="Выберите из спика" class="input_field_UCStyle" :rules="[
                 val => !!val || 'Пожалуйста, заполните это поле'
               ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
@@ -266,7 +267,8 @@ const blocks = computed(() =>
           <div class="q-mb-md">Шифр по ПМПК</div>
           <div>
             <q-select bg-color="light_yellow" outlined rounded v-model="diagnosis_cipher"
-              :options="diagnosis_cipher_options" label="Выберите из спика" class="input_field_UCStyle" :rules="[
+              popup-content-class="ucSelectToQuasar__popup_content_class" :options="diagnosis_cipher_options"
+              label="Выберите из спика" class="input_field_UCStyle" :rules="[
                 val => !!val || 'Пожалуйста, заполните это поле'
               ]" lazy-rules reactive-rules @update:model-value="redactUserDataApi.validateForm('redactUserForm')">
               <template v-slot:prepend>
