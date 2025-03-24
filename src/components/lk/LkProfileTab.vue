@@ -7,7 +7,7 @@ const isPasswordVisble_1 = ref(true);
 const isPasswordVisble_2 = ref(true);
 const isPasswordVisble_3 = ref(true);
 
-const login = ref("login");
+const login = ref("loginexample@mail.com");
 const phoneNumber = ref();
 const password_current = ref();
 const password_new = ref();
@@ -407,14 +407,24 @@ const blocks = computed(() =>
 
 
     <div class="downloadTicket_wrapper">
-      <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none"
-        style="border-radius: 22px" :disable="!isTicketFullyUnlocked">
-        <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
-          <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
-            class="q-px-xl q-py-sm">
-            Скачать билет
+      <q-btn flat no-caps color="white" size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 330px;"
+        :disable="!isTicketFullyUnlocked">
+        <template v-slot:loading>
+          <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
+            <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm row">
+              <q-spinner-hourglass class="on-left" color="uc_green" />
+              Сохраняем...
+            </div>
           </div>
-        </div>
+        </template>
+        <template v-slot:default>
+          <div class="full-width ucButtonToQuasar__wrapper_1"
+            :class="redactUserDataApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
+            <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
+              Сохранить
+            </div>
+          </div>
+        </template>
       </q-btn>
     </div>
 
