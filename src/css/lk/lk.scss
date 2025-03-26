@@ -12,9 +12,9 @@
 
         main {
             background-image: url('src/assets/images/lk/lk-bg.svg');
-            background-size: contain;
-            background-position: bottom right;
-            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: top right;
+            background-repeat: repeat;
 
             @media (max-width: $media-m) {
                 background-image: url('src/assets/images/lk/lk-bg-tablet.webp');

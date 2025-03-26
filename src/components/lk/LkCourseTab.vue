@@ -3,13 +3,14 @@
     <div class="lk-course__left">
       <div ref="dropdown" class="lk-course__dropdown dropdown" v-click-outside="closeDropdown">
         <button @click="toggleDropdown" class="dropdown__btn btn">Правила</button>
-        <div class="dropdown__content" :class="{open: open}">
+        <div class="dropdown__content" :class="{ open: open }">
           Изучив весь материал курса, вы получите билет на фестиваль «У-Дачник».
           Все модули открываются постепенно — в каждом месяце по 4 видеоурока с текстовыми методическими материалами.
           Если у вас возникнут вопросы или вы захотите поделиться успехами, используйте кнопку «Обратная связь».
         </div>
       </div>
-        <img :style="{top: `${dropdownHeight}px`}" ref="img" class="lk-course__img" src="/src/assets/images/lk/course-pic.webp" alt="">
+      <img :style="{ top: `${dropdownHeight}px` }" ref="img" class="lk-course__img"
+        src="/src/assets/images/lk/course-pic.webp" alt="">
     </div>
     <div class="lk-course__right">
       <div class="lk-course__items">
@@ -28,8 +29,8 @@ export default {
     LkCourseSpoiler,
   },
   directives: {
-      clickOutside: vClickOutside.directive
-    },
+    clickOutside: vClickOutside.directive
+  },
   data() {
     return {
       months: [
@@ -39,7 +40,7 @@ export default {
           children: [
             {
               id: 0,
-              video_link: 'https://rutube.ru/play/embed/c71a722e6f74234eba54043ca507572b/',
+              video_link: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
               poster: '/src/assets/images/lk/poster.webp'
             },
             {
@@ -126,8 +127,8 @@ export default {
 
     dropdownHeightHundle() {
       if (this.$refs.img && this.$refs.dropdown) {
-      this.dropdownHeight = this.$refs.dropdown.clientHeight + 56;
-    }
+        this.dropdownHeight = this.$refs.dropdown.clientHeight + 56;
+      }
     }
   },
 
