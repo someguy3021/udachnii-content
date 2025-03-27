@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import AppLink_NewTabIfExt from 'src/components/AppLink_NewTabIfExt.vue';
 import AppAuthDialog from 'src/components/AppAuthDialog.vue';
 const showAuthDialog = ref(false);
 defineOptions({
@@ -13,6 +14,15 @@ defineEmits([
     // component will emit through useDialogPluginComponent()
     ...useDialogPluginComponent.emits
 ])
+
+const props = defineProps({
+    isUserLoggedInProp: {
+        type: Boolean,
+        default: false
+    }
+});
+
+// const isUserLoggedIn = ref(false); // для хендлинга что юзер залогинен - показывать ли кнопки. Логика ауфа должна быть в AppAuthDialog, чтобы открывать из любой точки приложения
 </script>
 
 <template>
@@ -29,14 +39,33 @@ defineEmits([
             </q-bar>
             <div class="flex flex-center justify-center" style="height: 90%;">
                 <div class="q-gutter-lg">
-                    <div class="h1 text-center q-pa-md">Преимущества</div>
-                    <div class="h1 text-center q-pa-md">Мероприятие</div>
-                    <div class="h1 text-center q-pa-md">Спикеры</div>
-                    <div class="h1 text-center q-pa-md">Партнеры</div>
+                    <div class="h1 text-center q-pa-md">
+                        <AppLink_NewTabIfExt :to="{ name: 'LandingPage', hash: '#landing_section_advantages' }"
+                            class="h1 text-center q-pa-md text-white">Преимущества
+                        </AppLink_NewTabIfExt>
+                    </div>
+                    <div class="h1 text-center q-pa-md">
+                        <AppLink_NewTabIfExt :to="{ name: 'LandingPage', hash: '#landing_section_events' }"
+                            class="h1 text-center q-pa-md text-white">Мероприятие
+                        </AppLink_NewTabIfExt>
+                    </div>
+                    <div class="h1 text-center q-pa-md">
+                        <AppLink_NewTabIfExt :to="{ name: 'LandingPage', hash: '#landing_section_speaker' }"
+                            class="h1 text-center q-pa-md text-white">Спикеры
+                        </AppLink_NewTabIfExt>
+                    </div>
+                    <div class="h1 text-center q-pa-md">
+                        <AppLink_NewTabIfExt :to="{ name: 'LandingPage', hash: '#landing_section_partners' }"
+                            class="h1 text-center q-pa-md text-white">Партнеры
+                        </AppLink_NewTabIfExt>
+                    </div>
                     <div class="flex flex-center justify-center">
                         <q-btn no-caps flat color="green" size="lg" text-color="primary"
-                            style="background-color: #EFDFBB;border: solid 2px #315720;"
-                            @click="showAuthDialog = true">Войти</q-btn>
+                            style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true"
+                            v-if="!isUserLoggedInProp">Войти</q-btn>
+                        <q-btn no-caps flat color="green" size="lg" text-color="primary"
+                            style="background-color: #EFDFBB;border: solid 2px #315720;" v-if="isUserLoggedInProp"
+                            :to="{ name: 'LKPage' }">Кабинет</q-btn>
                     </div>
                 </div>
 

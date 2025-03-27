@@ -25,24 +25,24 @@
                 <div class="header_buttons">
 
                     <div v-if="showLandingLinks == true" class="q-gutter-md row justify-center">
-                        <q-btn v-if="isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
+                        <q-btn v-if="!isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
                             style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true">
                             Войти
                         </q-btn>
-                        <q-btn v-if="!isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
+                        <q-btn v-if="isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
                             style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true"
-                            icon="img:src/assets/images/icons/logout.svg">
-                            Выйти
+                            :to="{ name: 'LKPage' }">
+                            Кабинет
                         </q-btn>
                         <q-btn v-if="$q.screen.lt.lg" flat no-caps color="green" icon="menu"
                             @click="showMobileDialog = true" size="lg" />
                     </div>
                     <div v-if="showLandingLinks == false">
-                        <q-btn v-if="isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
+                        <q-btn v-if="!isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
                             style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true">
                             Войти
                         </q-btn>
-                        <q-btn v-if="!isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
+                        <q-btn v-if="isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
                             style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true"
                             icon="img:src/assets/images/icons/logout.svg">
                             Выйти
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <DialogMenuMobile v-model="showMobileDialog"></DialogMenuMobile>
+    <DialogMenuMobile v-model="showMobileDialog" :isUserLoggedInProp="isUserLoggedIn"></DialogMenuMobile>
     <AppAuthDialog v-model="showAuthDialog" />
 </template>
 
@@ -61,11 +61,11 @@
 import { ref } from 'vue'
 import DialogMenuMobile from 'src/components/landing/DialogMenuMobile.vue'
 import AppAuthDialog from 'src/components/AppAuthDialog.vue';
-import AppLink_NewTabIfExt from './AppLink_NewTabIfExt.vue';
+import AppLink_NewTabIfExt from 'src/components/AppLink_NewTabIfExt.vue';
 
-const showMobileDialog = ref(false);
-const showAuthDialog = ref(false);
-const isUserLoggedIn = ref(false); // для хендлинга что юзер залогинен - показывать ли кнопки
+const showMobileDialog = ref(false); // диалоговое мобилки - там ссылки-якори и кнопка войти, которая открывает AppAuthDialog
+const showAuthDialog = ref(false); // показ диалог-окна AppAuthDialog
+const isUserLoggedIn = ref(true); // для хендлинга что юзер залогинен - показывать ли кнопки. Логика ауфа должна быть в AppAuthDialog, чтобы открывать из любой точки приложения
 
 const props = defineProps({
     showLandingLinksProp: {
@@ -74,5 +74,5 @@ const props = defineProps({
     }
 });
 
-const showLandingLinks = props.showLandingLinksProp;
+const showLandingLinks = props.showLandingLinksProp; // проп для изменения показанных кнопок между лендингом\профилем (скрываются ссылки-якори)
 </script>
