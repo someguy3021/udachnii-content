@@ -5,7 +5,9 @@
                 :class="$q.screen.gt.sm ? 'justify-between q-px-xl' : 'justify-between q-px-md'">
                 <div
                     :style="$q.screen.gt.xs ? 'min-width: 150px; max-width: 150px;' : 'min-width: 110px; max-width: 110px;'">
-                    <q-img src="src/assets/logo.svg" style="height: 100%; width: 100%;" />
+                    <AppLink_NewTabIfExt :to="{ name: 'LandingPage' }"><q-img src="src/assets/logo.svg"
+                            style="height: 100%; width: 100%;" :to="{ name: 'LandingPage' }" />
+                    </AppLink_NewTabIfExt>
                 </div>
                 <div class="row" style="min-width: 150px;max-width: 550px;"
                     v-if="$q.screen.gt.md && showLandingLinks == true">
