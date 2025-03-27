@@ -61,7 +61,7 @@
           <div class="col-12 col-md-7 flex flex-center" style="max-width: 90%;">
             <div :style="[
               $q.screen.gt.sm ?
-                { marginBottom: '80%', marginRight: '20%' }
+                { marginBottom: '70%', marginRight: '20%' }
                 : { marginBottom: '80%' }
             ]">
               <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-py-md"
