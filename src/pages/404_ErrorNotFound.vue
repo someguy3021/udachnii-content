@@ -14,7 +14,8 @@
             не найдена!</div>
         </div>
         <div>
-          <q-btn flat no-caps color="white" size="lg" class="q-pa-none full-width" style="border-radius: 22px">
+          <q-btn :to="{ name: 'LandingPage' }" flat no-caps color="white" size="lg" class="q-pa-none full-width"
+            style="border-radius: 22px">
             <div style="border: solid 4px #F8CB96; background-color: #F8CB96; border-radius: 22px;" class="full-width">
               <div style="border: solid 2px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
                 class="q-px-lg q-py-md full-width">

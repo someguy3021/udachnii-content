@@ -16,7 +16,8 @@
         </div>
         <div class="col-12 col-md-4 flex items-end">
           <div class="q-gutter-y-md">
-            <q-btn flat no-caps color="white" size="lg" class="q-pa-none full-width" style="border-radius:  24px">
+            <q-btn @click="showAuthDialog = true" flat no-caps color="white" size="lg" class="q-pa-none full-width"
+              style="border-radius:  24px">
               <div style="border: solid 4px #F8CB96; background-color: #F8CB96; border-radius:  24px;"
                 class="full-width">
                 <div style="border: solid 2px #A27D54; border-style: dashed; border-radius:  24px; color:#A27D54"
@@ -25,7 +26,8 @@
                 </div>
               </div>
             </q-btn>
-            <q-btn flat no-caps color="white" size="lg" class="q-pa-none full-width" style="border-radius:  24px">
+            <q-btn :to="{ name: 'LandingPage' }" flat no-caps color="white" size="lg" class="q-pa-none full-width"
+              style="border-radius:  24px">
               <div class="full-width">
                 <div style="border: solid 2px white; border-style: dashed; border-radius:  24px; color:white"
                   class="q-px-md q-py-md full-width">
@@ -43,11 +45,16 @@
     </div>
 
   </div>
+  <AppAuthDialog v-model="showAuthDialog" :isShowLogin=false />
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import AppHeaderCompact from 'src/components/AppHeaderCompact.vue'
 import AppFooter from 'src/components/AppFooter.vue'
+import AppAuthDialog from 'src/components/AppAuthDialog.vue';
+
+const showAuthDialog = ref(false); // показ диалог-окна AppAuthDialog
 </script>
 
 <style lang="scss">

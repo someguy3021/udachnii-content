@@ -21,7 +21,7 @@ const props = defineProps({
         default: false
     }
 });
-
+const isUserLoggedIn = ref(props.isUserLoggedInProp);
 // const isUserLoggedIn = ref(false); // для хендлинга что юзер залогинен - показывать ли кнопки. Логика ауфа должна быть в AppAuthDialog, чтобы открывать из любой точки приложения
 </script>
 
@@ -62,9 +62,9 @@ const props = defineProps({
                     <div class="flex flex-center justify-center">
                         <q-btn no-caps flat color="green" size="lg" text-color="primary"
                             style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true"
-                            v-if="!isUserLoggedInProp">Войти</q-btn>
+                            v-if="!isUserLoggedIn">Войти</q-btn>
                         <q-btn no-caps flat color="green" size="lg" text-color="primary"
-                            style="background-color: #EFDFBB;border: solid 2px #315720;" v-if="isUserLoggedInProp"
+                            style="background-color: #EFDFBB;border: solid 2px #315720;" v-if="isUserLoggedIn"
                             :to="{ name: 'LKPage' }">Кабинет</q-btn>
                     </div>
                 </div>
