@@ -31,9 +31,11 @@
                     <div class="q-mb-sm">
                         <q-btn flat no-caps color="primary" icon="mail" label="info@example" />
                     </div>
-                    <div class="flex items-center justify-center">
-                        <q-btn flat round color="primary" icon="fa-brands fa-telegram" />
-                        <q-btn flat round color="primary" icon="fa-brands fa-vk" />
+                    <div class="flex items-center justify-center q-gutter-md">
+                        <q-btn flat round color="primary" icon="img:src\assets\images\icons\Telegram_ucGreen.svg"
+                            padding="none" size="lg" />
+                        <q-btn flat round color="primary" icon="img:src\assets\images\icons\VK_ucGreen.svg"
+                            padding="none" size="lg" />
                     </div>
                 </div>
             </div>
@@ -45,11 +47,13 @@
                     <div class="col">
                         <div class="q-mb-sm">
                             <q-btn flat no-caps color="primary" icon="mail" label="info@example"
-                                :size="$q.screen.width <= 363 ? 'sm' : 'md'" />
+                                :size="$q.screen.width <= 327 ? 'sm' : 'md'" padding="xs" />
                         </div>
-                        <div class="flex items-center justify-start q-pl-sm">
-                            <q-btn flat round color="primary" icon="fa-brands fa-telegram" />
-                            <q-btn flat round color="primary" icon="fa-brands fa-vk" />
+                        <div class="flex items-center justify-start q-pl-sm q-gutter-md">
+                            <q-btn flat round color="primary" icon="img:src\assets\images\icons\Telegram_ucGreen.svg"
+                                padding="none" size="lg" />
+                            <q-btn flat round color="primary" icon="img:src\assets\images\icons\VK_ucGreen.svg"
+                                padding="none" size="lg" />
                         </div>
                     </div>
                 </div>
@@ -105,9 +109,11 @@
                     <div class="q-mb-sm">
                         <q-btn flat no-caps color="white" icon="mail" label="info@example" />
                     </div>
-                    <div class="flex items-center justify-center">
-                        <q-btn flat round color="white" icon="fa-brands fa-telegram" />
-                        <q-btn flat round color="white" icon="fa-brands fa-vk" />
+                    <div class="flex items-center justify-center q-gutter-md">
+                        <q-btn flat round color="white" icon="img:src\assets\images\icons\Telegram_ucGreen.svg"
+                            class="svg_filter_white" padding="none" size="lg" />
+                        <q-btn flat round color="white" icon="img:src\assets\images\icons\VK_ucGreen.svg"
+                            class="svg_filter_white" padding="none" size="lg" />
                     </div>
                 </div>
             </div>
@@ -117,14 +123,16 @@
                         <q-img fit="contain" src="src/assets/logo.svg" style="max-width: 200px;"
                             class="svg_filter_white" />
                     </div>
-                    <div class="col">
+                    <div class="col q-pl-md">
                         <div class="q-mb-sm">
                             <q-btn flat no-caps color="white" icon="mail" label="info@example"
-                                :size="$q.screen.width <= 363 ? 'sm' : 'md'" />
+                                :size="$q.screen.width <= 327 ? 'sm' : 'md'" padding="xs" />
                         </div>
-                        <div class="flex items-center justify-start q-pl-sm">
-                            <q-btn flat round color="white" icon="fa-brands fa-telegram" />
-                            <q-btn flat round color="white" icon="fa-brands fa-vk" />
+                        <div class="flex items-center justify-start q-pl-sm q-gutter-md">
+                            <q-btn flat round color="white" icon="img:src\assets\images\icons\Telegram_ucGreen.svg"
+                                class="svg_filter_white" padding="none" size="lg" />
+                            <q-btn flat round color="white" icon="img:src\assets\images\icons\VK_ucGreen.svg"
+                                class="svg_filter_white" padding="none" size="lg" />
                         </div>
                     </div>
                 </div>
