@@ -60,31 +60,19 @@
                 <q-space />
                 <q-btn icon="close" flat round dense v-close-popup color="uc_green" size="lg" />
             </q-card-section>
-            <q-card-section class="row items-center">
-                <span class="q-ml-sm h4 text-center text-uc_green font_Sunday">Вы уверены что хотите выйти из
+            <q-card-section class="row items-center q-pa-lg">
+                <span class="q-ml-sm h4 text-center text-uc_green">Вы уверены что хотите выйти из
                     аккаунта?</span>
             </q-card-section>
 
             <q-card-actions align="center" class="q-gutter-y-md">
-                <q-btn flat no-caps color="white" size="md" class="q-pa-none" style="border-radius:  24px"
+                <q-btn flat no-caps color="uc_green" size="lg" class="q-px-lg" style="border-radius:  22px"
                     v-close-popup>
-                    <div style="border: solid 4px #F8CB96; background-color: #F8CB96; border-radius:  24px;"
-                        class="full-width">
-                        <div style="border: solid 2px #A27D54; border-style: dashed; border-radius:  24px; color:#A27D54"
-                            class="q-px-md q-py-md full-width">
-                            Да, выйти из аккаунта
-                        </div>
-                    </div>
+                    Да, выйти из аккаунта
                 </q-btn>
-                <q-btn flat no-caps color="white" size="lg" class="q-pa-none " style="border-radius:  24px"
+                <q-btn flat no-caps color="uc_green" size="lg" class="q-px-lg" style="border-radius:  22px"
                     v-close-popup>
-                    <div style="border: solid 4px #F8CB96; background-color: #F8CB96; border-radius:  24px;"
-                        class="full-width">
-                        <div style="border: solid 2px #A27D54; border-style: dashed; border-radius:  24px; color:#A27D54"
-                            class="q-px-md q-py-md full-width">
-                            Нет, вернуться назад
-                        </div>
-                    </div>
+                    Нет, вернуться назад
                 </q-btn>
             </q-card-actions>
         </q-card>
