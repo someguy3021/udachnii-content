@@ -21,8 +21,9 @@
         <div class="sign_button_wrapper">
           <div class="sign_button sign_button_pillar">
             <div>
-              <q-btn flat no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'lg' : 'md'"
-                class="q-pa-none" style="margin-bottom: -38%;border-radius: 40px">
+              <q-btn @click="showAuthDialog = true" flat no-caps color="white" label=""
+                :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'lg' : 'md'" class="q-pa-none"
+                style="margin-bottom: -38%;border-radius: 40px">
                 <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
                   <div style="border: solid 2px #A27D54; border-radius: 40px;">
                     <div style="border: solid 4px #806241; border-style: dashed; border-radius: 40px;"
@@ -299,6 +300,7 @@
       <AppFooter />
     </div>
   </q-page>
+  <AppAuthDialog v-model="showAuthDialog" :isShowLogin=false />
 </template>
 
 <script setup>
@@ -310,6 +312,8 @@ import AppHeaderCompact from 'src/components/AppHeaderCompact.vue'
 import AppFooter from 'src/components/AppFooter.vue'
 import AppearBlock from 'src/components/landing/AppearBlock.vue'
 import LandingAccordeon from 'src/components/landing/LandingAccordeon.vue'
+import AppAuthDialog from 'src/components/AppAuthDialog.vue';
+const showAuthDialog = ref(false); // показ диалог-окна AppAuthDialog
 
 const slide = ref(1)
 const slide2 = ref(1)

@@ -19,7 +19,7 @@ const props = defineProps({
     isShowLogin: {
         type: Boolean,
         default: true
-    }
+    },
 });
 const showLogin = ref(props.isShowLogin); // for handling what window to show
 
