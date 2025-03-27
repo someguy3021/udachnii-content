@@ -396,8 +396,8 @@ const restorePasswordApi = {
 <template>
     <q-dialog ref="dialogRef" persistent maximized>
         <q-card class="bg-uc_light_green reg_wrapper" v-if="showLogin">
-            <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent;  pointer-events: auto;"
-                v-if="$q.screen.gt.sm">
+            <q-bar class="q-pa-xl fixed-full z-top"
+                style="height: 60px; background-color: transparent;  pointer-events: auto;" v-if="$q.screen.gt.sm">
                 <q-space />
                 <q-btn dense flat round icon="close" v-close-popup size="lg"
                     :color="$q.screen.lt.md ? 'uc_green' : 'white'"
@@ -405,9 +405,10 @@ const restorePasswordApi = {
                     <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                 </q-btn>
             </q-bar>
-            <div class="fullscreen row" style="pointer-events: none; z-index: 12;">
+            <div class="fullscreen row" style="pointer-events: none">
                 <div class="login_emptySpaceImg col-12 col-md" style="min-height: 50%;">
-                    <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent; pointer-events: auto;"
+                    <q-bar class="q-pa-xl fixed-full z-top"
+                        style="height: 60px; background-color: transparent; pointer-events: auto;"
                         v-if="$q.screen.lt.md">
                         <q-space />
                         <q-btn dense flat round icon="close" v-close-popup size="lg"
@@ -485,14 +486,7 @@ const restorePasswordApi = {
             </div>
         </q-card>
         <q-card class="login_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
-            <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent;  pointer-events: auto;">
-                <q-space />
-                <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
-                    style="border: solid 2px #315720;background-color: #EFDFBB;">
-                    <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
-                </q-btn>
-            </q-bar>
-            <div class="fullscreen row" style="pointer-events: none; z-index: 12;">
+            <div class="fullscreen row" style="pointer-events: none">
                 <div class="signIn_emptySpaceImg col-12 col-md" style="min-height: 50%;" v-if="$q.screen.gt.sm">
                 </div>
                 <div class="signIn_bgVectorClouds col-12 col-md flex flex-center">
@@ -611,6 +605,14 @@ const restorePasswordApi = {
                     </q-form>
                 </div>
             </div>
+            <q-bar class="q-pa-xl fixed-full z-top"
+                style="height: 60px; background-color: transparent;  pointer-events: auto;">
+                <q-space />
+                <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
+                    style="border: solid 2px #315720;background-color: #EFDFBB;">
+                    <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
+                </q-btn>
+            </q-bar>
         </q-card>
         <!-- Second dialog -->
         <q-dialog v-model="restorePasswordDialog" persistent maximized>
