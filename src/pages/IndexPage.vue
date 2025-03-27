@@ -179,20 +179,19 @@
         </q-carousel>
       </div>
     </div>
-    <div class="section_events" style="position: relative; margin-top: -50px; z-index: 2; overflow: hidden;"
-      id="landing_section_events">
+    <div class="section_events" style="position: relative; z-index: 2; overflow: hidden;" id="landing_section_events">
       <div class="section_events_background">
         <div class="eventsTicket_invite_wrapper">
           <div class="eventsTicket_invite_string"></div>
           <div class="flex flex-center">
             <div class="eventsTicket_invite_paperBody flex flex-center"
               :class="$q.screen.gt.md ? 'q-px-xl q-py-xl' : 'q-px-sm q-py-lg'">
-              <div class="eventsTicket_invite_paperBody_text">
+              <div class="eventsTicket_invite_paperBody_text q-py-md">
                 <div class="eventsTicket_bigText h4 font_Sunday text-center q-mb-md q-pb-md">Приглашаем на Фестиваль
                   «У-дачник»!
                 </div>
                 <div class="eventsTicket_blockWBackgroundAndPic bg-uc_light_green q-px-md q-mb-md"
-                  style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-xs' : 'q-py-md'">
+                  style="border-radius: 20px;" :class="$q.screen.lt.sm ? 'q-py-sm' : 'q-py-sm'">
                   <div class="flex flex-center"> <q-img non-selectable src="src/assets/landing/blocks/solar_cup.svg"
                       spinner-color="white"
                       :style="$q.screen.gt.sm ? { height: '70px', width: '70px' } : { height: '44px', width: '44px' }" />
@@ -435,12 +434,18 @@ const slide2 = ref(1)
   height: 3343px;
 }
 
+.section_events {
+  margin-top: -50px;
+}
+
 .section_events_background {
   background: url(../assets/landing/section_events.webp) no-repeat;
   background-blend-mode: normal;
   background-origin: padding-box;
   height: 1095px;
-
+  background-position-x: center;
+  background-position-y: top;
+  background-size: cover;
 }
 
 .section_registrations_background {
@@ -549,6 +554,7 @@ const slide2 = ref(1)
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 821px;
+    background-size: cover;
   }
 
   .section_registrations_background {
@@ -650,6 +656,7 @@ const slide2 = ref(1)
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 762px;
+    background-size: cover;
   }
 
   .section_registrations_background {
@@ -740,13 +747,13 @@ const slide2 = ref(1)
   }
 
   .eventsTicket_invite_paperBody {
-    background-image: url(../assets/landing/blocks/invite_paperBody_mobile.webp);
     background-size: cover;
     transform: rotate(0);
   }
 }
 
 @media (max-width: 440px) {
+
   .section_banner_background {
     background: url(../assets/landing/mobile/section_banner.webp) no-repeat,
       linear-gradient(rgba(208, 231, 241, 1), rgba(255, 255, 255, 0));
@@ -769,11 +776,18 @@ const slide2 = ref(1)
     height: 737px;
   }
 
+  .section_events {
+    margin-top: 0px;
+  }
+
   .section_events_background {
     background: url(../assets/landing/mobile/section_events.webp) no-repeat;
     background-blend-mode: normal;
     background-origin: padding-box;
     height: 760px;
+    background-position-x: center;
+    background-position-y: top;
+    background-size: cover;
   }
 
   .section_registrations_background {
@@ -806,7 +820,7 @@ const slide2 = ref(1)
   }
 
   .eventsTicket_invite_paperBody {
-    background-size: 200%;
+    background-size: 200% 100%;
   }
 }
 
