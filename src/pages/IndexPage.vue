@@ -249,8 +249,8 @@
           <div class="">
             <div class="text-primary h1 font_Sunday q-pb-xl">Сделай лето у-дачным!</div>
             <div>
-              <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                class="q-pa-none" style="border-radius: 22px">
+              <q-btn @click="showAuthDialog = true" flat no-caps color="white"
+                :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'" class="q-pa-none" style="border-radius: 22px">
                 <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
                   <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
                     class="q-px-xl q-py-sm">
