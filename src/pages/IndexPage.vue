@@ -3,7 +3,7 @@
     <div class="section_banner">
       <div class="section_banner_background">
 
-        <AppHeaderCompact />
+        <AppHeaderCompact :showLandingLinksProp=true />
 
         <div class="text_hero_wrapper self-center">
           <div class="text_hero q-px-md">

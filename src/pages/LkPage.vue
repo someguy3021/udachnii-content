@@ -5,7 +5,7 @@
         <div class="lk__tabs tabs">
           <div class="container">
             <div class="tabs__container">
-              <router-link :to="{ name: 'LK' }" class="lk__tab">На главную</router-link>
+              <router-link :to="{ name: 'LandingPage' }" class="lk__tab">На главную</router-link>
               <button v-for="tab in tabs" :key="tab.id" @click="changeTab(tab)" class="lk__tab btn"
                 :class="{ active: activeTab === tab.id }">{{ tab.name }}</button>
             </div>
