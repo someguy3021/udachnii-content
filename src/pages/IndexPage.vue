@@ -267,10 +267,11 @@
     <div class="section_partners" id="landing_section_partners">
       <div class="section_partners_background">
         <div style="height: 254px; width: 100%; margin-top: -36px;"
-          :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" class="q-pa-lg">
-          <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-            control-type="unelevated" control-color="white" control-text-color="primary" padding arrows infinite
-            :autoplay=true style="height: 100%; background-color: transparent;">
+          :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" :class="$q.screen.lt.sm ? '' : 'q-pa-lg'">
+          <q-carousel v-model="slide2" padding infinite transition-prev="slide-right" transition-next="slide-left"
+            swipeable animated :control-type="$q.screen.lt.sm ? 'flat' : 'unelevated'" control-color="white"
+            control-text-color="primary" :arrows="$q.screen.gt.xs" :navigation="$q.screen.lt.sm" :autoplay=true
+            style="height: 100%; background-color: transparent;">
             <q-carousel-slide :name="1" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
