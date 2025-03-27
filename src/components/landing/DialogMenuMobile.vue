@@ -26,7 +26,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <q-dialog persistent :maximized=true transition-show="slide-up" transition-hide="slide-down">
+    <q-dialog :maximized=true transition-show="slide-up" transition-hide="slide-down">
         <q-card class="bg-uc_light_green text-white">
             <q-bar style="height: 60px;">
                 <div style="height: 32px; width: 88px;">

@@ -21,7 +21,7 @@
         <div class="sign_button_wrapper">
           <div class="sign_button sign_button_pillar">
             <div>
-              <q-btn no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'lg' : 'md'"
+              <q-btn flat no-caps color="white" label="" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'lg' : 'md'"
                 class="q-pa-none" style="margin-bottom: -38%;border-radius: 40px">
                 <div style="border: solid 2px #806241; background-color: #A27D54; border-radius: 40px;">
                   <div style="border: solid 2px #A27D54; border-radius: 40px;">

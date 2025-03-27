@@ -39,6 +39,20 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
+  // Этот код убирает хещ-ссылку при перезагрузке страницы
+  Router.beforeEach((to, from, next) => {
+    if (!from.name && to.hash) {
+      // Detect initial page load with hash
+      const cleanRoute = {
+        path: to.path,
+        query: to.query,
+        hash: undefined,
+      };
+      return next(cleanRoute);
+    }
+    next();
+  });
+
   // const Router = createRouter({
   //   scrollBehavior: () => ({ left: 0, top: 0 }),
   //   routes,

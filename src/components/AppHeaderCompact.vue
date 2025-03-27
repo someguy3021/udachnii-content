@@ -24,7 +24,7 @@
                 </div>
                 <div class="header_buttons">
 
-                    <div v-if="showLandingLinks == true" class="q-gutter-md row justify-center">
+                    <div v-if="showLandingLinks == true" class="q-gutter-sm row justify-center">
                         <q-btn v-if="!isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
                             style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true">
                             Войти
@@ -43,8 +43,8 @@
                             Войти
                         </q-btn>
                         <q-btn v-if="isUserLoggedIn" no-caps flat color="green" size="lg" text-color="primary"
-                            style="background-color: #EFDFBB;border: solid 2px #315720;" @click="showAuthDialog = true"
-                            icon="img:src/assets/images/icons/logout.svg">
+                            style="background-color: #EFDFBB;border: solid 2px #315720;"
+                            @click="showConfirmLogout = true" icon="img:src/assets/images/icons/logout.svg">
                             Выйти
                         </q-btn>
                     </div>
@@ -55,6 +55,22 @@
     </div>
     <DialogMenuMobile v-model="showMobileDialog" :isUserLoggedInProp="isUserLoggedIn"></DialogMenuMobile>
     <AppAuthDialog v-model="showAuthDialog" />
+    <q-dialog v-model="showConfirmLogout">
+        <q-card class="q-pb-lg bg-uc_fon">
+            <q-card-section class="row items-center q-pb-none">
+                <q-space />
+                <q-btn icon="close" flat round dense v-close-popup />
+            </q-card-section>
+            <q-card-section class="row items-center">
+                <span class="q-ml-sm h3 text-center">Вы уверены что хотите выйти из аккаунта?</span>
+            </q-card-section>
+
+            <q-card-actions align="center">
+                <q-btn class="h5" flat label="Да, выйти из аккаунта" color="primary" no-caps v-close-popup />
+                <q-btn class="h5" flat label="Нет, вернуться назад" color="primary" no-caps v-close-popup />
+            </q-card-actions>
+        </q-card>
+    </q-dialog>
 </template>
 
 <script setup>
@@ -65,6 +81,7 @@ import AppLink_NewTabIfExt from 'src/components/AppLink_NewTabIfExt.vue';
 
 const showMobileDialog = ref(false); // диалоговое мобилки - там ссылки-якори и кнопка войти, которая открывает AppAuthDialog
 const showAuthDialog = ref(false); // показ диалог-окна AppAuthDialog
+const showConfirmLogout = ref(false);
 const isUserLoggedIn = ref(true); // для хендлинга что юзер залогинен - показывать ли кнопки. Логика ауфа должна быть в AppAuthDialog, чтобы открывать из любой точки приложения
 
 const props = defineProps({
