@@ -283,7 +283,7 @@ const blocks = computed(() =>
     </div>
 
     <div class="submit_wrapper">
-      <q-btn type="submit" flat no-caps size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 330px;"
+      <q-btn type="submit" flat no-caps size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 230px;"
         :loading="redactUserDataApi.loadingStates.value.redactUser" :disable="!redactUserDataApi.currentFormIsValid">
         <template v-slot:loading>
           <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -407,7 +407,7 @@ const blocks = computed(() =>
 
 
     <div class="downloadTicket_wrapper">
-      <q-btn flat no-caps color="white" size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 330px;"
+      <q-btn flat no-caps color="white" size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 230px;"
         :disable="!isTicketFullyUnlocked">
         <template v-slot:loading>
           <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
@@ -420,8 +420,11 @@ const blocks = computed(() =>
         <template v-slot:default>
           <div class="full-width ucButtonToQuasar__wrapper_1"
             :class="redactUserDataApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
-            <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
-              Сохранить
+            <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm row">
+              <div class="col-9 flex flex-center  q-px-md">Сохранить</div>
+              <div class="col-3 flex flex-center"><q-img non-selectable src="src/assets/images/icons/download.svg"
+                  spinner-color="white" style=" height: 30px; width: 30px" />
+              </div>
             </div>
           </div>
         </template>
