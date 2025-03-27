@@ -62,6 +62,21 @@
             @include phone-bold_16;
         }
 
+        @media (max-width: 420px) {
+            padding: 12px 12px;
+            @include phone-bold_16;
+        }
+
+        @media (max-width: 368px) {
+            padding: 10px 10px;
+            @include phone-bold_16;
+        }
+
+        @media (max-width: 358px) {
+            padding: 10px 8px;
+            @include phone-bold_16;
+        }
+
         &.active {
             border: 2px dotted $button_text;
         }
