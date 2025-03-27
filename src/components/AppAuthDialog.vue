@@ -396,7 +396,8 @@ const restorePasswordApi = {
 <template>
     <q-dialog ref="dialogRef" persistent maximized>
         <q-card class="bg-uc_light_green reg_wrapper" v-if="showLogin">
-            <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent;" v-if="$q.screen.gt.sm">
+            <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent;  pointer-events: auto;"
+                v-if="$q.screen.gt.sm">
                 <q-space />
                 <q-btn dense flat round icon="close" v-close-popup size="lg"
                     :color="$q.screen.lt.md ? 'uc_green' : 'white'"
@@ -484,7 +485,7 @@ const restorePasswordApi = {
             </div>
         </q-card>
         <q-card class="login_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
-            <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent;">
+            <q-bar class="q-pa-xl" style="height: 60px; background-color: transparent;  pointer-events: auto;">
                 <q-space />
                 <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
                     style="border: solid 2px #315720;background-color: #EFDFBB;">
@@ -623,7 +624,7 @@ const restorePasswordApi = {
                             :class="$q.screen.lt.md ? 'fullscreen' : ''"
                             :style="$q.screen.lt.md ? '' : 'max-width: 426px'">
                             <div class="q-gutter-y-md restorePassword_formWrapper_fields" style="height: 100%;">
-                                <q-bar style="height: 60px; background-color: transparent;">
+                                <q-bar style="height: 60px; background-color: transparent;  pointer-events: auto;">
                                     <q-space />
                                     <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
                                         style="border: solid 2px #315720"
