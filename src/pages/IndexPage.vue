@@ -57,9 +57,13 @@
     <div class="section_advantages" id="landing_section_advantages">
       <div class="section_advantages_background">
 
-        <div class="row" style="height: 100%;">
+        <div class="row" style="height: 100%;" :class="$q.screen.gt.sm ? '' : 'flex-center'">
           <div class="col-12 col-md-7 flex flex-center" style="max-width: 90%;">
-            <div style="margin-bottom: 80%;">
+            <div :style="[
+              $q.screen.gt.sm ?
+                { marginBottom: '80%', marginRight: '20%' }
+                : { marginBottom: '80%' }
+            ]">
               <AppearBlock class="textblock_general textblock_notmirrored flex flex-center q-py-md"
                 style="min-width: 300px;">
                 <div class="textblock_textwrapper text-primary q-pl-none q-pt-md">
@@ -246,9 +250,9 @@
             <div class="text-primary h1 font_Sunday q-pb-xl">Сделай лето у-дачным!</div>
             <div>
               <q-btn flat no-caps color="white" :size="$q.screen.gt.sm || $q.screen.lt.sm ? 'xl' : 'md'"
-                class="q-pa-none" style="border-radius: 40px">
-                <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 40px;">
-                  <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 40px; color:#A27D54"
+                class="q-pa-none" style="border-radius: 22px">
+                <div style="border: solid 2px #F8CB96; background-color: #F8CB96; border-radius: 22px;">
+                  <div style="border: solid 4px #A27D54; border-style: dashed; border-radius: 22px; color:#A27D54"
                     class="q-px-xl q-py-sm">
                     Присоединиться
                   </div>

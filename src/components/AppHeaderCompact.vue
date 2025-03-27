@@ -88,7 +88,7 @@ import AppLink_NewTabIfExt from 'src/components/AppLink_NewTabIfExt.vue';
 const showMobileDialog = ref(false); // диалоговое мобилки - там ссылки-якори и кнопка войти, которая открывает AppAuthDialog
 const showAuthDialog = ref(false); // показ диалог-окна AppAuthDialog
 const showConfirmLogout = ref(false);
-const isUserLoggedIn = ref(true); // для хендлинга что юзер залогинен - показывать ли кнопки. Логика ауфа должна быть в AppAuthDialog, чтобы открывать из любой точки приложения
+const isUserLoggedIn = ref(false); // для хендлинга что юзер залогинен - показывать ли кнопки. Логика ауфа должна быть в AppAuthDialog, чтобы открывать из любой точки приложения
 
 const props = defineProps({
     showLandingLinksProp: {
