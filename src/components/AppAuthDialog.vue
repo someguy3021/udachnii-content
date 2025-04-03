@@ -492,14 +492,14 @@ const restorePasswordApi = {
                     </div>
                 </div>
             </q-card>
-            <q-card class="signin_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
+            <q-card class="signIn_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
                 <div class="fullscreen row" style="pointer-events: none">
                     <div class="signIn_emptySpaceImg col-12 col-md" style="min-height: 50%;" v-if="$q.screen.gt.sm">
                     </div>
                     <div class="signIn_bgVectorClouds col-12 col-md flex flex-center"
                         :style="$q.screen.lt.md ? 'padding-top: 96px;' : ''">
                         <q-form :ref="signinApi.formRefs.signinForm" @submit.prevent="signinApi.signin" no-error-focus
-                            class="login_form_wrapper q-pa-md q-gutter-y-md"
+                            class="signIn_form_wrapper q-pa-md q-gutter-y-md"
                             style="width: 100%; max-width: 580px; pointer-events: auto;">
                             <div class="text-center text-uc_green q-pb-md" v-if="$q.screen.lt.md">
                                 <div class="font_Sunday h3 q-pb-md">Вступайте в команду «у-Дачников»</div>
