@@ -493,7 +493,7 @@ const restorePasswordApi = {
                 </div>
             </q-card>
             <q-card class="signIn_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
-                <div class="fullscreen row" style="pointer-events: none">
+                <div class="fullscreen row scroll" style="pointer-events: auto">
                     <div class="signIn_emptySpaceImg col-12 col-md" style="min-height: 50%;" v-if="$q.screen.gt.sm">
                     </div>
                     <div class="signIn_bgVectorClouds col-12 col-md flex flex-center"
