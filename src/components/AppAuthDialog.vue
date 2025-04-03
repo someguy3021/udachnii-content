@@ -44,6 +44,7 @@ const form1_diagnosis_cipher_options = [
     'ЧF83 (Смешанные специфические расстройства психологического развития)',
     'F84 (Общие расстройства психологического развития – РАС)'
 ];
+const form1_acceptTerms = ref(false);
 const loginApi = {
     formRefs: {
         loginForm: ref(null)
@@ -395,225 +396,246 @@ const restorePasswordApi = {
 
 <template>
     <q-dialog ref="dialogRef" persistent maximized>
-        <q-card class="bg-uc_light_green reg_wrapper" v-if="showLogin">
-            <q-bar class="q-pa-xl fixed-full z-top"
-                style="height: 60px; background-color: transparent;  pointer-events: auto;" v-if="$q.screen.gt.sm">
-                <q-space />
-                <q-btn dense flat round icon="close" v-close-popup size="lg"
-                    :color="$q.screen.lt.md ? 'uc_green' : 'white'"
-                    :style="$q.screen.lt.md ? 'border: solid 2px #315720' : 'border: solid 2px white'">
-                    <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
-                </q-btn>
-            </q-bar>
-            <div class="fullscreen row" style="pointer-events: none">
-                <div class="login_emptySpaceImg col-12 col-md" style="min-height: 50%;">
-                    <q-bar class="q-pa-xl fixed-full z-top"
-                        style="height: 60px; background-color: transparent; pointer-events: auto;"
-                        v-if="$q.screen.lt.md">
-                        <q-space />
-                        <q-btn dense flat round icon="close" v-close-popup size="lg"
-                            :color="$q.screen.lt.md ? 'uc_green' : 'white'"
-                            :style="$q.screen.lt.md ? 'border: solid 2px #315720' : 'border: solid 2px white'">
-                            <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
-                        </q-btn>
-                    </q-bar>
-                </div>
-                <div class="login_bgVectorClouds col-12 col-md flex flex-center">
-                    <q-form :ref="loginApi.formRefs.loginForm" @submit.prevent="loginApi.login" no-error-focus
-                        class="login_form_wrapper q-pa-md q-gutter-y-md"
-                        style="width: 100%; max-width: 580px; pointer-events: auto;">
-                        <div class="text-center font_Sunday h1 text-white q-pb-md">Авторизация</div>
+        <div :class="showLogin ? 'bg-uc_light_green' : 'bg-uc_fon'">
+            <q-card class="bg-uc_light_green reg_wrapper" v-if="showLogin">
+                <q-bar class="q-pa-xl fixed-full z-top"
+                    style="height: 60px; background-color: transparent; pointer-events: none;" v-if="$q.screen.gt.sm">
+                    <q-space />
+                    <q-btn dense flat round icon="close" v-close-popup size="lg" style="pointer-events: auto;"
+                        :color="$q.screen.lt.md ? 'uc_green' : 'white'"
+                        :style="$q.screen.lt.md ? 'border: solid 2px #315720' : 'border: solid 2px white'">
+                        <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
+                    </q-btn>
+                </q-bar>
+                <div class="fullscreen row" style="pointer-events: none">
+                    <div class="login_emptySpaceImg col-12 col-md" style="min-height: 30%;">
+                        <q-bar class="q-pa-xl fixed-full z-top" style="height: 60px; background-color: transparent;"
+                            v-if="$q.screen.lt.md">
+                            <q-space />
+                            <q-btn dense flat round icon="close" v-close-popup size="lg"
+                                :color="$q.screen.lt.md ? 'uc_green' : 'white'"
+                                :style="$q.screen.lt.md ? 'border: solid 2px #315720' : 'border: solid 2px white'"
+                                style="background-color: #EFDFBB; pointer-events: auto;">
+                                <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
+                            </q-btn>
+                        </q-bar>
+                    </div>
+                    <div class="login_bgVectorClouds col-12 col-md flex flex-center">
+                        <q-form :ref="loginApi.formRefs.loginForm" @submit.prevent="loginApi.login" no-error-focus
+                            class="login_form_wrapper q-pa-md q-gutter-y-md"
+                            style="width: 100%; max-width: 580px; pointer-events: auto;">
+                            <div class="text-center font_Sunday h1 text-white q-pb-md">Авторизация</div>
 
-                        <div class="q-gutter-y-md q-pb-md">
-                            <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
-                                rounded v-model="form1_login" type="email" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, напишите свою электронную почту',
-                                    val => /.+@.+\..+/.test(val) || 'Неверный email'
-                                ]" lazy-rules reactive-rules @update:model-value="loginApi.validateForm('loginForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-input>
-                            <q-input bg-color="light_yellow" v-model="form1_password_current" placeholder="Пароль"
-                                outlined rounded :type="form1_isPasswordVisble_1 ? 'password' : 'text'"
-                                class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, напишите свой пароль'
-                                ]" lazy-rules reactive-rules @update:model-value="loginApi.validateForm('loginForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                                <template v-slot:append>
-                                    <q-icon :name="form1_isPasswordVisble_1 ? 'visibility_off' : 'visibility'"
-                                        class="cursor-pointer q-pr-sm"
-                                        @click="form1_isPasswordVisble_1 = !form1_isPasswordVisble_1" />
-                                </template>
-                            </q-input>
-                        </div>
-
-                        <div class="q-gutter-y-md q-pb-md">
-                            <div @click="restorePasswordDialog = true" class="text-white" style="cursor: pointer;">Не
-                                помню пароль
+                            <div class="q-gutter-y-md q-pb-md">
+                                <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email"
+                                    outlined rounded v-model="form1_login" type="email" class="input_field_UCStyle"
+                                    :rules="[
+                                        val => !!val || 'Пожалуйста, напишите свою электронную почту',
+                                        val => /.+@.+\..+/.test(val) || 'Неверный email'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="loginApi.validateForm('loginForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-input bg-color="light_yellow" v-model="form1_password_current" placeholder="Пароль"
+                                    outlined rounded :type="form1_isPasswordVisble_1 ? 'password' : 'text'"
+                                    class="input_field_UCStyle" :rules="[
+                                        val => !!val || 'Пожалуйста, напишите свой пароль'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="loginApi.validateForm('loginForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                    <template v-slot:append>
+                                        <q-icon :name="form1_isPasswordVisble_1 ? 'visibility_off' : 'visibility'"
+                                            class="cursor-pointer q-pr-sm"
+                                            @click="form1_isPasswordVisble_1 = !form1_isPasswordVisble_1" />
+                                    </template>
+                                </q-input>
                             </div>
-                            <q-btn type="submit" flat no-caps size="xl" class="q-pa-none full-width"
-                                style="border-radius: 22px" :loading="loginApi.loadingStates.value.login"
-                                :disable="!loginApi.currentFormIsValid">
-                                <template v-slot:loading>
-                                    <div class="full-width ucButtonToQuasar__wrapper_1_white text-white">
-                                        <div class="ucButtonToQuasar__wrapper_2_white q-px-xl q-py-sm">
-                                            <q-spinner-hourglass class="on-left" color="white" />
-                                            Загрузка...
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-slot:default>
-                                    <div class="full-width ucButtonToQuasar__wrapper_1"
-                                        :class="loginApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
-                                        <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
-                                            Войти
-                                        </div>
-                                    </div>
-                                </template>
-                            </q-btn>
-                        </div>
 
-                        <div class="text-white text-center" style="cursor: pointer;" @click="showLogin = !showLogin">Нет
-                            аккаунта?
-                            Зарегистрироваться
-                        </div>
+                            <div class="q-gutter-y-md q-pb-md">
+                                <div @click="restorePasswordDialog = true" class="text-white" style="cursor: pointer;">
+                                    Не
+                                    помню пароль
+                                </div>
+                                <q-btn type="submit" flat no-caps size="xl" class="q-pa-none full-width"
+                                    style="border-radius: 22px" :loading="loginApi.loadingStates.value.login"
+                                    :disable="!loginApi.currentFormIsValid">
+                                    <template v-slot:loading>
+                                        <div class="full-width ucButtonToQuasar__wrapper_1_white text-white">
+                                            <div class="ucButtonToQuasar__wrapper_2_white q-px-xl q-py-sm">
+                                                <q-spinner-hourglass class="on-left" color="white" />
+                                                Загрузка...
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template v-slot:default>
+                                        <div class="full-width ucButtonToQuasar__wrapper_1"
+                                            :class="loginApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
+                                            <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
+                                                Войти
+                                            </div>
+                                        </div>
+                                    </template>
+                                </q-btn>
+                            </div>
 
-                    </q-form>
+                            <div class="text-white text-center" style="cursor: pointer;"
+                                @click="showLogin = !showLogin">Нет
+                                аккаунта?
+                                Зарегистрироваться
+                            </div>
+
+                        </q-form>
+                    </div>
                 </div>
-            </div>
-        </q-card>
-        <q-card class="login_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
-            <div class="fullscreen row" style="pointer-events: none">
-                <div class="signIn_emptySpaceImg col-12 col-md" style="min-height: 50%;" v-if="$q.screen.gt.sm">
-                </div>
-                <div class="signIn_bgVectorClouds col-12 col-md flex flex-center">
-                    <q-form :ref="signinApi.formRefs.signinForm" @submit.prevent="signinApi.signin" no-error-focus
-                        class="login_form_wrapper q-pa-md q-gutter-y-md"
-                        style="width: 100%; max-width: 580px; pointer-events: auto;">
-                        <div class="text-center text-uc_green q-pb-md" v-if="$q.screen.lt.md">
-                            <div class="font_Sunday h3 q-pb-md">Вступайте в команду «у-Дачников»</div>
-                            <div>Заполните все поля и получите доступ к летнему курсу видеоуроков «Занимаемся на даче —
-                                У-Дачный
-                                контент»</div>
-                        </div>
+            </q-card>
+            <q-card class="signin_wrapper" style="background-color: #EFDFBB;" v-if="!showLogin">
+                <div class="fullscreen row" style="pointer-events: none">
+                    <div class="signIn_emptySpaceImg col-12 col-md" style="min-height: 50%;" v-if="$q.screen.gt.sm">
+                    </div>
+                    <div class="signIn_bgVectorClouds col-12 col-md flex flex-center"
+                        :style="$q.screen.lt.md ? 'padding-top: 96px;' : ''">
+                        <q-form :ref="signinApi.formRefs.signinForm" @submit.prevent="signinApi.signin" no-error-focus
+                            class="login_form_wrapper q-pa-md q-gutter-y-md"
+                            style="width: 100%; max-width: 580px; pointer-events: auto;">
+                            <div class="text-center text-uc_green q-pb-md" v-if="$q.screen.lt.md">
+                                <div class="font_Sunday h3 q-pb-md">Вступайте в команду «у-Дачников»</div>
+                                <div>Заполните все поля и получите доступ к летнему курсу видеоуроков «Занимаемся на
+                                    даче —
+                                    У-Дачный
+                                    контент»</div>
+                            </div>
 
 
-                        <div class="q-gutter-y-md q-pb-md">
-                            <q-input bg-color="light_yellow" outlined rounded v-model="form1_child_fio"
-                                placeholder="Ф.И.О ребёнка" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-input>
-                            <q-input bg-color="light_yellow" outlined rounded v-model.number="form1_child_age"
-                                type="number" placeholder="Возраст ребенка" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-input>
-                            <q-input bg-color="light_yellow" outlined rounded v-model="form1_parent_fio"
-                                placeholder="Ф.И.О законного представителя" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-input>
-                            <q-select bg-color="light_yellow"
-                                popup-content-class="ucSelectToQuasar__popup_content_class" outlined rounded
-                                v-model="form1_diagnosis_status" :options="form1_diagnosis_status_options"
-                                label="Статус ребенка" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-select>
-                            <q-select bg-color="light_yellow"
-                                popup-content-class="ucSelectToQuasar__popup_content_class" outlined rounded
-                                v-model="form1_diagnosis_cipher" :options="form1_diagnosis_cipher_options"
-                                label="Шифр по ПМПК" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-select>
-                            <q-input bg-color="light_yellow" outlined rounded v-model="form1_phoneNumber"
-                                label="Телефон" mask="8 (###) ###-##-##" fill-mask class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, заполните это поле'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-input>
-                            <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email" outlined
-                                rounded v-model="form1_login" type="email" class="input_field_UCStyle" :rules="[
-                                    val => !!val || 'Пожалуйста, напишите свою электронную почту',
-                                    val => /.+@.+\..+/.test(val) || 'Неверный email'
-                                ]" lazy-rules reactive-rules
-                                @update:model-value="signinApi.validateForm('signinForm')">
-                                <template v-slot:prepend>
-                                    <div class="q-px-xs"></div>
-                                </template>
-                            </q-input>
-                        </div>
+                            <div class="q-gutter-y-md q-pb-xs">
+                                <q-input bg-color="light_yellow" outlined rounded v-model="form1_child_fio"
+                                    placeholder="Ф.И.О ребёнка" class="input_field_UCStyle" :rules="[
+                                        val => !!val || 'Пожалуйста, заполните это поле'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-input bg-color="light_yellow" outlined rounded v-model.number="form1_child_age"
+                                    type="number" placeholder="Возраст ребенка" class="input_field_UCStyle" :rules="[
+                                        val => !!val || 'Пожалуйста, заполните это поле'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-input bg-color="light_yellow" outlined rounded v-model="form1_parent_fio"
+                                    placeholder="Ф.И.О законного представителя" class="input_field_UCStyle" :rules="[
+                                        val => !!val || 'Пожалуйста, заполните это поле'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-select bg-color="light_yellow"
+                                    popup-content-class="ucSelectToQuasar__popup_content_class" outlined rounded
+                                    v-model="form1_diagnosis_status" :options="form1_diagnosis_status_options"
+                                    label="Статус ребенка" class="input_field_UCStyle" :rules="[
+                                        val => !!val || 'Пожалуйста, заполните это поле'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-select>
+                                <q-select bg-color="light_yellow"
+                                    popup-content-class="ucSelectToQuasar__popup_content_class" outlined rounded
+                                    v-model="form1_diagnosis_cipher" :options="form1_diagnosis_cipher_options"
+                                    label="Шифр по ПМПК" class="input_field_UCStyle" :rules="[
+                                        val => !!val || 'Пожалуйста, заполните это поле'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-select>
+                                <q-input bg-color="light_yellow" outlined rounded v-model="form1_phoneNumber"
+                                    label="Телефон" mask="8 (###) ###-##-##" fill-mask class="input_field_UCStyle"
+                                    :rules="[
+                                        val => !!val || 'Пожалуйста, заполните это поле'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-input bg-color="light_yellow" label-color="uc_light_green" placeholder="Email"
+                                    outlined rounded v-model="form1_login" type="email" class="input_field_UCStyle"
+                                    :rules="[
+                                        val => !!val || 'Пожалуйста, напишите свою электронную почту',
+                                        val => /.+@.+\..+/.test(val) || 'Неверный email'
+                                    ]" lazy-rules reactive-rules
+                                    @update:model-value="signinApi.validateForm('signinForm')">
+                                    <template v-slot:prepend>
+                                        <div class="q-px-xs"></div>
+                                    </template>
+                                </q-input>
+                                <q-checkbox v-model="form1_acceptTerms"
+                                    @update:model-value="signinApi.validateForm('signinForm')" color="uc_green">
+                                    <template v-slot:default>
+                                        <div class="text-uc_green">Соглашаюсь с условиями Политики конфиденциальности,
+                                            Согласия на обработку
+                                            персональных данных</div>
+                                    </template>
+                                </q-checkbox>
+                            </div>
 
-                        <div class="q-gutter-y-md q-pb-md">
-                            <q-btn type="submit" flat no-caps size="xl" class="q-pa-none full-width"
-                                style="border-radius: 22px" :loading="signinApi.loadingStates.value.login"
-                                :disable="!signinApi.currentFormIsValid">
-                                <template v-slot:loading>
-                                    <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
-                                        <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
-                                            <q-spinner-hourglass class="on-left" color="uc_green" />
-                                            Загрузка...
+                            <div class="q-gutter-y-md q-pb-md">
+                                <q-btn type="submit" flat no-caps size="xl" class="q-pa-none full-width"
+                                    style="border-radius: 22px" :loading="signinApi.loadingStates.value.login"
+                                    :disable="!signinApi.currentFormIsValid">
+                                    <template v-slot:loading>
+                                        <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
+                                            <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm">
+                                                <q-spinner-hourglass class="on-left" color="uc_green" />
+                                                Загрузка...
+                                            </div>
                                         </div>
-                                    </div>
-                                </template>
-                                <template v-slot:default>
-                                    <div class="full-width ucButtonToQuasar__wrapper_1"
-                                        :class="signinApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
-                                        <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
-                                            Войти
+                                    </template>
+                                    <template v-slot:default>
+                                        <div class="full-width ucButtonToQuasar__wrapper_1"
+                                            :class="signinApi.currentFormIsValid ? '' : 'ucButtonToQuasar__wrapper_1_disable'">
+                                            <div class="ucButtonToQuasar__wrapper_2 q-px-xl q-py-sm">
+                                                Зарегистрироваться
+                                            </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </q-btn>
-                        </div>
+                                    </template>
+                                </q-btn>
+                            </div>
 
-                        <div class="text-uc_green text-center" style="cursor: pointer;" @click="showLogin = !showLogin">
-                            Уже
-                            есть
-                            аккаунт?
-                            Войти
-                        </div>
+                            <div class="text-uc_green text-center" style="cursor: pointer;"
+                                @click="showLogin = !showLogin">
+                                Уже
+                                есть
+                                аккаунт?
+                                Войти
+                            </div>
 
-                    </q-form>
+                        </q-form>
+                    </div>
                 </div>
-            </div>
-            <q-bar class="q-pa-xl fixed-full z-top"
-                style="height: 60px; background-color: transparent;  pointer-events: auto;">
-                <q-space />
-                <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
-                    style="border: solid 2px #315720;background-color: #EFDFBB;">
-                    <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
-                </q-btn>
-            </q-bar>
-        </q-card>
+                <q-bar class="q-pa-xl fixed-full z-top"
+                    style="height: 60px; background-color: transparent;  pointer-events: none;">
+                    <q-space />
+                    <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
+                        style="border: solid 2px #315720;background-color: #EFDFBB; pointer-events: auto;">
+                        <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
+                    </q-btn>
+                </q-bar>
+            </q-card>
+        </div>
+
         <!-- Second dialog -->
         <q-dialog v-model="restorePasswordDialog" persistent maximized>
             <q-card class="fullscreen bg-uc_light_green">
@@ -626,10 +648,10 @@ const restorePasswordApi = {
                             :class="$q.screen.lt.md ? 'fullscreen' : ''"
                             :style="$q.screen.lt.md ? '' : 'max-width: 426px'">
                             <div class="q-gutter-y-md restorePassword_formWrapper_fields" style="height: 100%;">
-                                <q-bar style="height: 60px; background-color: transparent;  pointer-events: auto;">
+                                <q-bar style="height: 60px; background-color: transparent;  pointer-events: none;">
                                     <q-space />
                                     <q-btn dense flat round icon="close" v-close-popup size="lg" color="uc_green"
-                                        style="border: solid 2px #315720"
+                                        style="border: solid 2px #315720; pointer-events: auto;"
                                         @click="restorePasswordApi.currentStep.value = 0">
                                         <q-tooltip class="bg-white text-primary">Закрыть</q-tooltip>
                                     </q-btn>
