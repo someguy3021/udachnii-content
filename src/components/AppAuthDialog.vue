@@ -685,7 +685,8 @@ const restorePasswordApi = {
                                                     val => !!val || 'Пожалуйста, напишите свою электронную почту',
                                                     val => /.+@.+\..+/.test(val) || 'Неверный email'
                                                 ]" lazy-rules reactive-rules
-                                                @update:model-value="restorePasswordApi.validateForm('emailForm')">
+                                                @update:model-value="restorePasswordApi.validateForm('emailForm')"
+                                                @vue:mounted="restorePasswordApi.validateForm('emailForm')">
                                                 <template v-slot:prepend>
                                                     <div class="q-px-xs"></div>
                                                 </template>
