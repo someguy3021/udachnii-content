@@ -190,10 +190,10 @@ const formattedTime = computed(() => {
 });
 
 const startTimer = () => {
-    if (isCooldown.value) return;
+    if (intervalId.value) clearInterval(intervalId.value);
 
     // Set cooldown duration in seconds (5 minutes = 300 seconds)
-    timeRemaining.value = 62;
+    timeRemaining.value = 2;
     isCooldown.value = true;
 
     intervalId.value = setInterval(() => {
@@ -246,6 +246,7 @@ const restorePasswordApi = {
     }),
     loadingStates: ref({
         email: false,
+        resendEmail: false,
         code: false,
         password: false,
     }),
@@ -304,6 +305,42 @@ const restorePasswordApi = {
             });
         } finally {
             restorePasswordApi.loadingStates.value.email = false;
+        }
+    },
+    resendCode: async () => {
+        if (isCooldown.value) {
+            $q.notify({
+                color: 'negative',
+                message: 'Пожалуйста, подождите перед повторной отправкой',
+                icon: 'report_problem'
+            });
+            return;
+        }
+        restorePasswordApi.loadingStates.value.resendEmail = true;
+        try {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            startTimer(); // Reset timer
+            $q.notify({
+                color: 'uc_green',
+                message: 'Код отправлен повторно!',
+                icon: 'check'
+            });
+        } catch (error) {
+            let message = 'Ошибка при повторной отправке кода';
+            if (error.response) {
+                switch (error.response.status) {
+                    case 404: message = 'Ошибка - такой электронной почты не существует'; break;
+                    case 429: message = 'Слишком много запросов. Попробуйте позже.'; break;
+                    default: message = error.response.data?.message || message;
+                }
+            }
+            $q.notify({
+                color: 'negative',
+                message,
+                icon: 'report_problem'
+            });
+        } finally {
+            restorePasswordApi.loadingStates.value.resendEmail = false;
         }
     },
     writeSendCodeFromEmail: async () => {
@@ -739,9 +776,34 @@ const restorePasswordApi = {
                                                     сообщение не пришло, повторите попытку.</div>
                                                 <div
                                                     class="send_again_timerAndText_wrapper row text-uc_green text-weight-bold h6">
-                                                    <div class="send_again_text col-8">Отправить код еще раз</div>
-                                                    <div class="send_again_timer col-4 text-right">через {{
-                                                        formattedTime }}
+                                                    <div class="send_again_text col-8">
+                                                        <q-btn flat no-caps size="md" class="q-pa-none"
+                                                            style="border-radius: 22px"
+                                                            :loading="restorePasswordApi.loadingStates.value.resendEmail"
+                                                            :disable="isCooldown"
+                                                            @click="restorePasswordApi.resendCode">
+                                                            <template v-slot:loading>
+                                                                <div
+                                                                    class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
+                                                                    <div class="q-px-md q-py-sm">
+                                                                        <q-spinner-hourglass class="on-left"
+                                                                            color="uc_green" />
+                                                                        Отправляем...
+                                                                    </div>
+                                                                </div>
+                                                            </template>
+                                                            <template v-slot:default>
+                                                                <div class="full-width"
+                                                                    :class="restorePasswordApi.currentFormIsValid ? '' : ''">
+                                                                    <div class="q-px-md q-py-sm">
+                                                                        Отправить код еще раз
+                                                                    </div>
+                                                                </div>
+                                                            </template>
+                                                        </q-btn>
+                                                    </div>
+                                                    <div class="send_again_timer col-4 text-right flex flex-center">
+                                                        через {{ formattedTime }}
                                                     </div>
                                                 </div>
                                             </div>
