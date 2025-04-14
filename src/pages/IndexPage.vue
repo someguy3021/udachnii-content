@@ -270,7 +270,7 @@
           :style="{ backgroundImage: `url(${img_sectionBanner_grass})` }" :class="$q.screen.lt.sm ? '' : 'q-pa-lg'">
           <q-carousel v-model="slide2" padding infinite transition-prev="slide-right" transition-next="slide-left"
             swipeable animated :control-type="$q.screen.lt.sm ? 'flat' : 'unelevated'" control-color="white"
-            control-text-color="primary" :arrows="$q.screen.gt.xs" :navigation="$q.screen.lt.sm" :autoplay=true
+            control-text-color="primary" :arrows="$q.screen.lt.md" :navigation="$q.screen.lt.sm" :autoplay=true
             style="height: 100%; background-color: transparent;">
             <q-carousel-slide :name="1" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
