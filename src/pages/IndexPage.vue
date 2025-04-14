@@ -274,17 +274,21 @@
             style="height: 100%; background-color: transparent;">
             <q-carousel-slide :name="1" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-img src="src/assets/landing/blocks/part_logos/logo_DT.svg" style="height: 80%;" fit="scale-down"
+                  class="q-pa-md"></q-img>
+                <q-img src="src/assets/landing/blocks/part_logos/logo_MUEP.svg" style="height: 80%;" fit="scale-down"
+                  class="q-pa-md"></q-img>
+                <q-img v-if="!$q.screen.lt.md" src="src/assets/landing/blocks/part_logos/logo_OBRSOUZ.svg"
+                  style="height: 80%;" fit="scale-down" class="q-pa-md"></q-img>
               </div>
             </q-carousel-slide>
-            <q-carousel-slide :name="2" class="column no-wrap">
+            <q-carousel-slide v-if="$q.screen.lt.md" :name="2" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
-                <q-btn no-caps color="green" icon="mail" label="info@example" />
+                <q-img src="src/assets/landing/blocks/part_logos/logo_OBRSOUZ.svg" style="height: 80%;" fit="scale-down"
+                  class="q-pa-md"></q-img>
               </div>
             </q-carousel-slide>
-            <q-carousel-slide :name="3" class="column no-wrap">
+            <!--<q-carousel-slide :name="3" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
@@ -295,7 +299,7 @@
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
                 <q-btn no-caps color="green" icon="mail" label="info@example" />
               </div>
-            </q-carousel-slide>
+            </q-carousel-slide> -->
           </q-carousel>
         </div>
       </div>
