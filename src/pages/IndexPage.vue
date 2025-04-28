@@ -276,13 +276,19 @@
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-img src="src/assets/landing/blocks/part_logos/logo_DT.svg" style="height: 80%;" fit="scale-down"
                   class="q-pa-md"></q-img>
-                <q-img src="src/assets/landing/blocks/part_logos/logo_MUEP.svg" style="height: 80%;" fit="scale-down"
-                  class="q-pa-md"></q-img>
+                <q-img v-if="!$q.screen.lt.md" src="src/assets/landing/blocks/part_logos/logo_MUEP.svg"
+                  style="height: 80%;" fit="scale-down" class="q-pa-md"></q-img>
                 <q-img v-if="!$q.screen.lt.md" src="src/assets/landing/blocks/part_logos/logo_OBRSOUZ.svg"
                   style="height: 80%;" fit="scale-down" class="q-pa-md"></q-img>
               </div>
             </q-carousel-slide>
             <q-carousel-slide v-if="$q.screen.lt.md" :name="2" class="column no-wrap">
+              <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
+                <q-img src="src/assets/landing/blocks/part_logos/logo_MUEP.svg" style="height: 80%;" fit="scale-down"
+                  class="q-pa-md"></q-img>
+              </div>
+            </q-carousel-slide>
+            <q-carousel-slide v-if="$q.screen.lt.md" :name="3" class="column no-wrap">
               <div class="row fit justify-center items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-img src="src/assets/landing/blocks/part_logos/logo_OBRSOUZ.svg" style="height: 80%;" fit="scale-down"
                   class="q-pa-md"></q-img>
