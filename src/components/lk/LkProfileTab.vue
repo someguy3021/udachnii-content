@@ -114,6 +114,17 @@ const blocks = computed(() =>
 // function updateProgressionFromServer(newValue) {
 //   ticketProgression.value = Math.min(Math.max(newValue, 0), 12);
 // }
+
+import pdfFile from 'src/assets/pdf/У-Дачный афиша.pdf';
+
+const downloadPDF_Ticket = () => {
+  const link = document.createElement('a');
+  link.href = pdfFile;
+  link.download = 'У-Дачный контент - афиша.pdf'; // Имя файла который скачается
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 </script>
 
 <template>
@@ -408,7 +419,7 @@ const blocks = computed(() =>
 
     <div class="downloadTicket_wrapper">
       <q-btn flat no-caps color="white" size="xl" class="q-pa-none" style="border-radius: 22px; min-width: 230px;"
-        :disable="!isTicketFullyUnlocked">
+        :disable="!isTicketFullyUnlocked" @click="downloadPDF_Ticket">
         <template v-slot:loading>
           <div class="full-width ucButtonToQuasar__wrapper_1_uc_green text-uc_green">
             <div class="ucButtonToQuasar__wrapper_2_uc_green q-px-xl q-py-sm row">
